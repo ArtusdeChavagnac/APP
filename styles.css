@@ -10,7 +10,7 @@ a:hover {
 
 body {
 	background: url(fond.png);
-	font-family: Orbitron, Bahnschrift;
+	font-family: orbitron, bahnschrift, sans-serif;
 	color: #fff333;
 	margin-right: 5%;
 	margin-left: 5%;
