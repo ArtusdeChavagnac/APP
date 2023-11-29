@@ -12,7 +12,8 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Abonnement` (
 	`Cout` VARCHAR(45) NOT NULL,
 	`Date début` VARCHAR(45) NULL,
 	`Date fin` VARCHAR(45) NULL,
-	PRIMARY KEY (`idAbonnement`))
+	PRIMARY KEY (`idAbonnement`)
+)
 ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `mydb`.`Utilisateur` (
@@ -30,7 +31,8 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Utilisateur` (
 		FOREIGN KEY (`Abonnement_idAbonnement`)
 		REFERENCES `mydb`.`Abonnement` (`idAbonnement`)
 		ON DELETE NO ACTION
-		ON UPDATE NO ACTION)
+		ON UPDATE NO ACTION
+)
 ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `mydb`.`Artiste` (
@@ -44,7 +46,8 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Artiste` (
 	PRIMARY KEY (`idArtiste`),
 	UNIQUE INDEX `Numéro de téléphone_UNIQUE` (`Numéro de téléphone` ASC) VISIBLE,
 	UNIQUE INDEX `Adresse Email_UNIQUE` (`Adresse Email` ASC) VISIBLE,
-	UNIQUE INDEX `Pseudo_UNIQUE` (`Pseudo` ASC) VISIBLE)
+	UNIQUE INDEX `Pseudo_UNIQUE` (`Pseudo` ASC) VISIBLE
+)
 ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `mydb`.`Préférence utilisateur` (
@@ -57,13 +60,15 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Préférence utilisateur` (
 		FOREIGN KEY (`Artiste_idArtiste`)
 		REFERENCES `mydb`.`Artiste` (`idArtiste`)
 		ON DELETE NO ACTION
-		ON UPDATE NO ACTION)
+		ON UPDATE NO ACTION
+)
 ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `mydb`.`Ticket` (
 	`idTicket` INT NOT NULL,
 	`Place` VARCHAR(45) NULL,
-	PRIMARY KEY (`idTicket`))
+	PRIMARY KEY (`idTicket`)
+)
 ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `mydb`.`Avis` (
@@ -71,7 +76,8 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Avis` (
 	`Critique` VARCHAR(45) NULL,
 	`Note` VARCHAR(45) NULL,
 	`Date` VARCHAR(45) NULL,
-	PRIMARY KEY (`idAvis`))
+	PRIMARY KEY (`idAvis`)
+)
 ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `mydb`.`Capteur Sonore` (
@@ -79,7 +85,8 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Capteur Sonore` (
 	`Position` VARCHAR(45) NOT NULL,
 	`Date` VARCHAR(45) NOT NULL,
 	`Niveau sonore` VARCHAR(45) NOT NULL,
-	PRIMARY KEY (`idCapteur Sonore`))
+	PRIMARY KEY (`idCapteur Sonore`)
+)
 ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `mydb`.`Salle` (
@@ -95,7 +102,8 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Salle` (
 		FOREIGN KEY (`Capteur Sonore_idCapteur Sonore`)
 		REFERENCES `mydb`.`Capteur Sonore` (`idCapteur Sonore`)
 		ON DELETE NO ACTION
-		ON UPDATE NO ACTION)
+		ON UPDATE NO ACTION
+)
 ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `mydb`.`Concert` (
@@ -113,7 +121,8 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Concert` (
 		FOREIGN KEY (`Salle_idSalle`)
 		REFERENCES `mydb`.`Salle` (`idSalle`)
 		ON DELETE NO ACTION
-		ON UPDATE NO ACTION)
+		ON UPDATE NO ACTION
+)
 ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `mydb`.`Administrateur` (
@@ -121,7 +130,8 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Administrateur` (
 	`Nom` VARCHAR(45) NOT NULL,
 	`Prénom` VARCHAR(45) NOT NULL,
 	`Expérience` VARCHAR(45) NULL,
-	PRIMARY KEY (`idAdministrateur`))
+	PRIMARY KEY (`idAdministrateur`)
+)
 ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `mydb`.`Utilisateur_has_Concert` (
@@ -150,7 +160,8 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Utilisateur_has_Concert` (
 		FOREIGN KEY (`Ticket_idTicket`)
 		REFERENCES `mydb`.`Ticket` (`idTicket`)
 		ON DELETE NO ACTION
-		ON UPDATE NO ACTION)
+		ON UPDATE NO ACTION
+)
 ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `mydb`.`Concert_has_Utilisateur` (
@@ -179,7 +190,8 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Concert_has_Utilisateur` (
 		FOREIGN KEY (`Avis_idAvis`)
 		REFERENCES `mydb`.`Avis` (`idAvis`)
 		ON DELETE NO ACTION
-		ON UPDATE NO ACTION)
+		ON UPDATE NO ACTION
+)
 ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `mydb`.`Administrateur_has_Capteur Sonore` (
@@ -201,7 +213,8 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Administrateur_has_Capteur Sonore` (
 		FOREIGN KEY (`Capteur Sonore_idCapteur Sonore`)
 		REFERENCES `mydb`.`Capteur Sonore` (`idCapteur Sonore`)
 		ON DELETE NO ACTION
-		ON UPDATE NO ACTION)
+		ON UPDATE NO ACTION
+)
 ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `mydb`.`Concert_has_Artiste` (
@@ -222,7 +235,8 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Concert_has_Artiste` (
 		FOREIGN KEY (`Artiste_idArtiste`)
 		REFERENCES `mydb`.`Artiste` (`idArtiste`)
 		ON DELETE NO ACTION
-		ON UPDATE NO ACTION)
+		ON UPDATE NO ACTION
+)
 ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `mydb`.`Utilisateur_has_Préférence utilisateur` (
@@ -242,7 +256,8 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Utilisateur_has_Préférence utilisateur` (
 		FOREIGN KEY (`Préférence utilisateur_idPréférence utilisateur`, `Préférence utilisateur_Artiste_idArtiste`)
 		REFERENCES `mydb`.`Préférence utilisateur` (`idPréférence utilisateur`, `Artiste_idArtiste`)
 		ON DELETE NO ACTION
-		ON UPDATE NO ACTION)
+		ON UPDATE NO ACTION
+)
 ENGINE = InnoDB;
 
 SET SQL_MODE = @OLD_SQL_MODE;
