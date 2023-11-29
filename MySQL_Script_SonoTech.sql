@@ -1,6 +1,6 @@
-SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
-SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+SET @OLD_UNIQUE_CHECKS = @@UNIQUE_CHECKS, UNIQUE_CHECKS = 0;
+SET @OLD_FOREIGN_KEY_CHECKS = @@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS = 0;
+SET @OLD_SQL_MODE = @@SQL_MODE, SQL_MODE = 'ONLY_FULL_GROUP_BY, STRICT_TRANS_TABLES, NO_ZERO_IN_DATE, NO_ZERO_DATE, ERROR_FOR_DIVISION_BY_ZERO, NO_ENGINE_SUBSTITUTION';
 
 CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
 USE `mydb` ;
@@ -137,13 +137,13 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Utilisateur_has_Concert` (
 	INDEX `fk_Utilisateur_has_Concert_Utilisateur1_idx` (`Utilisateur_idUtilisateur` ASC, `Utilisateur_Abonnement_idAbonnement` ASC) VISIBLE,
 	INDEX `fk_Utilisateur_has_Concert_Ticket1_idx` (`Ticket_idTicket` ASC) VISIBLE,
 	CONSTRAINT `fk_Utilisateur_has_Concert_Utilisateur1`
-		FOREIGN KEY (`Utilisateur_idUtilisateur` , `Utilisateur_Abonnement_idAbonnement`)
-		REFERENCES `mydb`.`Utilisateur` (`idUtilisateur` , `Abonnement_idAbonnement`)
+		FOREIGN KEY (`Utilisateur_idUtilisateur`, `Utilisateur_Abonnement_idAbonnement`)
+		REFERENCES `mydb`.`Utilisateur` (`idUtilisateur`, `Abonnement_idAbonnement`)
 		ON DELETE NO ACTION
 		ON UPDATE NO ACTION,
 	CONSTRAINT `fk_Utilisateur_has_Concert_Concert1`
-		FOREIGN KEY (`Concert_idConcert` , `Concert_Utilisateur_idUtilisateur` , `Concert_Utilisateur_Abonnement_idAbonnement` , `Concert_Utilisateur_Concert_idConcert`)
-		REFERENCES `mydb`.`Concert` (`idConcert` , `Utilisateur_idUtilisateur` , `Utilisateur_Abonnement_idAbonnement` , `Utilisateur_Concert_idConcert`)
+		FOREIGN KEY (`Concert_idConcert`, `Concert_Utilisateur_idUtilisateur`, `Concert_Utilisateur_Abonnement_idAbonnement`, `Concert_Utilisateur_Concert_idConcert`)
+		REFERENCES `mydb`.`Concert` (`idConcert`, `Utilisateur_idUtilisateur`, `Utilisateur_Abonnement_idAbonnement`, `Utilisateur_Concert_idConcert`)
 		ON DELETE NO ACTION
 		ON UPDATE NO ACTION,
 	CONSTRAINT `fk_Utilisateur_has_Concert_Ticket1`
@@ -166,13 +166,13 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Concert_has_Utilisateur` (
 	INDEX `fk_Concert_has_Utilisateur_Concert1_idx` (`Concert_idConcert` ASC, `Concert_Utilisateur_idUtilisateur` ASC, `Concert_Utilisateur_Abonnement_idAbonnement` ASC, `Concert_Utilisateur_Concert_idConcert` ASC) VISIBLE,
 	INDEX `fk_Concert_has_Utilisateur_Avis1_idx` (`Avis_idAvis` ASC) VISIBLE,
 	CONSTRAINT `fk_Concert_has_Utilisateur_Concert1`
-		FOREIGN KEY (`Concert_idConcert` , `Concert_Utilisateur_idUtilisateur` , `Concert_Utilisateur_Abonnement_idAbonnement` , `Concert_Utilisateur_Concert_idConcert`)
-		REFERENCES `mydb`.`Concert` (`idConcert` , `Utilisateur_idUtilisateur` , `Utilisateur_Abonnement_idAbonnement` , `Utilisateur_Concert_idConcert`)
+		FOREIGN KEY (`Concert_idConcert`, `Concert_Utilisateur_idUtilisateur`, `Concert_Utilisateur_Abonnement_idAbonnement`, `Concert_Utilisateur_Concert_idConcert`)
+		REFERENCES `mydb`.`Concert` (`idConcert`, `Utilisateur_idUtilisateur`, `Utilisateur_Abonnement_idAbonnement`, `Utilisateur_Concert_idConcert`)
 		ON DELETE NO ACTION
 		ON UPDATE NO ACTION,
 	CONSTRAINT `fk_Concert_has_Utilisateur_Utilisateur1`
-		FOREIGN KEY (`Utilisateur_idUtilisateur` , `Utilisateur_Abonnement_idAbonnement`)
-		REFERENCES `mydb`.`Utilisateur` (`idUtilisateur` , `Abonnement_idAbonnement`)
+		FOREIGN KEY (`Utilisateur_idUtilisateur`, `Utilisateur_Abonnement_idAbonnement`)
+		REFERENCES `mydb`.`Utilisateur` (`idUtilisateur`, `Abonnement_idAbonnement`)
 		ON DELETE NO ACTION
 		ON UPDATE NO ACTION,
 	CONSTRAINT `fk_Concert_has_Utilisateur_Avis1`
@@ -214,8 +214,8 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Concert_has_Artiste` (
 	INDEX `fk_Concert_has_Artiste_Artiste1_idx` (`Artiste_idArtiste` ASC) VISIBLE,
 	INDEX `fk_Concert_has_Artiste_Concert1_idx` (`Concert_idConcert` ASC, `Concert_Utilisateur_idUtilisateur` ASC, `Concert_Utilisateur_Abonnement_idAbonnement` ASC, `Concert_Utilisateur_Concert_idConcert` ASC) VISIBLE,
 	CONSTRAINT `fk_Concert_has_Artiste_Concert1`
-		FOREIGN KEY (`Concert_idConcert` , `Concert_Utilisateur_idUtilisateur` , `Concert_Utilisateur_Abonnement_idAbonnement` , `Concert_Utilisateur_Concert_idConcert`)
-		REFERENCES `mydb`.`Concert` (`idConcert` , `Utilisateur_idUtilisateur` , `Utilisateur_Abonnement_idAbonnement` , `Utilisateur_Concert_idConcert`)
+		FOREIGN KEY (`Concert_idConcert`, `Concert_Utilisateur_idUtilisateur`, `Concert_Utilisateur_Abonnement_idAbonnement`, `Concert_Utilisateur_Concert_idConcert`)
+		REFERENCES `mydb`.`Concert` (`idConcert`, `Utilisateur_idUtilisateur`, `Utilisateur_Abonnement_idAbonnement`, `Utilisateur_Concert_idConcert`)
 		ON DELETE NO ACTION
 		ON UPDATE NO ACTION,
 	CONSTRAINT `fk_Concert_has_Artiste_Artiste1`
@@ -234,17 +234,17 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Utilisateur_has_Préférence utilisateur` (
 	INDEX `fk_Utilisateur_has_Préférence utilisateur_Préférence ut_idx` (`Préférence utilisateur_idPréférence utilisateur` ASC, `Préférence utilisateur_Artiste_idArtiste` ASC) VISIBLE,
 	INDEX `fk_Utilisateur_has_Préférence utilisateur_Utilisateur1_idx` (`Utilisateur_idUtilisateur` ASC, `Utilisateur_Abonnement_idAbonnement` ASC) VISIBLE,
 	CONSTRAINT `fk_Utilisateur_has_Préférence utilisateur_Utilisateur1`
-		FOREIGN KEY (`Utilisateur_idUtilisateur` , `Utilisateur_Abonnement_idAbonnement`)
-		REFERENCES `mydb`.`Utilisateur` (`idUtilisateur` , `Abonnement_idAbonnement`)
+		FOREIGN KEY (`Utilisateur_idUtilisateur`, `Utilisateur_Abonnement_idAbonnement`)
+		REFERENCES `mydb`.`Utilisateur` (`idUtilisateur`, `Abonnement_idAbonnement`)
 		ON DELETE NO ACTION
 		ON UPDATE NO ACTION,
 	CONSTRAINT `fk_Utilisateur_has_Préférence utilisateur_Préférence util1`
-		FOREIGN KEY (`Préférence utilisateur_idPréférence utilisateur` , `Préférence utilisateur_Artiste_idArtiste`)
-		REFERENCES `mydb`.`Préférence utilisateur` (`idPréférence utilisateur` , `Artiste_idArtiste`)
+		FOREIGN KEY (`Préférence utilisateur_idPréférence utilisateur`, `Préférence utilisateur_Artiste_idArtiste`)
+		REFERENCES `mydb`.`Préférence utilisateur` (`idPréférence utilisateur`, `Artiste_idArtiste`)
 		ON DELETE NO ACTION
 		ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SET SQL_MODE=@OLD_SQL_MODE;
-SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
-SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+SET SQL_MODE = @OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS = @OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS = @OLD_UNIQUE_CHECKS;
