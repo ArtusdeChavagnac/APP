@@ -5,9 +5,7 @@ a {
 	font-style: italic;
 }
 
-a:hover {
-	color: #19a0e3;
-}
+a:hover {color: #19a0e3;}
 
 body {
 	background: url(images/fond.png) center fixed repeat-y;
@@ -32,9 +30,7 @@ button {
 	text-shadow: 1px 1px 1px #000000;
 }
 
-button:hover {
-	background-color: #19a0e3;
-}
+button:hover {background-color: #19a0e3;}
 
 #div-contenu {
 	margin-right: 5%;
@@ -74,10 +70,6 @@ iframe {
 	border: 0;
 }
 
-#img-logo {
-	width: 200px;
-}
+#img-logo {width: 200px;}
 
-table {
-	margin: auto;
-}
+table {margin: auto;}
