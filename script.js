@@ -4,22 +4,22 @@ function seConnecter() {
 
 }
 
-// function monCompte() {
+function monCompte() {
 
-// 	// 
+	// 
 
-// }
+}
 
-// function connexion() {
+function connexion() {
 	
 // 	sessionStorage.setItem("connecte", true);
 
-// }
+}
 
-// function function_name() {
+function function_name() {
 
 // 	if (sessionStorage.getItem("connecte") == true) {
 // 		document.getElementById("span-se-connecter").style.display = "none";
 // 	}
 
-// }
+}

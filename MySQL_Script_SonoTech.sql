@@ -26,8 +26,8 @@ CREATE TABLE IF NOT EXISTS `Base_de_données`.`Utilisateur` (
 	`Numéro_de_téléphone` VARCHAR(45) NOT NULL,
 	`Abonnement_id_Abonnement` INT NOT NULL,
 	PRIMARY KEY (`id_Utilisateur`, `Abonnement_id_Abonnement`),
-	UNIQUE INDEX `Numéro_de_téléphone_UNIQUE` (`Numéro_de_téléphone` ASC) VISIBLE,
-	INDEX `fk_Utilisateur_Abonnement1_idx` (`Abonnement_id_Abonnement` ASC) VISIBLE,
+	UNIQUE INDEX `Numéro_de_téléphone_UNIQUE` (`Numéro_de_téléphone` ASC),
+	INDEX `fk_Utilisateur_Abonnement1_idx` (`Abonnement_id_Abonnement` ASC),
 	CONSTRAINT `fk_Utilisateur_Abonnement1`
 		FOREIGN KEY (`Abonnement_id_Abonnement`)
 		REFERENCES `Base_de_données`.`Abonnement` (`id_Abonnement`)
@@ -45,9 +45,9 @@ CREATE TABLE IF NOT EXISTS `Base_de_données`.`Artiste` (
 	`Numéro_de_téléphone` VARCHAR(45) NOT NULL,
 	`Style_de_musique` VARCHAR(45) NOT NULL,
 	PRIMARY KEY (`id_Artiste`),
-	UNIQUE INDEX `Numéro_de_téléphone_UNIQUE` (`Numéro_de_téléphone` ASC) VISIBLE,
-	UNIQUE INDEX `Adresse_email_UNIQUE` (`Adresse_email` ASC) VISIBLE,
-	UNIQUE INDEX `Pseudo_UNIQUE` (`Pseudo` ASC) VISIBLE
+	UNIQUE INDEX `Numéro_de_téléphone_UNIQUE` (`Numéro_de_téléphone` ASC),
+	UNIQUE INDEX `Adresse_email_UNIQUE` (`Adresse_email` ASC),
+	UNIQUE INDEX `Pseudo_UNIQUE` (`Pseudo` ASC)
 )
 ENGINE = InnoDB;
 
@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS `Base_de_données`.`Préférences_utilisateur` (
 	`Style_de_musique` VARCHAR(45) NULL,
 	`Artiste_id_Artiste` INT NOT NULL,
 	PRIMARY KEY (`id_Préférences_utilisateur`, `Artiste_id_Artiste`),
-	INDEX `fk_Préférences_utilisateur_Artiste1_idx` (`Artiste_id_Artiste` ASC) VISIBLE,
+	INDEX `fk_Préférences_utilisateur_Artiste1_idx` (`Artiste_id_Artiste` ASC),
 	CONSTRAINT `fk_Préférences_utilisateur_Artiste1`
 		FOREIGN KEY (`Artiste_id_Artiste`)
 		REFERENCES `Base_de_données`.`Artiste` (`id_Artiste`)
@@ -96,9 +96,9 @@ CREATE TABLE IF NOT EXISTS `Base_de_données`.`Salle` (
 	`Carte_sonore` VARCHAR(45) NULL,
 	`Capteur_sonore_id_Capteur_sonore` INT NOT NULL,
 	PRIMARY KEY (`id_Salle`, `Capteur_sonore_id_Capteur_sonore`),
-	UNIQUE INDEX `Adresse_UNIQUE` (`Adresse` ASC) VISIBLE,
-	UNIQUE INDEX `Carte_sonore_UNIQUE` (`Carte_sonore` ASC) VISIBLE,
-	INDEX `fk_Salle_Capteur_sonore1_idx` (`Capteur_sonore_id_Capteur_sonore` ASC) VISIBLE,
+	UNIQUE INDEX `Adresse_UNIQUE` (`Adresse` ASC),
+	UNIQUE INDEX `Carte_sonore_UNIQUE` (`Carte_sonore` ASC),
+	INDEX `fk_Salle_Capteur_sonore1_idx` (`Capteur_sonore_id_Capteur_sonore` ASC),
 	CONSTRAINT `fk_Salle_Capteur_sonore1`
 		FOREIGN KEY (`Capteur_sonore_id_Capteur_sonore`)
 		REFERENCES `Base_de_données`.`Capteur_sonore` (`id_Capteur_sonore`)
@@ -123,7 +123,7 @@ CREATE TABLE IF NOT EXISTS `Base_de_données`.`Concert` (
 		`Utilisateur_Concert_id_Concert`,
 		`Salle_id_Salle`
 	),
-	INDEX `fk_Concert_Salle1_idx` (`Salle_id_Salle` ASC) VISIBLE,
+	INDEX `fk_Concert_Salle1_idx` (`Salle_id_Salle` ASC),
 	CONSTRAINT `fk_Concert_Salle1`
 		FOREIGN KEY (`Salle_id_Salle`)
 		REFERENCES `Base_de_données`.`Salle` (`id_Salle`)
@@ -163,12 +163,12 @@ CREATE TABLE IF NOT EXISTS `Base_de_données`.`Utilisateur_has_Concert` (
 		`Concert_Utilisateur_id_Utilisateur` ASC,
 		`Concert_Utilisateur_Abonnement_id_Abonnement` ASC,
 		`Concert_Utilisateur_Concert_id_Concert` ASC
-	) VISIBLE,
+	),
 	INDEX `fk_Utilisateur_has_Concert_Utilisateur1_idx` (
 		`Utilisateur_id_Utilisateur` ASC,
 		`Utilisateur_Abonnement_id_Abonnement` ASC
-	) VISIBLE,
-	INDEX `fk_Utilisateur_has_Concert_Billet1_idx` (`Billet_id_Billet` ASC) VISIBLE,
+	),
+	INDEX `fk_Utilisateur_has_Concert_Billet1_idx` (`Billet_id_Billet` ASC),
 	CONSTRAINT `fk_Utilisateur_has_Concert_Utilisateur1`
 		FOREIGN KEY (`Utilisateur_id_Utilisateur`, `Utilisateur_Abonnement_id_Abonnement`)
 		REFERENCES `Base_de_données`.`Utilisateur` (`id_Utilisateur`, `Abonnement_id_Abonnement`)
@@ -217,14 +217,14 @@ CREATE TABLE IF NOT EXISTS `Base_de_données`.`Concert_has_Utilisateur` (
 	INDEX `fk_Concert_has_Utilisateur_Utilisateur1_idx` (
 		`Utilisateur_id_Utilisateur` ASC,
 		`Utilisateur_Abonnement_id_Abonnement` ASC
-	) VISIBLE,
+	),
 	INDEX `fk_Concert_has_Utilisateur_Concert1_idx` (
 		`Concert_id_Concert` ASC,
 		`Concert_Utilisateur_id_Utilisateur` ASC,
 		`Concert_Utilisateur_Abonnement_id_Abonnement` ASC,
 		`Concert_Utilisateur_Concert_id_Concert` ASC
-	) VISIBLE,
-	INDEX `fk_Concert_has_Utilisateur_Avis1_idx` (`Avis_id_Avis` ASC) VISIBLE,
+	),
+	INDEX `fk_Concert_has_Utilisateur_Avis1_idx` (`Avis_id_Avis` ASC),
 	CONSTRAINT `fk_Concert_has_Utilisateur_Concert1`
 		FOREIGN KEY (
 			`Concert_id_Concert`,
@@ -259,10 +259,10 @@ CREATE TABLE IF NOT EXISTS `Base_de_données`.`Administrateur_has_Capteur_sonore
 	`Carte_sonore` VARCHAR(45) NULL,
 	`Informations` VARCHAR(45) NULL,
 	PRIMARY KEY (`Administrateur_id_Administrateur`, `Capteur_sonore_id_Capteur_sonore`),
-	INDEX `fk_Administrateur_has_Capteur_sonore_Capteur_sonore1_idx` (`Capteur_sonore_id_Capteur_sonore` ASC) VISIBLE,
-	INDEX `fk_Administrateur_has_Capteur_sonore_Administrateur1_idx` (`Administrateur_id_Administrateur` ASC) VISIBLE,
-	UNIQUE INDEX `Carte_sonore_UNIQUE` (`Carte_sonore` ASC) VISIBLE,
-	UNIQUE INDEX `Administrateur_has_Capteur_sonorecol_UNIQUE` (`Informations` ASC) VISIBLE,
+	INDEX `fk_Administrateur_has_Capteur_sonore_Capteur_sonore1_idx` (`Capteur_sonore_id_Capteur_sonore` ASC),
+	INDEX `fk_Administrateur_has_Capteur_sonore_Administrateur1_idx` (`Administrateur_id_Administrateur` ASC),
+	UNIQUE INDEX `Carte_sonore_UNIQUE` (`Carte_sonore` ASC),
+	UNIQUE INDEX `Administrateur_has_Capteur_sonorecol_UNIQUE` (`Informations` ASC),
 	CONSTRAINT `fk_Administrateur_has_Capteur_sonore_Administrateur1`
 		FOREIGN KEY (`Administrateur_id_Administrateur`)
 		REFERENCES `Base_de_données`.`Administrateur` (`id_Administrateur`)
@@ -289,13 +289,13 @@ CREATE TABLE IF NOT EXISTS `Base_de_données`.`Concert_has_Artiste` (
 		`Concert_Utilisateur_Concert_id_Concert`,
 		`Artiste_id_Artiste`
 	),
-	INDEX `fk_Concert_has_Artiste_Artiste1_idx` (`Artiste_id_Artiste` ASC) VISIBLE,
+	INDEX `fk_Concert_has_Artiste_Artiste1_idx` (`Artiste_id_Artiste` ASC),
 	INDEX `fk_Concert_has_Artiste_Concert1_idx` (
 		`Concert_id_Concert` ASC,
 		`Concert_Utilisateur_id_Utilisateur` ASC,
 		`Concert_Utilisateur_Abonnement_id_Abonnement` ASC,
 		`Concert_Utilisateur_Concert_id_Concert` ASC
-	) VISIBLE,
+	),
 	CONSTRAINT `fk_Concert_has_Artiste_Concert1`
 		FOREIGN KEY (
 			`Concert_id_Concert`,
@@ -333,11 +333,11 @@ CREATE TABLE IF NOT EXISTS `Base_de_données`.`Utilisateur_has_Préférences_uti
 	INDEX `fk_Utilisateur_has_Préférences_utilisateur_Préférence ut_idx` (
 		`Préférences_utilisateur_id_Préférences_utilisateur` ASC,
 		`Préférences_utilisateur_Artiste_id_Artiste` ASC
-	) VISIBLE,
+	),
 	INDEX `fk_Utilisateur_has_Préférences_utilisateur_Utilisateur1_idx` (
 		`Utilisateur_id_Utilisateur` ASC,
 		`Utilisateur_Abonnement_id_Abonnement` ASC
-	) VISIBLE,
+	),
 	CONSTRAINT `fk_Utilisateur_has_Préférences_utilisateur_Utilisateur1`
 		FOREIGN KEY (`Utilisateur_id_Utilisateur`, `Utilisateur_Abonnement_id_Abonnement`)
 		REFERENCES `Base_de_données`.`Utilisateur` (`id_Utilisateur`, `Abonnement_id_Abonnement`)
