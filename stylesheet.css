@@ -1,15 +1,15 @@
+
 a {
 	text-decoration: none;
 	color: #fff333;
 	transition: 0.3s ease;
 	font-style: italic;
 }
-
 a:hover {color: #19a0e3;}
 
 body {
-	background: url(images/fond.png) center fixed repeat-y;
-	font-family: orbitron, bahnschrift, sans-serif;
+	background: url("images/fond.png") center fixed repeat-y;
+	font-family: "Orbitron", "Bahnschrift", sans-serif;
 	color: #fff333;
 	text-align: center;
 	text-shadow: 1px 1px 1px #000000;
@@ -18,7 +18,7 @@ body {
 #body-transparent {background: transparent;}
 
 button {
-	font-family: Orbitron;
+	font-family: "Orbitron";
 	padding: 1%;
 	background: transparent;
 	border: none;
@@ -29,7 +29,6 @@ button {
 	font-style: italic;
 	text-shadow: 1px 1px 1px #000000;
 }
-
 button:hover {background-color: #19a0e3;}
 
 #div-contenu {
@@ -56,12 +55,14 @@ hr {
 }
 
 input {
-	font-family: Orbitron;
+	font-family: "Orbitron";
 	padding: 1%;
 	margin-bottom: 1%;
 	background-color: #5f5f5f;
 	border: 0;
 	color: #fff333;
+	text-shadow: 1px 1px 1px #000000;
+	filter: drop-shadow(1px 1px 1px #000000);
 	border-radius: 10px;
 }
 
@@ -70,6 +71,25 @@ iframe {
 	border: 0;
 }
 
+img {
+	border-radius: 10px;
+	filter: drop-shadow(1px 1px 1px #000000);
+}
 #img-logo {width: 200px;}
 
+p {
+	width: 75%;
+	margin: auto;
+	background-color: rgba(0, 0, 0, 0.5);
+	border-radius: 10px;
+}
+
 table {margin: auto;}
+
+#body-transparent ul {list-style: none;}
+
+
+::placeholder {
+	color: #fff333;
+	text-shadow: 1px 1px 1px #000000;
+}
