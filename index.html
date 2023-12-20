@@ -34,7 +34,23 @@
 
 <p></p>
 
+<script>
+	function submitconfirm(){
+		var result = confirm("Voulez-vous vraiment quitter cette page ?");
+		if(result == true){
+			alert("Merci de votre visite");
+		}
+		else{
+			alert("Merci de rester avec nous");
+		}
+	}
 
+</script>
+<form action="" method="post" onsubmit="return submitconfirm()">
+	<div><input type="text" name="email"></div>
+	<div><input type="text" name="password"></div>
+	<input type="submit" value ="Quitter">
+</form>
 </div>
 <footer><iframe src = "communs/footer.html"></iframe></footer>
 </body>
