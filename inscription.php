@@ -15,7 +15,7 @@
 
 <h1>Inscription</h1>
 
-<form action = "index.php" method = "post">
+<form action = "index.html" method = "post">
 	<input type = "email" name = "email" placeholder = "Adresse email" required><br>
 	<label>Date de naissance</label><br>
 	<input type = "date" name = "dateNaissance" required><br>

@@ -33,7 +33,7 @@
             document.getElementById('displayedImage').src = imageSrc;
         } else {
             // Redirige vers la page d'accueil si l'URL de l'image n'est pas fournie
-            window.location.href = 'index.php';
+            window.location.href = 'index.html';
         }
     </script>
 
