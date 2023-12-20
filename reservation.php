@@ -36,6 +36,22 @@
             window.location.href = 'index.html';
         }
     </script>
+    <script type="text/javascript">
+        function submitconfirm()
+        {
+    
+        
+        var result = confirm("Etes-vous sure de valider votre achat?");
+        if (result == true) {
+            alert("Merci pour votre achat");
+        }
+        else {
+            alert("");
+        }
+        }
+            
+    </script>
+
 
         <!-- Formulaire de réservation -->
         <form id="reservation-form">
@@ -65,7 +81,7 @@
             <label for="prix-total">Prix total :</label>
             <span id="prix-total">0 €</span>
 
-            <button type="submit">Réserver</button>
+            <button type="submit" onclick= "submitconfirm()">Réserver</button>
         </form>
     </div>
 
