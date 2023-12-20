@@ -15,13 +15,13 @@
 
 <h1>Connexion</h1>
 
-<form action = "index.html" method = "post">
+<form action = "index.php" method = "post">
 	<input type = "email" name = "email" placeholder = "Adresse email" required><br>
 	<input type = "password" name = "motDePasse" placeholder = "Mot de passe" required><br>
 	<button type = "submit">Connexion</button>
 </form>
 
-<a href = "inscription.html">Je n'ai pas de compte.</a>
+<a href = "inscription.php">Je n'ai pas de compte.</a>
 
 
 </div>

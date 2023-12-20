@@ -18,7 +18,7 @@
 <p>Voici les prochains événements auxquels nous participons.</p>
 <p>Rechercher par date :</p>
 
-<form action = "evenements.html" method = "get">
+<form action = "evenements.php" method = "get">
 	<input type = "date" name = "date">
 	<button>Rechercher</button>
 </form>

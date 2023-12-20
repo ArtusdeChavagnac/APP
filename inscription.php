@@ -15,7 +15,7 @@
 
 <h1>Inscription</h1>
 
-<form action = "index.html" method = "post">
+<form action = "index.php" method = "post">
 	<input type = "email" name = "email" placeholder = "Adresse email" required><br>
 	<label>Date de naissance</label><br>
 	<input type = "date" name = "dateNaissance" required><br>
@@ -26,7 +26,7 @@
 	<button>Inscription</button>
 </form>
 
-<a href = "connexion.html">J'ai déja un compte.</a>
+<a href = "connexion.php">J'ai déja un compte.</a>
 
 
 </div>

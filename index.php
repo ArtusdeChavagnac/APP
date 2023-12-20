@@ -9,7 +9,7 @@
 	<title>Accueil — SonoTech</title>
 </head>
 <body>
-<header><iframe src = "communs/header.html"></iframe></header>
+<header><iframe src = "communs/header.php"></iframe></header>
 <div id = "div-contenu">
 
 
@@ -23,7 +23,7 @@
 <script>
 	function openImage(imageSrc) {
 		// Redirige vers la page avec l'image en utilisant JavaScript
-		window.location.href = 'reservation.html?src=images/' + encodeURIComponent(imageSrc);
+		window.location.href = 'reservation.php?src=images/' + encodeURIComponent(imageSrc);
 	}
 </script>
 
