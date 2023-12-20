@@ -1,6 +1,6 @@
 function seConnecter() {
 
-	top.location.href = "../connexion.html";
+	top.location.href = "../connexion.php";
 
 }
 
