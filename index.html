@@ -18,12 +18,12 @@
 <p>Le son, c'est nous !</p>
 
 <h2>Nos prochains événements</h2>
-<img src="imgconcert/img1.jpg" onclick="openImage('imgconcert/img1.jpg')" alt="Concert 1">
-<img src="imgconcert/img2.jpg" onclick="openImage('imgconcert/img2.jpg')" alt="Concert 2">
+<img src="images/imgconcert/img1.jpg" onclick="openImage('imgconcert/img1.jpg')" alt="Concert 1">
+<img src="images/imgconcert/img2.jpg" onclick="openImage('imgconcert/img2.jpg')" alt="Concert 2">
 <script>
 	function openImage(imageSrc) {
 		// Redirige vers la page avec l'image en utilisant JavaScript
-		window.location.href = 'reservation.html?src=' + encodeURIComponent(imageSrc);
+		window.location.href = 'reservation.html?src=images/' + encodeURIComponent(imageSrc);
 	}
 </script>
 
