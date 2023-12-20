@@ -15,7 +15,7 @@
 
 <h1>Événements</h1>
 
-<p>Voilà les prochains événements auxquels nous participons.</p>
+<p>Voici les prochains événements auxquels nous participons.</p>
 <p>Rechercher par date :</p>
 
 <form action = "evenements.html" method = "get">
@@ -26,9 +26,9 @@
 <table>
 	<tr>
 		<th>Date</th>
-		<th>Groupe</th>
+		<th>Artistes</th>
 		<th>Lieu</th>
-		<th>Qualité moyenne du lieu</th>
+		<th>Qualité sonore moyenne du lieu</th>
 	</tr>
 	<tr>
 		<td>jj/mm/aaaa</td>
