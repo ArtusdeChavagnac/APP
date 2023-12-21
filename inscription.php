@@ -10,24 +10,6 @@ include('./fonctions.php');
 	<link rel = "stylesheet" href = "stylesheet.css">
 	<link rel = "shortcut icon" href = "images/shortcut icon.png">
 	<script src = script.js></script>
-	<script> 
-		function executerFonctionPHP(nomFonction) {
-		    // Envoie une requête AJAX avec le nom de la fonction en tant que paramètre
-		    var xhr = new XMLHttpRequest();
-		    xhr.open('GET', 'fonctions.php?nomFonction=' + nomFonction, true);
-		    xhr.onreadystatechange = function() {
-		        if (xhr.readyState == 4 && xhr.status == 200) {
-		            // La réponse de la requête peut être affichée si nécessaire
-		            console.log(xhr.responseText);
-		        }
-		    };
-		    xhr.send();
-		}
-
-		function test(){
-			alert("pute");
-		}
-	</script>
 	<title>Inscription — SonoTech</title>
 </head>
 <body>
@@ -48,7 +30,7 @@ include('./fonctions.php');
 	<input type = "radio" name = "CGU" required>
 	<label>J'accepte les Conditions Générales d'Utilisation de SonoTech, proposé par Event IT.</label>
 	<br>
-	<button onclick="executerFonctionPHP('newUser()')">Inscription</button>
+	<button>Inscription</button>
 </form>
 
 <a href = "connexion.php">J'ai déja un compte.</a>

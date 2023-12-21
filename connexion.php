@@ -16,7 +16,7 @@
 
 <h1>Connexion</h1>
 
-<form action = "index.html" method = "post" onsubmit="return submitconfirm()">
+<form action = "script_connection.php" method = "post" onsubmit="return submitconfirm()">
 	<input type = "email" name = "email" placeholder = "Adresse email"><br>
 	<input type = "password" name = "motDePasse" placeholder = "Mot de passe"><br>
 	<button type = "submit">Connexion</button>

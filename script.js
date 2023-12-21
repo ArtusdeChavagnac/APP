@@ -1,14 +1,3 @@
-function seConnecter() {
-
-	top.location.href = "../connexion.php";
-
-}
-
-function monCompte() {
-
-	// 
-
-}
 function submitconfirm(motDePasse,email,form){
                 
     var mail = email;
@@ -30,17 +19,4 @@ function submitconfirm(motDePasse,email,form){
     	form.submit();
     	return true;
     }
-}
-
-function executerFonctionPHP(nomFonction) {
-    // Envoie une requête AJAX avec le nom de la fonction en tant que paramètre
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'fonctions.php?nomFonction=' + nomFonction, true);
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            // La réponse de la requête peut être affichée si nécessaire
-            console.log(xhr.responseText);
-        }
-    };
-    xhr.send();
 }

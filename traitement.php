@@ -65,7 +65,7 @@ if (isset($_POST["email"]) and isset($_POST["motDePasse"]) and isset($_POST["nom
 			$naissance = $_POST["dateNaissance"];
 			$mail = $_POST["email"];
 			$telephone = $_POST["telephone"];
-			$mdp = htmlspecialchars(crypterMdp($_POST["motDePasse"]));
+			$mdp = crypterMdp($_POST["motDePasse"]);
 			$abonnement_idAbonnement = 1;
 
 			$stmt = $conn->prepare("SELECT COUNT(*) FROM $db.utilisateur WHERE adresse_email = :addresse_email");
