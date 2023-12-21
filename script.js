@@ -9,24 +9,38 @@ function monCompte() {
 	// 
 
 }
-function submitconfirm(){
+function submitconfirm(motDePasse,email,form){
                 
-    var mail = document.fcontact.email.value;
+    var mail = email;
     //var mail = document.forms["fcontact"]["email"].value;
-    var password = document.fcontact.password.value;
-    if (password=="")
+    var mdp = motDePasse;
+    if (mdp.length < 8)
     {
-        alert("Veuillez saisir votre mot de passe");
-        document.fcontact.password.focus();
+        alert("Votre mot de passe est trop court");
         return false;
     }
     atpos= mail.indexOf("@");
     dotpos = mail.indexOf(".");
-    if (atpos<1 ||(dotpos - atpos<2))
+    else if (atpos<1 ||(dotpos - atpos<2))
     {
-        alert("Entrez un mail valide svp")
-        document.fcontact.email.focus();
+        alert("Entrez un mail valide svp");
         return false;
     }
-    return true;
+    else{
+    	form.submit();
+    	return true;
+    }
+}
+
+function executerFonctionPHP(nomFonction) {
+    // Envoie une requête AJAX avec le nom de la fonction en tant que paramètre
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'fonctions.php?nomFonction=' + nomFonction, true);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            // La réponse de la requête peut être affichée si nécessaire
+            console.log(xhr.responseText);
+        }
+    };
+    xhr.send();
 }

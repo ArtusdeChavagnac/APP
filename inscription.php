@@ -10,15 +10,23 @@ include('./fonctions.php');
 	<link rel = "stylesheet" href = "stylesheet.css">
 	<link rel = "shortcut icon" href = "images/shortcut icon.png">
 	<script src = script.js></script>
-	<script>
-		document.getElementById("boutonSub").addEventListener("click", function(motDePasse) {
-			var mdp = motDePasse;
-			if (mdp.length < 8){
-				alert("Mauvais mot de passe");
-			} else {
-				document.getElementById("inscription").submit();
-			}
-		});
+	<script> 
+		function executerFonctionPHP(nomFonction) {
+		    // Envoie une requête AJAX avec le nom de la fonction en tant que paramètre
+		    var xhr = new XMLHttpRequest();
+		    xhr.open('GET', 'fonctions.php?nomFonction=' + nomFonction, true);
+		    xhr.onreadystatechange = function() {
+		        if (xhr.readyState == 4 && xhr.status == 200) {
+		            // La réponse de la requête peut être affichée si nécessaire
+		            console.log(xhr.responseText);
+		        }
+		    };
+		    xhr.send();
+		}
+
+		function test(){
+			alert("pute");
+		}
 	</script>
 	<title>Inscription — SonoTech</title>
 </head>
@@ -29,7 +37,7 @@ include('./fonctions.php');
 
 <h1>Inscription</h1>
 
-<form id="inscription" action="" method = "post" onsubmit="return test()">
+<form id="inscription" action="traitement.php" method = "post">
 	<input type = "text" name = "nom" placeholder = "Nom" required><br>
 	<input type = "text" name = "prenom" placeholder = "Prénom" required><br>
 	<input type = "text" name = "telephone" placeholder = "Numéro de téléphone" required><br>
@@ -40,7 +48,7 @@ include('./fonctions.php');
 	<input type = "radio" name = "CGU" required>
 	<label>J'accepte les Conditions Générales d'Utilisation de SonoTech, proposé par Event IT.</label>
 	<br>
-	<button id="boutonSub">Inscription</button>
+	<button onclick="executerFonctionPHP('newUser()')">Inscription</button>
 </form>
 
 <a href = "connexion.php">J'ai déja un compte.</a>
