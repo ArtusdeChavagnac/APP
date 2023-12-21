@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang = "fr">
+
 <head>
 	<meta charset = "utf-8">
 	<meta name = "viewport" content = "width = device-width, initial-scale = 1">
@@ -15,9 +16,9 @@
 
 <h1>Connexion</h1>
 
-<form action = "index.html" method = "post">
-	<input type = "email" name = "email" placeholder = "Adresse email" required><br>
-	<input type = "password" name = "motDePasse" placeholder = "Mot de passe" required><br>
+<form action = "index.html" method = "post" onsubmit="return submitconfirm()">
+	<input type = "email" name = "email" placeholder = "Adresse email"><br>
+	<input type = "password" name = "motDePasse" placeholder = "Mot de passe"><br>
 	<button type = "submit">Connexion</button>
 </form>
 

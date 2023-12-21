@@ -5,7 +5,23 @@
 	<meta name = "viewport" content = "width = device-width, initial-scale = 1">
 	<link rel = "stylesheet" href = "stylesheet.css">
 	<link rel = "shortcut icon" href = "images/shortcut icon.png">
-	<script src = script.js></script>
+	<script src = script.js>
+		function submitconfirm(){
+                
+	        var mail = document.fcontact.email.value;
+	        //var mail = document.forms["fcontact"]["email"].value;
+	        atpos= mail.indexOf("@");
+	        dotpos = mail.indexOf(".");
+	        if (atpos<1 ||(dotpos - atpos<2))
+	        {
+	            alert("Entrez un mail valide svp")
+	            document.fcontact.email.focus();
+	            return false;
+	        }
+
+	        return true;
+	    }
+	</script>
 	<title>Inscription — SonoTech</title>
 </head>
 <body>
@@ -15,7 +31,7 @@
 
 <h1>Inscription</h1>
 
-<form action = "index.html" method = "post">
+<form  action="index.html" method = "post" onsubmit="return submitconfirm()">
 	<input type = "email" name = "email" placeholder = "Adresse email" required><br>
 	<label>Date de naissance</label><br>
 	<input type = "date" name = "dateNaissance" required><br>
