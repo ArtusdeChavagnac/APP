@@ -32,8 +32,25 @@ function estUnMotDePasse($chaine): bool{
     }
 }
 
+function test(){
+	echo "<script>alert('Alerte ma geule')</script>";
+	echo "Fuck FUCK FUCK";
+}
 
 function newUser($db,$mail,$naissance,$mdp,$nom,$prenom,$telephone) {
+
+
+	if (isset($_POST["email"]) and isset($_POST["motDePasse"]) and isset($_POST["nom"]) and isset($_POST["prenom"])){
+			if (!estUneChaine($_POST["nom"]) or !estUneChaine($_POST["prenom"])) {
+				echo "<script>alert('Votre nom et prénom doivent être une chaîne de charactère')</script>";
+			}
+			else if (!estUnMotDePasse($_POST["motDePasse"])){
+				echo "<script>alert('Le mot de passe est incorrecte')</script>";
+			}
+			else {
+				newUser($db,$_POST["email"],$_POST["dateNaissance"],$_POST["motDePasse"],$_POST["nom"],$_POST["prenom"],$_POST["telephone"]);
+			}
+		}
 
 	$stmt = $conn->prepare("INSERT INTO $db.utilisateur VALUES (:nom, :prenom, :telephone, :naissance, :mail, :mdp)");
 	$stmt->bindParam(':nom',$nom);
@@ -54,28 +71,4 @@ function newUser($db,$mail,$naissance,$mdp,$nom,$prenom,$telephone) {
 	$stmt->execute();
 }
 
-
-
-switch ($function){
-	case 'inscription':
-		$vue = "inscription";
-		$alerte = false;
-
-		if (isset($_POST["email"]) and isset($_POST["motDePasse"]) and isset($_POST["nom"]) and isset($_POST["prenom"])){
-			if (!estUneChaine($_POST["nom"]) or !estUneChaine($_POST["prenom"])) {
-				$alerte = "Votre nom et prénom doivent être une chaîne de charactère";
-			}
-			else if (!estUnMotDePasse($_POST["motDePasse"])){
-				$alerte = "Le mot de passe est incorrecte";
-			}
-			else {
-				newUser($db,$_POST["email"],$_POST["dateNaissance"],$_POST["motDePasse"],$_POST["nom"],$_POST["prenom"],$_POST["telephone"]);
-			}
-		}
-
-		$title = "Inscription";
-		break;
-
-
-}
 ?>

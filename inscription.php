@@ -1,3 +1,7 @@
+<?php
+include('./fonctions.php');
+
+?>
 <!DOCTYPE html>
 <html lang = "fr">
 <head>
@@ -5,22 +9,16 @@
 	<meta name = "viewport" content = "width = device-width, initial-scale = 1">
 	<link rel = "stylesheet" href = "stylesheet.css">
 	<link rel = "shortcut icon" href = "images/shortcut icon.png">
-	<script src = script.js>
-		function submitconfirm(){
-                
-	        var mail = document.fcontact.email.value;
-	        //var mail = document.forms["fcontact"]["email"].value;
-	        atpos= mail.indexOf("@");
-	        dotpos = mail.indexOf(".");
-	        if (atpos<1 ||(dotpos - atpos<2))
-	        {
-	            alert("Entrez un mail valide svp")
-	            document.fcontact.email.focus();
-	            return false;
-	        }
-
-	        return true;
-	    }
+	<script src = script.js></script>
+	<script>
+		document.getElementById("boutonSub").addEventListener("click", function(motDePasse) {
+			var mdp = motDePasse;
+			if (mdp.length < 8){
+				alert("Mauvais mot de passe");
+			} else {
+				document.getElementById("inscription").submit();
+			}
+		});
 	</script>
 	<title>Inscription — SonoTech</title>
 </head>
@@ -31,7 +29,10 @@
 
 <h1>Inscription</h1>
 
-<form  action="index.html" method = "post" onsubmit="return submitconfirm()">
+<form id="inscription" action="" method = "post" onsubmit="return test()">
+	<input type = "text" name = "nom" placeholder = "Nom" required><br>
+	<input type = "text" name = "prenom" placeholder = "Prénom" required><br>
+	<input type = "text" name = "telephone" placeholder = "Numéro de téléphone" required><br>
 	<input type = "email" name = "email" placeholder = "Adresse email" required><br>
 	<label>Date de naissance</label><br>
 	<input type = "date" name = "dateNaissance" required><br>
@@ -39,7 +40,7 @@
 	<input type = "radio" name = "CGU" required>
 	<label>J'accepte les Conditions Générales d'Utilisation de SonoTech, proposé par Event IT.</label>
 	<br>
-	<button>Inscription</button>
+	<button id="boutonSub">Inscription</button>
 </form>
 
 <a href = "connexion.php">J'ai déja un compte.</a>
