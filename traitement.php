@@ -95,7 +95,7 @@ if (isset($_POST["email"]) and isset($_POST["motDePasse"]) and isset($_POST["nom
 
 				$stmt->execute();
 
-				header("Location: ../Sonotech/index.html");
+				header("Location: ../index.html");
 				exit();
 			}
 		}
