@@ -11,7 +11,7 @@ $servername = "localhost";
 $username = "root";
 $password = "";
 
-$conn = new mysqli($servername,$username,$password);
+$conn = new mysqli($servername, $username, $password);
 
 
 if ($conn->connect_error) {
@@ -20,13 +20,12 @@ if ($conn->connect_error) {
 
 
 try {
-$conn = new PDO("mysql:host=$servername;dbname=myDB", $username, $password);
-// set the PDO error mode to exception
-$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	$conn = new PDO("mysql:host=$servername;dbname=myDB", $username, $password);
+	// set the PDO error mode to exception
+	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 }
-catch(PDOException $e)
-{
-echo "Connection failed: " . $e->getMessage();
+catch(PDOException $e) {
+	echo "Connection failed: " . $e->getMessage();
 }
 
 if (isset($_POST["email"]) and isset($_POST["motDePasse"])) {
@@ -42,11 +41,12 @@ if (isset($_POST["email"]) and isset($_POST["motDePasse"])) {
 
 	if ($donnees) {
 		$mdp_donnees = $donnees["mot_de_passe"];
-		if (password_verify($mdp, $mdp_donnees)){
-			echo "<script>alert('Vous êtes connectés')
+		if (password_verify($mdp, $mdp_donnees)) {
+			echo "<script>alert('Vous êtes connecté')
 			window.location.href = 'index.html';</script>";
+			// enregistrer le statut "connecté"
 		} else {
-			echo "<script>alert('Le mot de passe est incorrecte')
+			echo "<script>alert('Le mot de passe est incorrect')
 			window.location.href = 'connexion.php';</script>";
 		}
 
