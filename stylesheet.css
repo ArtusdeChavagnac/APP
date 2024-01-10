@@ -37,7 +37,10 @@ button:hover {background-color: #19a0e3;}
 	margin-left: 5%;
 }
 
-footer {background-color: #5f5f5f;}
+footer {
+	background-color: #5f5f5f;
+	margin-top: 1%;
+}
 
 h1:before, h1:after,
 h2:before, h2:after
