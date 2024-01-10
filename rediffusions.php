@@ -63,8 +63,6 @@
     	</div>
     </div>
 
-    <footer>
-        <p>&copy; 2023 Rediffusions de Concerts. Tous droits réservés.</p>
-    </footer>
+<footer><iframe src = "communs/footer.html"></iframe></footer>
 </body>
 </html>
