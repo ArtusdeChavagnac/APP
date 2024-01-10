@@ -28,7 +28,7 @@ include('./fonctions.php');
 	<input type = "date" name = "dateNaissance" required><br>
 	<input type = "password" name = "motDePasse" placeholder = "Mot de passe" required><br>
 	<input type = "radio" name = "CGU" required>
-	<label>J'accepte les Conditions Générales d'Utilisation de SonoTech, proposé par Event IT.</label>
+	<label>J'accepte les <a href="CGU.html">Conditions Générales d'Utilisation de SonoTech, proposé par Event IT.</label>
 	<br>
 	<button>Inscription</button>
 </form>
