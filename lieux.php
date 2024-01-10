@@ -21,12 +21,22 @@
 	<tr>
 		<th>Lieu</th>
 		<th>Qualité moyenne</th>
-		<th>Carte</th>
 	</tr>
 	<tr>
-		<td>lieu</td>
-		<td>qualite_lieu</td>
-		<td>lieu_concert</td>
+		<td>Olympia</td>
+		<td>75/100</td>
+	</tr>
+	<tr>
+		<td>Stade de France</td>
+		<td>71/100</td>
+	</tr>
+	<tr>
+		<td>Bercy</td>
+		<td>92/100</td>
+	</tr>
+	<tr>
+		<td>Seine musicale</td>
+		<td>60/100</td>
 	</tr>
 </table>
 
