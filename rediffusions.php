@@ -20,19 +20,41 @@
         <tr>
             <th>Date</th>
             <th>Artiste</th>
-            <th>Titre du Concert</th>            </tr>
+            <th>Titre du Concert</th> 
+			<th>Qualité sonore</th>           </tr>
         <tr>
             <td>08/04/2023</td>
             <td>SDM</td>
-            <td><a href="videos\Concert SDM.mp4">SDM à l'Olympia</a></td>            
+            <td><a href="videos\Concert SDM.mp4">SDM à l'Olympia</a></td>
+			<td>
+				<select>
+                        <option value="haute">Haute</option>
+                        <option value="moyenne">Moyenne</option>
+                        <option value="basse">Basse</option>
+            	</select>
+			</td>             
 		</tr>
 			<td>08/02/2019</td>
 			<td>Damso</td>
 			<td><a href="videos\damso feu de bois.mp4">Victoire de la musique</a></td>
+			<td>
+				<select>
+                        <option value="haute">Haute</option>
+                        <option value="moyenne">Moyenne</option>
+                        <option value="basse">Basse</option>
+            	</select>
+			</td> 
 		<tr>
 			<td>18/11/2012</td>
 			<td>Sexion d'assaut</td>
-			<td><a href="videos\Sexion d'assaut.mp4">Sexion d'assaut - Bercy</a></td>   
+			<td><a href="videos\Sexion d'assaut.mp4">Sexion d'assaut - Bercy</a></td>
+			<td>
+				<select>
+                        <option value="haute">Haute</option>
+                        <option value="moyenne">Moyenne</option>
+                        <option value="basse">Basse</option>
+            	</select>
+			</td>   
 		</tr>	   
         </table>
         
@@ -63,6 +85,10 @@
     	</div>
     </div>
 
-<footer><iframe src = "communs/footer.html"></iframe></footer>
+    <footer>
+        <p>&copy; 2023 Rediffusions de Concerts. Tous droits réservés.</p>
+		<br>
+		<iframe src="communs/footer.html"></iframe>
+    </footer>
 </body>
 </html>
