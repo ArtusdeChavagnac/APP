@@ -34,8 +34,8 @@
         
         <h2>Liste des Utilisateurs</h2>
 
+        
         <?php
-        require("fonctions_admin.php");
         $servername = "localhost";
         $username = "root";
         $password = "";
@@ -75,8 +75,8 @@
                 echo '<td>' . $row["adresse_email"] . '</td>';
                 echo '<td>' . $row["numero_de_telephone"] . '</td>';
                 echo '<td>' . $row["mot_de_passe"] . '</td>';
-                echo '<td><a href="dashboard.php?action=modifier&id=' . $row["idUtilisateur"] . '">Modifier</a></td>';
-                echo '<td><a href="dashboard.php?action=supprimer&id=' . $row["idUtilisateur"] . '">Supprimer</a></td>';
+                echo '<td><a href="modifier.php?id=' . $row["idUtilisateur"] . '">Modifier</a></td>';
+                echo '<td><a href="supprimer.php?id=' . $row["idUtilisateur"] . '">Supprimer</a></td>';
                 echo '</tr>';
             }
             echo '</table>';
