@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : jeu. 18 jan. 2024 à 15:05
+-- Généré le : jeu. 18 jan. 2024 à 16:39
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -166,7 +166,12 @@ CREATE TABLE `concert` (
 --
 
 INSERT INTO `concert` (`idConcert`, `image`, `date`, `duree`, `heure_debut`, `salle_idSalle`) VALUES
-(1, 'images/imgconcert/img1.jpg', '2024-01-19', 243, 1800, 1);
+(1, 'images/imgconcert/img1.jpg', '2024-01-19', 243, 1800, 1),
+(2, 'images/imgconcert/img2.jpg', '2024-01-23', 315, 1900, 1),
+(3, 'images/imgconcert/img3.jpg', '2024-01-27', 430, 1730, 1),
+(4, 'images/imgconcert/img4.jpg', '2024-01-20', 265, 1800, 1),
+(5, 'images/imgconcert/img5.jpg', '2024-01-29', 289, 1745, 1),
+(6, 'images/imgconcert/img6.jpg', '2024-01-22', 385, 1815, 1);
 
 -- --------------------------------------------------------
 
@@ -320,7 +325,7 @@ CREATE TABLE `utilisateur` (
   `date_de_naissance` date NOT NULL,
   `adresse_email` varchar(45) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `numero_de_telephone` varchar(10) NOT NULL,
-  `mot_de_passe` int(255) NOT NULL,
+  `mot_de_passe` varchar(255) NOT NULL,
   `abonnement_idAbonnement` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
@@ -329,8 +334,10 @@ CREATE TABLE `utilisateur` (
 --
 
 INSERT INTO `utilisateur` (`idUtilisateur`, `nom`, `prenom`, `date_de_naissance`, `adresse_email`, `numero_de_telephone`, `mot_de_passe`, `abonnement_idAbonnement`) VALUES
-(1, 'De Corta', 'Étienne', '2002-10-25', 'etienne.corta@gmail.com', '0652986299', 0, 2),
-(2, 'Dupont', 'Jean', '2002-10-25', 'jeandupont@gmail.com', '0611223344', 0, 1);
+(1, 'De Corta', 'Étienne', '2002-10-25', 'etienne.corta@gmail.com', '0652986299', '$2y$10$zqhuzRkLkxyGxF.u27JnU.9Fvg0z2bT.I6nbElgJAO/2Hs0PWWFwy', 2),
+(2, 'Dupont', 'Jean', '2002-10-25', 'jeandupont@gmail.com', '0611223344', '$2y$10$zqhuzRkLkxyGxF.u27JnU.9Fvg0z2bT.I6nbElgJAO/2Hs0PWWFwy', 1),
+(3, 'De Corta', 'Étienne', '2002-10-25', 'titousteam@gmail.com', '0652986299', '$2y$10$zqhuzRkLkxyGxF.u27JnU.9Fvg0z2bT.I6nbElgJAO/2Hs0PWWFwy', 1),
+(4, 'De Corta', 'Étienne', '2002-10-25', 'Etienne.corta@gmail.com', '0652986299', '$2y$10$zqhuzRkLkxyGxF.u27JnU.9Fvg0z2bT.I6nbElgJAO/2Hs0PWWFwy', 1);
 
 -- --------------------------------------------------------
 
@@ -531,7 +538,7 @@ ALTER TABLE `capteur_sonore`
 -- AUTO_INCREMENT pour la table `concert`
 --
 ALTER TABLE `concert`
-  MODIFY `idConcert` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idConcert` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT pour la table `concert_has_artiste`
@@ -573,7 +580,7 @@ ALTER TABLE `ticket`
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `idUtilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idUtilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Contraintes pour les tables déchargées
