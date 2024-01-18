@@ -8,7 +8,7 @@
     <title>Réservation de Billets — SonoTech</title>
 </head>
 <body>
-    <header><iframe src="communs/header.html"></iframe></header>
+    <header><iframe src="communs/header.php"></iframe></header>
     
     <div id="div-contenu">
         <h1>Réservation de Billets</h1>
@@ -33,7 +33,7 @@
             document.getElementById('displayedImage').src = imageSrc;
         } else {
             // Redirige vers la page d'accueil si l'URL de l'image n'est pas fournie
-            window.location.href = 'index.html';
+            window.location.href = 'index.php';
         }
     </script>
     <script type="text/javascript">
@@ -85,7 +85,7 @@
         </form>
     </div>
 
-    <footer><iframe src="communs/footer.html"></iframe></footer>
+    <footer><iframe src="communs/footer.php"></iframe></footer>
 
     <script>
         // JavaScript pour calculer le prix total en fonction du nombre de billets et du type de place

@@ -72,7 +72,7 @@ foreach($faqRawData as $row) {
     </style>
 </head>
 <body>
-<header><iframe src = "communs/header.html"></iframe></header>
+<header><iframe src = "communs/header.php"></iframe></header>
 <div id = "div-contenu">
 
 
@@ -119,7 +119,7 @@ $pdo = null;
 ?>
 
 </div>
-<footer><iframe src = "communs/footer.html"></iframe></footer>
+<footer><iframe src = "communs/footer.php"></iframe></footer>
 </body>
 </html>
 <!DOCTYPE html>
@@ -133,7 +133,7 @@ $pdo = null;
 	<title>Événements — SonoTech</title>
 </head>
 <body>
-<header><iframe src = "communs/header.html"></iframe></header>
+<header><iframe src = "communs/header.php"></iframe></header>
 <div id = "div-contenu">
 
 
@@ -141,6 +141,6 @@ $pdo = null;
 
 
 </div>
-<footer><iframe src = "communs/footer.html"></iframe></footer>
+<footer><iframe src = "communs/footer.php"></iframe></footer>
 </body>
 </html>

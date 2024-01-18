@@ -8,7 +8,7 @@
     <title>Nous contacter — SonoTech</title>
 </head>
 <body>
-    <header><iframe src="communs/header.html"></iframe></header>
+    <header><iframe src="communs/header.php"></iframe></header>
     <div id="div-contenu">
 
         <h1>Nous contacter</h1>
@@ -27,7 +27,7 @@
         </form>
 
     </div>
-    <footer><iframe src="communs/footer.html"></iframe></footer>
+    <footer><iframe src="communs/footer.php"></iframe></footer>
 </body>
 </html>
 

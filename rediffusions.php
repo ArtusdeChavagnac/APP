@@ -9,7 +9,7 @@
 	<title>Événements — SonoTech</title>
 </head>
 <body>
-<header><iframe src = "communs/header.html"></iframe></header>
+<header><iframe src = "communs/header.php"></iframe></header>
 <div id="div-contenu">
     <h1>Rediffusions de Concerts</h1>
         
@@ -88,7 +88,7 @@
     <footer>
         <p>&copy; 2023 Rediffusions de Concerts. Tous droits réservés.</p>
 		<br>
-		<iframe src="communs/footer.html"></iframe>
+		<iframe src="communs/footer.php"></iframe>
     </footer>
 </body>
 </html>

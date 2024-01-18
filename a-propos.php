@@ -9,7 +9,7 @@
 	<title>À propos — SonoTech</title>
 </head>
 <body>
-<header><iframe src = "communs/header.html"></iframe></header>
+<header><iframe src = "communs/header.php"></iframe></header>
 <div id = "div-contenu">
 
 
@@ -32,6 +32,6 @@ Rejoignez-nous dans cette aventure où la musique et la technologie se rencontre
 
 
 </div>
-<footer><iframe src = "communs/footer.html"></iframe></footer>
+<footer><iframe src = "communs/footer.php"></iframe></footer>
 </body>
 </html>

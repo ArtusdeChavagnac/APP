@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 function crypterMdp($password) {
     //return sha1($password);
     return password_hash($password, PASSWORD_BCRYPT);
@@ -43,7 +45,8 @@ if (isset($_POST["email"]) and isset($_POST["motDePasse"])) {
 		$mdp_donnees = $donnees["mot_de_passe"];
 		if (password_verify($mdp, $mdp_donnees)) {
 			echo "<script>alert('Vous êtes connecté')
-			window.location.href = 'index.html';</script>";
+			window.location.href = 'index.php';</script>";
+			$_SESSION['utilisateur_connecte'] = true;
 			// enregistrer le statut "connecté"
 		} else {
 			echo "<script>alert('Le mot de passe est incorrect')
