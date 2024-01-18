@@ -1,3 +1,31 @@
+<?php
+
+session_start();
+
+$db = "sonotech";
+$servername = "localhost";
+$username = "root";
+$password = "";
+
+$conn = new mysqli($servername, $username, $password);
+
+
+if ($conn->connect_error) {
+	die("Connection failed : ".$conn->connect_error);
+}
+
+
+try {
+	$conn = new PDO("mysql:host=$servername;dbname=$db", $username, $password);
+	// set the PDO error mode to exception
+	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+}
+catch(PDOException $e) {
+	echo "Connection failed: " . $e->getMessage();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang = "fr">
 <head>
@@ -7,6 +35,12 @@
 	<link rel = "shortcut icon" href = "images/shortcut icon.png">
 	<script src = script.js></script>
 	<title>Accueil — SonoTech</title>
+	<script>
+	function openImage(imageSrc) {
+		// Redirige vers la page avec l'image en utilisant JavaScript
+		window.location.href = 'reservation.php?src=' + encodeURIComponent(imageSrc);
+	}
+</script>
 </head>
 <body>
 <header><iframe src = "communs/header.php"></iframe></header>
@@ -18,20 +52,23 @@
 <p>Le son, c'est nous !</p>
 
 <h2>Nos prochains événements</h2>
-<img src="images/imgconcert/img1.jpg" onclick="openImage('images/imgconcert/img1.jpg')" alt="Concert 1">
-<img src="images/imgconcert/img2.jpg" onclick="openImage('images/imgconcert/img2.jpg')" alt="Concert 2">
-<img src="images/imgconcert/img3.jpg" onclick="openImage('images/imgconcert/img3.jpg')" alt="Concert 3">
-<img src="images/imgconcert/img4.jpg" onclick="openImage('images/imgconcert/img4.jpg')" alt="Concert 4">
-<img src="images/imgconcert/img5.jpg" onclick="openImage('images/imgconcert/img5.jpg')" alt="Concert 5">
-<img src="images/imgconcert/img6.jpg" onclick="openImage('images/imgconcert/img6.jpg')" alt="Concert 6">
-<script>
-	function openImage(imageSrc) {
-		// Redirige vers la page avec l'image en utilisant JavaScript
-		window.location.href = 'reservation.php?src=' + encodeURIComponent(imageSrc);
+
+<?php
+	$query = "SELECT idConcert, image FROM $db.concert";
+	$stmt = $conn->prepare($query);
+	$stmt->execute();
+	$concertRawData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+	$concertData = array();
+	foreach($concertRawData as $row) {
+		$idConcert = $row["idConcert"];
+		$concertData[$idConcert] = $row['image'];
 	}
-</script>
 
-
+	foreach($concertData as $row){
+		echo "<img src='$row' onclick='openImage(\"$row\")' alt='Concert 1'>";
+	}
+?>
 
 
 <h2>Notre projet</h2>
