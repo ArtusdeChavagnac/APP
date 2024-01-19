@@ -1,3 +1,13 @@
+<?php
+
+session_start();
+
+if(isset($_SESSION['utilisateur_connecte'])) {
+	header("Location: index.php");
+	exit();
+}
+
+?>
 <!DOCTYPE html>
 <html lang = "fr">
 
@@ -10,7 +20,7 @@
 	<title>Connexion — SonoTech</title>
 </head>
 <body>
-<header><iframe src = "communs/header.html"></iframe></header>
+<header><iframe src = "communs/header.php"></iframe></header>
 <div id = "div-contenu">
 
 
@@ -26,6 +36,6 @@
 
 
 </div>
-<footer><iframe src = "communs/footer.html"></iframe></footer>
+<footer><iframe src = "communs/footer.php"></iframe></footer>
 </body>
 </html>

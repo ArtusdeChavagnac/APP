@@ -1,3 +1,9 @@
+<?php
+
+session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang = "fr">
 	<head>
@@ -11,18 +17,25 @@
 		<table>
 			<tr>
 				<td>
-					<a href = "../index.html" target = "_top">
+					<a href = "../index.php" target = "_top">
 						<img src = "../images/logo.png" id = "img-logo" alt = "SonoTech">
 					</a>
 				</td>
-				<td><a href = "../index.html" target = "_top">Accueil</a></td>
+				<td><a href = "../index.php" target = "_top">Accueil</a></td>
 				<td><a href = "../evenements.php" target = "_top">Événements</a></td>
 				<td><a href = "../lieux.php" target = "_top">Lieux</a></td>
 				<td><a href = "../a-propos.php" target = "_top">À propos</a>
 				<td><a href ="../rediffusions.php" target = "_top">Rediffusions</a></td>
+				<td><a href ="../faq.php" target ="_top">FAQ</a></td>
 				<td>
-					<a href ="../connexion.php" target ="_top"><button>Se connecter</button></span>
-					<a href ="../index.html" target ="_top"><button>Mon compte</button></span>
+					<?php
+						if(isset($_SESSION["utilisateur_connecte"])) {
+							echo "<a href ='../moncompte.php' target ='_top'><button>Mon compte</button></span>";
+							echo "<a href ='../deconnection.php' target ='_top'><button>Déconnection</button></span> ";
+						} else {
+							echo "<a href ='../connexion.php' target ='_top'><button>Se connecter</button></span>";
+						}
+					?>
 				</td>
 			</tr>
 		</table>
