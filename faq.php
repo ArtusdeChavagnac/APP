@@ -85,7 +85,7 @@ foreach ($faqRawData as $faqRow) {
     $idFaq = $faqRow['idFaq'];
 
     // Récupération des données de la table reponse
-    $queryReponse = "SELECT texte, date FROM $db.reponse WHERE faq_idFaq = :idFaq";
+    $queryReponse = "SELECT texte, date FROM $db.reponse_faq WHERE faq_idFaq = :idFaq";
     $stmtReponse = $conn->prepare($queryReponse);
     $stmtReponse->bindParam(':idFaq', $idFaq, PDO::PARAM_INT);
     $stmtReponse->execute();

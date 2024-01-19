@@ -60,7 +60,6 @@ if (isset($_POST["email"]) and isset($_POST["motDePasse"])) {
 			$_SESSION['utilisateur_numero_de_telephone'] = $utilisateurData['numero_de_telephone'];
 			$_SESSION['utilisateur_date_de_naissance'] = $utilisateurData['date_de_naissance'];
 			$_SESSION['utilisateur_abonnement_idAbonnement'] = $utilisateurData['abonnement_idAbonnement'];
-			// enregistrer le statut "connecté"
 		} else {
 			echo "<script>alert('Le mot de passe est incorrect')
 			window.location.href = 'connexion.php';</script>";

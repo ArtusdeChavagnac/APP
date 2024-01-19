@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : jeu. 18 jan. 2024 à 16:39
+-- Généré le : ven. 19 jan. 2024 à 14:55
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -144,7 +144,11 @@ CREATE TABLE `capteur_sonore` (
 --
 
 INSERT INTO `capteur_sonore` (`idCapteur_sonore`, `position`, `date`, `niveau_sonore`) VALUES
-(1, '0', '2024-01-01', '30');
+(1, '0', '2024-01-01', '30'),
+(2, 'Olympia', '2024-01-21', '75'),
+(3, 'Stade de France', '2024-01-22', '71'),
+(4, 'Seine musicale', '2024-01-20', '60'),
+(5, 'Bercy', '2024-01-25', '92');
 
 -- --------------------------------------------------------
 
@@ -171,7 +175,7 @@ INSERT INTO `concert` (`idConcert`, `image`, `date`, `duree`, `heure_debut`, `sa
 (3, 'images/imgconcert/img3.jpg', '2024-01-27', 430, 1730, 1),
 (4, 'images/imgconcert/img4.jpg', '2024-01-20', 265, 1800, 1),
 (5, 'images/imgconcert/img5.jpg', '2024-01-29', 289, 1745, 1),
-(6, 'images/imgconcert/img6.jpg', '2024-01-22', 385, 1815, 1);
+(7, 'images/imgconcert/img6.jpg', '2024-01-23', 265, 1745, 1);
 
 -- --------------------------------------------------------
 
@@ -237,6 +241,26 @@ INSERT INTO `faq` (`idfaq`, `texte`, `date`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `forum`
+--
+
+CREATE TABLE `forum` (
+  `idForum` int(11) NOT NULL,
+  `question` varchar(1028) NOT NULL,
+  `date` date NOT NULL DEFAULT '2000-01-01',
+  `utilsateur_idUtilisateur` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Déchargement des données de la table `forum`
+--
+
+INSERT INTO `forum` (`idForum`, `question`, `date`, `utilsateur_idUtilisateur`) VALUES
+(1, 'Combien coute l\'abonnement premium', '2000-01-01', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `preference_utilisateur`
 --
 
@@ -256,10 +280,10 @@ INSERT INTO `preference_utilisateur` (`idPreference_utilisateur`, `style_de_musi
 -- --------------------------------------------------------
 
 --
--- Structure de la table `reponse`
+-- Structure de la table `reponse_faq`
 --
 
-CREATE TABLE `reponse` (
+CREATE TABLE `reponse_faq` (
   `idReponse` int(11) NOT NULL,
   `texte` text NOT NULL,
   `date` date NOT NULL,
@@ -267,13 +291,27 @@ CREATE TABLE `reponse` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Déchargement des données de la table `reponse`
+-- Déchargement des données de la table `reponse_faq`
 --
 
-INSERT INTO `reponse` (`idReponse`, `texte`, `date`, `faq_idFaq`) VALUES
+INSERT INTO `reponse_faq` (`idReponse`, `texte`, `date`, `faq_idFaq`) VALUES
 (1, 'Nous acceptons les paiements par carte bancaire, virement et espèces.', '2024-01-02', 1),
 (2, 'Pour annuler votre réservation, veuillez nous contacter par téléphone ou par email au moins 48 heures à l\'avance.', '2024-01-02', 2),
 (3, 'Oui, nous offrons des réductions spéciales pour les étudiants sur présentation d\'une carte étudiante valide.', '2024-01-02', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `reponse_forum`
+--
+
+CREATE TABLE `reponse_forum` (
+  `idReponse_forum` int(11) NOT NULL,
+  `forum_idForum` int(11) NOT NULL,
+  `reponse` varchar(1024) NOT NULL,
+  `date` date NOT NULL,
+  `utilisateur_idUtilisateur` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -450,6 +488,13 @@ ALTER TABLE `faq`
   ADD PRIMARY KEY (`idfaq`);
 
 --
+-- Index pour la table `forum`
+--
+ALTER TABLE `forum`
+  ADD PRIMARY KEY (`idForum`,`utilsateur_idUtilisateur`) USING BTREE,
+  ADD KEY `fk_utilisateur_forum` (`utilsateur_idUtilisateur`);
+
+--
 -- Index pour la table `preference_utilisateur`
 --
 ALTER TABLE `preference_utilisateur`
@@ -457,11 +502,18 @@ ALTER TABLE `preference_utilisateur`
   ADD KEY `fk_artiste_preference` (`artiste_idArtiste`);
 
 --
--- Index pour la table `reponse`
+-- Index pour la table `reponse_faq`
 --
-ALTER TABLE `reponse`
+ALTER TABLE `reponse_faq`
   ADD PRIMARY KEY (`idReponse`,`faq_idFaq`) USING BTREE,
   ADD KEY `fk_reponse_faq` (`faq_idFaq`);
+
+--
+-- Index pour la table `reponse_forum`
+--
+ALTER TABLE `reponse_forum`
+  ADD PRIMARY KEY (`idReponse_forum`,`utilisateur_idUtilisateur`) USING BTREE,
+  ADD KEY `fk_utilisateur_reponse_forum` (`utilisateur_idUtilisateur`);
 
 --
 -- Index pour la table `salle`
@@ -532,13 +584,13 @@ ALTER TABLE `avis`
 -- AUTO_INCREMENT pour la table `capteur_sonore`
 --
 ALTER TABLE `capteur_sonore`
-  MODIFY `idCapteur_sonore` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idCapteur_sonore` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT pour la table `concert`
 --
 ALTER TABLE `concert`
-  MODIFY `idConcert` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idConcert` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT pour la table `concert_has_artiste`
@@ -553,16 +605,28 @@ ALTER TABLE `faq`
   MODIFY `idfaq` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT pour la table `forum`
+--
+ALTER TABLE `forum`
+  MODIFY `idForum` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT pour la table `preference_utilisateur`
 --
 ALTER TABLE `preference_utilisateur`
   MODIFY `idPreference_utilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT pour la table `reponse`
+-- AUTO_INCREMENT pour la table `reponse_faq`
 --
-ALTER TABLE `reponse`
+ALTER TABLE `reponse_faq`
   MODIFY `idReponse` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT pour la table `reponse_forum`
+--
+ALTER TABLE `reponse_forum`
+  MODIFY `idReponse_forum` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `salle`
@@ -616,16 +680,28 @@ ALTER TABLE `concert_has_utilisateur`
   ADD CONSTRAINT `fk_utilisateur_concert` FOREIGN KEY (`utilisateur_idUtilisateur`) REFERENCES `utilisateur` (`idUtilisateur`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
+-- Contraintes pour la table `forum`
+--
+ALTER TABLE `forum`
+  ADD CONSTRAINT `fk_utilisateur_forum` FOREIGN KEY (`utilsateur_idUtilisateur`) REFERENCES `utilisateur` (`idUtilisateur`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
 -- Contraintes pour la table `preference_utilisateur`
 --
 ALTER TABLE `preference_utilisateur`
   ADD CONSTRAINT `fk_artiste_preference` FOREIGN KEY (`artiste_idArtiste`) REFERENCES `artiste` (`idArtiste`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Contraintes pour la table `reponse`
+-- Contraintes pour la table `reponse_faq`
 --
-ALTER TABLE `reponse`
+ALTER TABLE `reponse_faq`
   ADD CONSTRAINT `fk_reponse_faq` FOREIGN KEY (`faq_idFaq`) REFERENCES `faq` (`idfaq`) ON DELETE NO ACTION;
+
+--
+-- Contraintes pour la table `reponse_forum`
+--
+ALTER TABLE `reponse_forum`
+  ADD CONSTRAINT `fk_utilisateur_reponse_forum` FOREIGN KEY (`utilisateur_idUtilisateur`) REFERENCES `utilisateur` (`idUtilisateur`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Contraintes pour la table `salle`
