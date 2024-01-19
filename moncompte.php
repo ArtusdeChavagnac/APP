@@ -127,7 +127,7 @@
             }
         }
         function seDeconnecter() {
-        alert("Fonctionnalité à implémenter : Se déconnecter");
+        alert("Nous ésperons vous revoir bientôt!");
 
         window.location.href = "deconnection.php"; 
         }
