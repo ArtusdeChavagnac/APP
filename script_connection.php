@@ -33,12 +33,10 @@ catch(PDOException $e) {
 if (isset($_POST["email"]) and isset($_POST["motDePasse"])) {
 	$mail = $_POST["email"];
 	$mdp = htmlspecialchars(($_POST["motDePasse"]));
-	$idUtilisateur = int;
 
 
 	$stmt = $conn->prepare("SELECT idUtilisateur, mot_de_passe FROM $db.utilisateur WHERE adresse_email = :addresse_email");
 	$stmt->bindParam(':addresse_email', $mail, PDO::PARAM_STR);
-	$stmt->bindParam(':idUtilisateur',$idUtilisateur);
 	$stmt->execute();
 
 	$donnees = $stmt->fetch(PDO::FETCH_ASSOC);
