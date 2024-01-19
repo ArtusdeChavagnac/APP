@@ -40,10 +40,18 @@ catch(PDOException $e) {
 		// Redirige vers la page avec l'image en utilisant JavaScript
 		window.location.href = 'reservation.php?src=' + encodeURIComponent(imageSrc);
 	}
-</script>
+	</script>
 </head>
 <body>
-<header><iframe src = "communs/header.php"></iframe></header>
+<header>
+	<iframe src = "communs/header.php"></iframe>
+	<div class="search-bar">
+            <form action="resultats-recherche.php" method="get">
+                <input type="text" name="q" placeholder="Rechercher...">
+                <input type="submit" value="Rechercher">
+            </form>
+    </div>
+	</header>
 <div id = "div-contenu">
 
 

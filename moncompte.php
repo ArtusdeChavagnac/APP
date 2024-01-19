@@ -10,7 +10,7 @@
 </head>
 <body>
     <nav>
-        <iframe src="communs/header.html"></iframe>
+        <iframe src="communs/header.php"></iframe>
     </nav>
 
     <h1>Mon compte</h1>
@@ -77,7 +77,7 @@
     </div>
 
     <footer>
-        <iframe src="communs/footer.html"></iframe>
+        <iframe src="communs/footer.php"></iframe>
     </footer>
     <script>
         function modifierInformations() {
@@ -127,7 +127,7 @@
             }
         }
         function seDeconnecter() {
-        alert("Fonctionnalité à implémenter : Se déconnecter");
+        alert("Nous ésperons vous revoir bientôt!");
 
         window.location.href = "deconnection.php"; 
         }
