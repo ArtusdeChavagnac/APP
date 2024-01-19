@@ -2,6 +2,29 @@
 
 session_start();
 
+$db = "sonotech";
+$servername = "localhost";
+$username = "root";
+$password = "";
+
+$conn = new mysqli($servername, $username, $password);
+
+
+if ($conn->connect_error) {
+	die("Connection failed : ".$conn->connect_error);
+}
+
+
+try {
+	$conn = new PDO("mysql:host=$servername;dbname=$db", $username, $password);
+	// set the PDO error mode to exception
+	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+}
+catch(PDOException $e) {
+	echo "Connection failed: " . $e->getMessage();
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -13,6 +36,32 @@ session_start();
 	<link rel = "shortcut icon" href = "images/shortcut icon.png">
 	<script src = script.js></script>
 	<title>Lieux — SonoTech</title>
+	<style>
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 20px;
+        }
+
+        .position {
+            float: left;
+            width: 70%; /* Ajustez la largeur selon vos besoins */
+        }
+
+        .niveau {
+            float: right;
+            padding-right: 500px;
+        }
+
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+    </style>
 </head>
 <body>
 <header><iframe src = "communs/header.php"></iframe></header>
@@ -24,26 +73,30 @@ session_start();
 <p>Voilà les lieux que nous avons classifiés pour vous, vous y retouverez la qualité sonore moyenne et, pour les membres premium, la carte complète des niveaux sonores.</p>
 
 <table>
-	<tr>
-		<th>Lieu</th>
-		<th>Qualité moyenne</th>
-	</tr>
-	<tr>
-		<td>Olympia</td>
-		<td>75/100</td>
-	</tr>
-	<tr>
-		<td>Stade de France</td>
-		<td>71/100</td>
-	</tr>
-	<tr>
-		<td>Bercy</td>
-		<td>92/100</td>
-	</tr>
-	<tr>
-		<td>Seine musicale</td>
-		<td>60/100</td>
-	</tr>
+
+<?php
+
+$query = "SELECT * FROM $db.capteur_sonore";
+$stmt = $conn->prepare($query);
+$stmt->execute();
+
+echo '<tr>';
+echo '<th>Lieu</th>';
+echo '<th>Qualité moyenne</th>';
+echo '</tr>';
+
+$lieuRawData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+foreach($lieuRawData as $row){
+	echo '<tr>';
+	echo "<td>{$row['position']}</td>";
+	echo "<td>{$row['niveau_sonore']}</td>";
+	echo '</tr>';
+
+}
+
+
+?>
+
 </table>
 <img src = "images/carte_sonore_1.png"></img>
 
