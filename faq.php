@@ -122,3 +122,18 @@ $pdo = null;
 <footer><iframe src = "communs/footer.php"></iframe></footer>
 </body>
 </html>
+<<<<<<< Updated upstream
+=======
+<!DOCTYPE html>
+<html lang = "fr">
+<head>
+	<meta charset = "utf-8">
+	<meta name = "viewport" content = "width = device-width, initial-scale = 1">
+	<link rel = "stylesheet" href = "stylesheet.css">
+	<link rel = "shortcut icon" href = "images/shortcut icon.png">
+	<script src = "script.js"></script>
+	<title>Événements — SonoTech</title>
+</head>
+
+</html>
+>>>>>>> Stashed changes
