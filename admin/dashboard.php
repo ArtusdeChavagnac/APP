@@ -15,21 +15,14 @@
     <div id="div-contenu">
 
         <h1>Page d'Administration</h1>
-
         
-        <a href="http://localhost/phpmyadmin/" target="_blank">Gestion des Utilisateurs</a>
-
-        
-        <a href="http://localhost/phpmyadmin" target="_blank">Gestion de la FAQ</a>
-
-        
+        <a href="gestionfaq.php" target="_blank">Gestion de la FAQ</a>
         <a href="http://localhost/phpmyadmin" target="_blank">Gestion des CGU</a>
-
-        
         <a href="http://localhost/phpmyadmin" target="_blank">Gestion des Mentions Légales</a>
-
-        
         <a href="http://localhost/phpmyadmin" target="_blank">Gestion du Forum</a>
+        <a href="http://localhost/phpmyadmin" target="_blank">Gestion des événements</a>
+        <a href="http://localhost/phpmyadmin" target="_blank">Gestion des capteurs</a>
+        
 
         
         <h2>Liste des Utilisateurs</h2>
