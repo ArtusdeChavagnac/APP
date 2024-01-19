@@ -30,7 +30,7 @@ session_start();
 				<td>
 					<?php
 						if(isset($_SESSION["utilisateur_connecte"])) {
-							echo "<a href ='../index.php' target ='_top'><button>Mon compte</button></span>";
+							echo "<a href ='../moncompte.php' target ='_top'><button>Mon compte</button></span>";
 							echo "<a href ='../deconnection.php' target ='_top'><button>Déconnection</button></span> ";
 						} else {
 							echo "<a href ='../connexion.php' target ='_top'><button>Se connecter</button></span>";
