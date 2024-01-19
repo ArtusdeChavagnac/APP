@@ -39,7 +39,7 @@
         $servername = "localhost";
         $username = "root";
         $password = "";
-        $dbname = "bdd_sonotech";
+        $dbname = "sonotech";
 
         $conn = new mysqli($servername, $username, $password, $dbname);
 
