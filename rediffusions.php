@@ -6,7 +6,7 @@
 	<link rel = "stylesheet" href = "stylesheet.css">
 	<link rel = "shortcut icon" href = "images/shortcut icon.png">
 	<script src = "script.js"></script>
-	<title>Événements — SonoTech</title>
+	<title>Rediffusions — SonoTech</title>
 </head>
 <body>
 <header><iframe src = "communs/header.php"></iframe></header>

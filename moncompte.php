@@ -7,6 +7,18 @@
     <link rel="shortcut icon" href="images/shortcut icon.png">
     <script src="../script.js"></script>
     <title>Mon compte SonoTech</title>
+
+    <style>
+        #photoProfil {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: none; 
+        }
+    </style>
 </head>
 <body>
     <nav>
@@ -18,6 +30,7 @@
     <div id="div-contenu">
         <div>
         <p>Bienvenue sur votre espace personnel.</p>
+        <img id="photoProfil" src="#" alt="Photo de profil" style="display: none; max-width: 100px; float: right; margin: 10px;">
             <button onclick="modifierInformations()">Modifier mes informations</button>
         
                 <form id="profilForm" style="display: none;">
@@ -62,18 +75,18 @@
         
                 <button onclick="voirAnciensConcerts()">Voir mes anciens concerts</button>
 
-        
-                <button onclick="mettrePhotoProfil()">Ajouter une photo de profil</button>
-
                 <button onclick="voirAbonnement()">Voir mon abonnement</button>
-        
+
+                <button onclick="mettrePhotoProfil()">Ajouter une photo de profil</button>
                 <input type="file" id="inputPhoto" style="display: none;" accept="image/*" onchange="previewPhoto()">
+                <img id="photoProfilPreview" src="#" alt="Photo de profil" style="display: none;position: fixed; top: 10px; right: 10px; width: 60px; height: 60px; border-radius: 50%;">
+
+                <button onclick="modifierPhotoProfil()">Modifier la photo de profil</button>
+                <button onclick="enregistrerPhotoProfil()">Enregistrer</button>
 
                 <button id="deconnexionBtn" onclick="demanderConfirmation()">
                     <span class="icon">🔒</span> Se déconnecter
-                </button>       
-        
-                <img id="photoProfilPreview" src="#" alt="Photo de profil" style="display: none;position: fixed; top: 10px; right: 10px; width: 60px; height: 60px; border-radius: 50%;">
+                </button> 
     </div>
 
     <footer>
@@ -116,8 +129,16 @@
             inputPhoto.click(); // Cliquez sur l'input file pour choisir une photo
         }
         function voirAbonnement() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    // Afficher le résultat dans une boîte de dialogue, une zone sur la page, etc.
+                    alert("Informations d'abonnement : 1");
+                }
+            };
+            xhttp.open("GET", "abonnement.php", true);
+            xhttp.send();
         
-        alert("Fonctionnalité à implémenter : Voir mon abonnement");
         }
         function demanderConfirmation() {
             var confirmation = window.confirm("Voulez-vous vraiment vous déconnecter?");
@@ -132,16 +153,70 @@
         window.location.href = "deconnection.php"; 
         }
 
+        // Fonction pour récupérer la photo de profil depuis le stockage local
+        function getStoredPhoto() {
+            var storedPhoto = localStorage.getItem('userPhoto');
+            if (storedPhoto) {
+                var photoProfil = document.getElementById('photoProfil');
+                photoProfil.src = storedPhoto;
+                photoProfil.style.display = 'block';
+            }
+        }
+
+        
+        window.onload = getStoredPhoto;
+
+        function modifierPhotoProfil() {
+            var inputPhoto = document.getElementById('inputPhoto');
+            inputPhoto.click(); // Cliquez sur l'input file pour choisir une photo
+        }
+
+        // Fonction pour enregistrer la nouvelle photo de profil dans le stockage local
+        function enregistrerPhotoProfil() {
+            var inputPhoto = document.getElementById('inputPhoto');
+            var preview = document.getElementById('photoProfil');
+
+            // Vérifier si une nouvelle photo a été choisie
+            if (inputPhoto.files.length > 0) {
+                var file = inputPhoto.files[0];
+                var reader = new FileReader();
+
+                reader.onloadend = function () {
+                    preview.src = reader.result;
+                    preview.style.display = 'block';
+
+                    // Stocker la nouvelle photo dans le stockage local
+                    localStorage.setItem('userPhoto', reader.result);
+
+                    // Cacher l'input de prévisualisation
+                    inputPhoto.style.display = 'none';
+                };
+
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function mettrePhotoProfil() {
+            var inputPhoto = document.getElementById('inputPhoto');
+            inputPhoto.click(); // Cliquez sur l'input file pour choisir une photo
+        }
+
         function previewPhoto() {
             var inputPhoto = document.getElementById('inputPhoto');
             var preview = document.getElementById('photoProfilPreview');
-            
+
             var file = inputPhoto.files[0];
             var reader = new FileReader();
 
             reader.onloadend = function () {
                 preview.src = reader.result;
                 preview.style.display = 'block';
+
+                // Stocker la photo dans le stockage local
+                localStorage.setItem('userPhoto', reader.result);
+
+                // Cacher l'input de prévisualisation
+                inputPhoto.style.display = 'ight; margin: 10px;';
             }
 
             if (file) {

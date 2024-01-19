@@ -1,34 +1,34 @@
 <?php
-// Connexion à la base de données (à remplacer par vos propres informations)
-$servername = "localhost";
+
+$servername = "127.0.0.1";
 $username = "root";
 $password = "";
-$dbname = "bdd_sonotech";
+$dbname = "sonotech";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
+
 
 if ($conn->connect_error) {
     die("La connexion à la base de données a échoué : " . $conn->connect_error);
 }
 
-// Récupérer les mots-clés de recherche depuis l'URL
-$keywords = isset($_GET['q']) ? $_GET['q'] : '';
+// Exemple de requête pour récupérer des données (à adapter selon vos besoins)
+$query = "SELECT * FROM concert WHERE date >= NOW()";
 
-// Échapper les caractères spéciaux pour éviter les injections SQL (méthode simplifiée)
-$keywords = mysqli_real_escape_string($conn, $keywords);
+$result = $conn->query($query);
 
-// Requête de recherche
-$sql = "SELECT * FROM concert WHERE date LIKE '%$keywords%' OR heure_debut LIKE '%$keywords%' OR salle_idSalle IN (SELECT idSalle FROM salle WHERE adresse LIKE '%$keywords%')";
-$result = $conn->query($sql);
-
-// Affichage des résultats
+// Vérifier si la requête a renvoyé des résultats
 if ($result->num_rows > 0) {
-    echo "<p>Résultats pour : <strong>$keywords</strong></p>";
+    // Afficher les données
     while ($row = $result->fetch_assoc()) {
-        echo "<p>Date : " . $row["date"] . " | Heure de début : " . $row["heure_debut"] . " | Salle : " . $row["salle_idSalle"] . "</p>";
+        echo "ID du concert : " . $row["idConcert"] . "<br>";
+        echo "Image : " . $row["image"] . "<br>";
+        echo "Date : " . $row["date"] . "<br>";
+        // Ajoutez d'autres champs selon vos besoins
+        echo "<hr>";
     }
 } else {
-    echo "<p>Aucun résultat trouvé pour : <strong>$keywords</strong></p>";
+    echo "Aucun résultat trouvé.";
 }
 
 // Fermer la connexion à la base de données
