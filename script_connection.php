@@ -33,6 +33,7 @@ catch(PDOException $e) {
 if (isset($_POST["email"]) and isset($_POST["motDePasse"])) {
 	$mail = $_POST["email"];
 	$mdp = htmlspecialchars(($_POST["motDePasse"]));
+	$idUtilisateur = -1;
 
 
 	$stmt = $conn->prepare("SELECT idUtilisateur, mot_de_passe FROM $db.utilisateur WHERE adresse_email = :addresse_email");
