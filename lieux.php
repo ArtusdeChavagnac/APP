@@ -39,7 +39,7 @@
 		<td>60/100</td>
 	</tr>
 </table>
-
+<img src = "images/carte_sonore_1.png"></img>
 
 </div>
 <footer><iframe src = "communs/footer.php"></iframe></footer>
