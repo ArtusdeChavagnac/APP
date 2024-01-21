@@ -1,8 +1,8 @@
 <?php
 
 session_start();
-if (isset($_SESSION['utilisateur_abonnemement_idAbonnement'])) {
-    if ($_SESSION['utilisateur_abonnemement_idAbonnement'] != 2) {
+if (isset($_SESSION['utilisateur_abonnement_idAbonnement'])) {
+    if ($_SESSION['utilisateur_abonnement_idAbonnement'] != 2) {
         echo "<script>window.location.href = '../index.php'</script> " ;
     } 
 } else {
