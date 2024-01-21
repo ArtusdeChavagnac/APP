@@ -62,8 +62,15 @@ if (isset($_POST["email"]) and isset($_POST["motDePasse"])) {
 			
 			echo $_SESSION['utilisateur_id'];
 
-			echo "<script>alert('Vous êtes connecté')
-			window.location.href = 'index.php';</script>";
+			if ($utilisateurData['abonnement_idAbonnement'] == 2) {
+				echo "<script>alert('Vous êtes connecté')
+				window.location.href = 'admin/dashboard.php';</script>";
+			} else {
+				echo "<script>alert('Vous êtes connecté')
+				window.location.href = 'index.php';</script>";
+			}
+
+			
 		} else {
 			echo "<script>alert('Le mot de passe est incorrect')
 			window.location.href = 'connexion.php';</script>";
