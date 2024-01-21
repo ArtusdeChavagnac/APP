@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : ven. 19 jan. 2024 à 14:55
+-- Généré le : dim. 21 jan. 2024 à 18:33
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -144,7 +144,7 @@ CREATE TABLE `capteur_sonore` (
 --
 
 INSERT INTO `capteur_sonore` (`idCapteur_sonore`, `position`, `date`, `niveau_sonore`) VALUES
-(1, '0', '2024-01-01', '30'),
+(1, 'Opera Garnier', '2024-01-01', '30'),
 (2, 'Olympia', '2024-01-21', '75'),
 (3, 'Stade de France', '2024-01-22', '71'),
 (4, 'Seine musicale', '2024-01-20', '60'),
@@ -348,7 +348,8 @@ CREATE TABLE `ticket` (
 --
 
 INSERT INTO `ticket` (`idTicket`, `place`) VALUES
-(1, '45b');
+(1, 'normale'),
+(2, 'VIP');
 
 -- --------------------------------------------------------
 
@@ -395,7 +396,14 @@ CREATE TABLE `utilisateur_has_concert` (
 --
 
 INSERT INTO `utilisateur_has_concert` (`idUtilisateur_has_concert`, `utilisateur_idUtilisateur`, `concert_idConcert`, `ticket_idTicket`) VALUES
-(1, 2, 1, 1);
+(1, 2, 1, 1),
+(43, 3, 3, 1),
+(44, 3, 3, 1),
+(45, 3, 3, 1),
+(46, 2, 4, 2),
+(47, 2, 7, 2),
+(48, 2, 7, 2),
+(49, 2, 7, 2);
 
 -- --------------------------------------------------------
 
@@ -436,7 +444,7 @@ ALTER TABLE `administrateur`
 -- Index pour la table `administrateur_has_capteur_sonore`
 --
 ALTER TABLE `administrateur_has_capteur_sonore`
-  ADD PRIMARY KEY (`administrateur_idAdministrateur`,`capteur_sonore_idCapteur_sonore`,`idAmdinistrateur_has_capteur`) USING BTREE,
+  ADD PRIMARY KEY (`idAmdinistrateur_has_capteur`,`capteur_sonore_idCapteur_sonore`,`administrateur_idAdministrateur`) USING BTREE,
   ADD KEY `fk_capteur_sonore_admin` (`capteur_sonore_idCapteur_sonore`),
   ADD KEY `fk_admin_capteur_sonore` (`administrateur_idAdministrateur`);
 
@@ -477,9 +485,10 @@ ALTER TABLE `concert_has_artiste`
 -- Index pour la table `concert_has_utilisateur`
 --
 ALTER TABLE `concert_has_utilisateur`
-  ADD PRIMARY KEY (`concert_idConcert`,`utilisateur_idUtilisateur`,`avis_idAvis`,`idConcert_has_utilisateur`) USING BTREE,
+  ADD PRIMARY KEY (`idConcert_has_utilisateur`,`concert_idConcert`,`utilisateur_idUtilisateur`,`avis_idAvis`) USING BTREE,
   ADD KEY `fk_avis_concert` (`avis_idAvis`) USING BTREE,
-  ADD KEY `fk_utilisateur_concert` (`utilisateur_idUtilisateur`,`concert_idConcert`) USING BTREE;
+  ADD KEY `fk_utilisateur_concert` (`utilisateur_idUtilisateur`,`concert_idConcert`) USING BTREE,
+  ADD KEY `fk_concert_utilisateur` (`concert_idConcert`);
 
 --
 -- Index pour la table `faq`
@@ -539,7 +548,7 @@ ALTER TABLE `utilisateur`
 -- Index pour la table `utilisateur_has_concert`
 --
 ALTER TABLE `utilisateur_has_concert`
-  ADD PRIMARY KEY (`utilisateur_idUtilisateur`,`concert_idConcert`,`ticket_idTicket`,`idUtilisateur_has_concert`) USING BTREE,
+  ADD PRIMARY KEY (`idUtilisateur_has_concert`,`concert_idConcert`,`ticket_idTicket`,`utilisateur_idUtilisateur`) USING BTREE,
   ADD KEY `fk_utilisateur_ticket` (`ticket_idTicket`),
   ADD KEY `fk_concert_utilisateur3` (`concert_idConcert`),
   ADD KEY `fk_utilisateur_concert3` (`utilisateur_idUtilisateur`) USING BTREE;
@@ -548,7 +557,7 @@ ALTER TABLE `utilisateur_has_concert`
 -- Index pour la table `utilisateur_has_preference_utilisateur`
 --
 ALTER TABLE `utilisateur_has_preference_utilisateur`
-  ADD PRIMARY KEY (`utilisateur_idUtilisateur`,`preference_utilisateur_idPreference_utilisateur`,`idUtilisateur_has_preference_utilisateur`) USING BTREE,
+  ADD PRIMARY KEY (`idUtilisateur_has_preference_utilisateur`,`preference_utilisateur_idPreference_utilisateur`,`utilisateur_idUtilisateur`) USING BTREE,
   ADD KEY `fk_utilisateur_preference` (`utilisateur_idUtilisateur`) USING BTREE,
   ADD KEY `fk_preference_utilisateur` (`preference_utilisateur_idPreference_utilisateur`) USING BTREE;
 
@@ -567,6 +576,12 @@ ALTER TABLE `abonnement`
 --
 ALTER TABLE `administrateur`
   MODIFY `idAdministrateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT pour la table `administrateur_has_capteur_sonore`
+--
+ALTER TABLE `administrateur_has_capteur_sonore`
+  MODIFY `idAmdinistrateur_has_capteur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `artiste`
@@ -597,6 +612,12 @@ ALTER TABLE `concert`
 --
 ALTER TABLE `concert_has_artiste`
   MODIFY `idConcert_has_artiste` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT pour la table `concert_has_utilisateur`
+--
+ALTER TABLE `concert_has_utilisateur`
+  MODIFY `idConcert_has_utilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT pour la table `faq`
@@ -638,13 +659,25 @@ ALTER TABLE `salle`
 -- AUTO_INCREMENT pour la table `ticket`
 --
 ALTER TABLE `ticket`
-  MODIFY `idTicket` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idTicket` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
   MODIFY `idUtilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT pour la table `utilisateur_has_concert`
+--
+ALTER TABLE `utilisateur_has_concert`
+  MODIFY `idUtilisateur_has_concert` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+
+--
+-- AUTO_INCREMENT pour la table `utilisateur_has_preference_utilisateur`
+--
+ALTER TABLE `utilisateur_has_preference_utilisateur`
+  MODIFY `idUtilisateur_has_preference_utilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Contraintes pour les tables déchargées
