@@ -1,5 +1,15 @@
 <?php
 
+session_start();
+if (isset($_SESSION['utilisateur_abonnemement_idAbonnement'])) {
+    if ($_SESSION['utilisateur_abonnemement_idAbonnement'] != 2) {
+        echo "<script>window.location.href = '../index.php'</script> " ;
+    } 
+} else {
+    echo "<script>window.location.href = '../index.php'</script> " ;
+}
+
+
 require("../connexion_bdd.php");
 
 // Check if the user ID is set
