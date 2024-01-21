@@ -1,7 +1,5 @@
 <?php
 
-$idConcert = isset($_GET['idConcert']) ? $_GET['idConcert'] : null;
-
 session_start();
 if (isset($_SESSION['utilisateur_connecte'])) {
     $statut = $_SESSION['utilisateur_connecte'];    
@@ -55,36 +53,17 @@ catch(PDOException $e) {
         if (isset($_POST["imageSrc"])) {
             $imageSrc = $_POST['imageSrc'];
             $idConcert = $_POST['idConcert'];
+            $_SESSION['idConcert'] = $idConcert;
             echo "<script>document.getElementById('displayedImage').src= '$imageSrc'</script>";
         } else {
             echo "<script>window.loaction.href = 'index.php'</script>";
         }
 
         ?>
-    <script type="text/javascript">
-        function submitconfirm(statut)
-        {
-        
-        if (statut== true){
-             var result = confirm("Etes-vous sure de valider votre achat?");
-            if (result == true) {
-                alert("Merci pour votre achat");
-            }
-            else {
-                alert("");
-            }
-        } else {
-            alert("Vous devez d'abord vous connecter");
-        }
-        
-       
-        }
-            
-    </script>
 
 
         <!-- Formulaire de réservation -->
-        <form id="reservation-form" action="traitement_reservation.php">
+        <form id="reservation-form" action="traitement_reservation.php" method="post">
                 
             </select>
 
@@ -105,13 +84,13 @@ catch(PDOException $e) {
             <label for="heure">Choisissez une heure :</label>
             <input type="time" id="heure" name="heure" required>
 
-            <label for="nombre-billets">Nombre de billets :</label>
-            <input type="number" id="nombre-billets" name="nombre-billets" min="1" required> <br>
+            <label for="nombre_billets">Nombre de billets :</label>
+            <input type="number" id="nombre_billets" name="nombre_billets" min="1" required> <br>
 
             <label for="prix-total">Prix total :</label>
             <span id="prix-total">0 €</span>
 
-            <button type="submit" onclick= "submitconfirm($statut)">Réserver</button>
+            <button type="submit">Réserver</button>
 
         </form>
     </div>
