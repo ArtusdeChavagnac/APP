@@ -25,7 +25,29 @@ catch(PDOException $e) {
 }
 
 ?>
+<?php
 
+$servername = "127.0.0.1";
+$username = "root";
+$password = "";
+$dbname = "sonotech";
+
+try{
+	$bdd = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+} catch (PDOException $e) {
+    echo "La connexion à la base de données a échoué : ". $e->getMessage();
+}
+
+$allartists = $bdd ->query('SELECT * FROM artiste');
+if (isset($_GET['q']) AND !empty($_GET['q'])){
+    $recherche = htmlspecialchars($_GET['q']);
+    $allartists = $bdd -> query('SELECT * FROM artiste WHERE prenom LIKE"%'.$recherche.'%"');
+}
+
+
+
+$bdd = null ;
+?>
 <!DOCTYPE html>
 <html lang = "fr">
 <head>
@@ -46,10 +68,30 @@ catch(PDOException $e) {
 <header>
 	<iframe src = "communs/header.php"></iframe>
 	<div class="search-bar">
-            <form action="resultats-recherche.php" method="get">
+            <form method="GET">
                 <input type="text" name="q" placeholder="Rechercher...">
                 <input type="submit" value="Rechercher">
-            </form>
+			</form> 
+
+			<section class="afficher_artiste">
+
+				<?php
+					if($allartists->rowCount() > 0){
+						while($artist = $allartists->fetch()){
+							?>
+							<p><?=$artist['prenom']; ?></p>
+							<?php
+						}
+					}else{
+						?>
+						<p>Aucun artiste trouvé</p>
+						<?php
+					}
+				?>
+
+			</section>
+        
+			
     </div>
 	</header>
 <div id = "div-contenu">
@@ -77,6 +119,7 @@ catch(PDOException $e) {
 		echo "<img src='$row' onclick='openImage(\"$row\")' alt='Concert 1'>";
 	}
 ?>
+
 
 
 <h2>Notre projet</h2>

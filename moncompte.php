@@ -59,6 +59,8 @@
                 <option value="artiste1">BOOBA</option>
                 <option value="artiste2">Travis Scott</option>
                 <option value="artiste3">DJ Snake</option>
+                <option value="artiste4">Lartiste</option>
+                <option value="artiste5">Madonna</option>
             
             </select><br>
 
@@ -68,6 +70,7 @@
                 <option value="concert1">Olympia-Paris</option>
                 <option value="concert2">Zénith-Paris</option>
                 <option value="concert3">Bercy-Paris</option>
+                <option value="concert4">Centre Bell-Montréal</option>
             
             </select><br>
             </div>
@@ -100,7 +103,7 @@
 
         function enregistrerInformations() {
             // Ajoutez ici le code pour enregistrer les informations du profil
-            alert("Fonctionnalité à implémenter : Enregistrer les informations");
+            alert("Voulez-vous vraiment enregistrer ces informations?");
             
             // Après l'enregistrement, masquez le formulaire
             var profilForm = document.getElementById('profilForm');
@@ -120,8 +123,9 @@
         }
 
         function voirAnciensConcerts() {
-            // Ajoutez ici le code pour voir les anciens concerts
-            alert("Fonctionnalité à implémenter : Voir les anciens concerts");
+            
+            alert("Voir mes anciens concerts");
+            window.location.href = "anciens_concerts.php";
         }
 
         function mettrePhotoProfil() {
