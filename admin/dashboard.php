@@ -10,7 +10,7 @@
 </head>
 <body>
     <header>
-        <iframe src="../communs/header.html"></iframe>
+        <iframe src="../communs/header.php"></iframe>
     </header>
     <div id="div-contenu">
 
@@ -84,7 +84,7 @@
 
     </div>
     <footer>
-        <iframe src="../communs/footer.html"></iframe> 
+        <iframe src="../communs/footer.php"></iframe> 
     </footer>
 </body>
 </html>
