@@ -58,9 +58,32 @@ $bdd = null ;
 	<script src = script.js></script>
 	<title>Accueil — SonoTech</title>
 	<script>
-	function openImage(imageSrc) {
+	function openImage(imageSrc,idConcert) {
 		// Redirige vers la page avec l'image en utilisant JavaScript
-		window.location.href = 'reservation.php?src=' + encodeURIComponent(imageSrc);
+
+		var imageSrc = imageSrc;
+		var idConcert = idConcert;
+
+		var form = document.createElement('form');
+		form.method = 'POST';
+		form.action = 'reservation.php';
+
+		var inputIdConcert = document.createElement('input');
+		inputIdConcert.type = 'hidden';
+		inputIdConcert.name = 'idConcert';
+		inputIdConcert.value = idConcert;
+
+		var inputImageSrc = document.createElement('input');
+		inputImageSrc.type = 'hidden';
+		inputImageSrc.name = 'imageSrc';
+		inputImageSrc.value = imageSrc;
+
+		form.appendChild(inputIdConcert);
+		form.appendChild(inputImageSrc);
+
+		document.body.appendChild(form);
+		form.submit();
+
 	}
 	</script>
 </head>
@@ -111,13 +134,11 @@ $bdd = null ;
 
 	$concertData = array();
 	foreach($concertRawData as $row) {
-		$idConcert = $row["idConcert"];
-		$concertData[$idConcert] = $row['image'];
+		$image = $row['image'];
+		$idConcert = $row['idConcert'];
+		echo "<img src= '$image' onclick= 'openImage(\"$image\", \"$idConcert\")' alt='Concert 1'>";
 	}
 
-	foreach($concertData as $row){
-		echo "<img src='$row' onclick='openImage(\"$row\")' alt='Concert 1'>";
-	}
 ?>
 
 
