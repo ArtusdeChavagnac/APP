@@ -145,21 +145,6 @@ $bdd = null ;
 
 <h2>Notre projet</h2>
 <p>Grâce à nos technologies d'analyses sonores avancées, profitez des meilleures places au sein des concerts les plus inoubliables. Différentes options de placement sont disponibles selon votre budget ! Avec SonoTech finit les acouphènes en sortant des concerts, les places trop bruyantes ou avec une mauvaise qualité sonore ne seront jamais vendues sur ce site.</p>	
-<h2>FAQ</h2>
-        <div class="faq">
-            <details>
-                <summary>Quels sont vos modes de paiement acceptés ?</summary>
-                <p>Nous acceptons les paiements par carte bancaire, virement et espèces.</p>
-            </details>
-            <details>
-                <summary>Comment puis-je annuler ma réservation ?</summary>
-                <p>Pour annuler votre réservation, veuillez nous contacter par téléphone ou par email au moins 48 heures à l'avance.</p>
-            </details>
-            <details>
-				<summary>Proposez-vous des réductions pour les étudiants ?</summary>
-				<p>Oui, nous offrons des réductions spéciales pour les étudiants sur présentation d'une carte étudiante valide.</p>
-			</details>
-        </div>	
 <p></p>
 </div>
 <footer><iframe src = "communs/footer.php"></iframe></footer>
