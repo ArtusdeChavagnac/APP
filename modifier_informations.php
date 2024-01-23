@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 $servername = "127.0.0.1";
 $username = "root";
@@ -10,18 +11,19 @@ try{
 } catch (PDOException $e) {
     echo "La connexion à la base de données a échoué : ". $e->getMessage();
 }
-// Récupérer les données de l'utilisateur
-$userID = 5; // Vous devez remplacer ceci par l'ID de l'utilisateur dont vous souhaitez récupérer les informations
-$query = $bdd->prepare("SELECT * FROM utilisateur WHERE idUtilisateur = ?");
-$query->execute([$userID]);
-$userData = $query->fetch(PDO::FETCH_ASSOC);
 
-// Pré-remplir le formulaire avec les données de l'utilisateur
-$nom = $userData['nom'];
-$prenom = $userData['prenom'];
-$email = $userData['adresse_email'];
-$telephone = $userData['numero_de_telephone'];
-$date_naissance = $userData['date_de_naissance'];
+if (isset($_SESSION['utilisateur_connecte'])){
+    $idUtilisateur = $_SESSION['utilisateur_id'];
+    $nom = $_SESSION['utilisateur_nom'];
+    $prenom = $_SESSION['utilisateur_prenom'];
+    $email = $_SESSION['utilisateur_adresse_email'];
+    $telephone = $_SESSION['utilisateur_numero_de_telephone'];
+    $date_naissance = $_SESSION['utilisateur_date_de_naissance'];
+} else {
+    echo "<script>window.location.href = 'connexion.php'</script>";
+}
+
+
 ?> 
 
 <!DOCTYPE html>
@@ -60,23 +62,23 @@ $date_naissance = $userData['date_de_naissance'];
 
             <form id="profilForm" method="post" action="traitement_formulaire.php">
                 <label for="nom" style="display: inline-block; width: 150px; text-align: left;">Nom:</label>
-                <input type="text" name="nom" value=""/>
-                <input type="submit" name="form1" value="Modifier"><br>
+                <input type="text" name="nom" value="<?php echo $nom; ?>"/><br>
+                
 
                 <label for="prenom" style="display: inline-block; width: 150px; text-align: left; ">Prénom:</label>
-                <input type="text" name="prenom" value="">
-                <input type="submit" name="form2" value="Modifier"><br>
+                <input type="text" name="prenom" value="<?php echo $prenom; ?>"><br>
+                
 
                 <label for="adresse_email" style="display: inline-block; width: 150px; text-align: left;">Email:</label>
-                <input type="email" name="mail" value="">
-                <input type="submit" name="form3" value="Modifier"><br>
+                <input type="email" name="mail" value="<?php echo $email ; ?>"><br>
+               
 
                 <label for="numero_de_telephone" style="display: inline-block; width: 150px; text-align: left;">Numéro de téléphone:</label>
-                <input type="text" name="numero_de_telephone" placeholder="Numéro de téléphone" value="" >
-                <input type="submit" name="form4" value="Modifier"><br>
+                <input type="text" name="numero_de_telephone" placeholder="Numéro de téléphone" value="<?php echo $telephone ; ?>" ><br>
+
 
                 <label for="date_de_naissance" style="display: inline-block; width: 150px; text-align: left;">Date de naissance:</label>
-                <input type="date" name="date_de_naissance">
+                <input type="date" name="date_de_naissance" value="<?php echo $date_naissance ; ?>"><br>
                 <input type="submit" name="form5" value="Modifier"><br>
                 
                 

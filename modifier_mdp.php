@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 $servername = "127.0.0.1";
 $username = "root";
 $password = "";
@@ -10,13 +12,19 @@ try{
 } catch (PDOException $e) {
     echo "La connexion à la base de données a échoué : ". $e->getMessage();
 }
-// Récupérer les données de l'utilisateur
-$userID = 5; // Vous devez remplacer ceci par l'ID de l'utilisateur dont vous souhaitez récupérer les informations
-$query = $bdd->prepare("SELECT * FROM utilisateur WHERE idUtilisateur = ?");
-$query->execute([$userID]);
+
+if (isset($_SESSION['utilisateur_connecte'])){
+    $idUtilisateur = $_SESSION['utilisateur_id'];
+} else {
+    echo "<script>window.location.href = 'connexion.php'</script>";
+}
+
+$query = $bdd->prepare("SELECT mot_de_passe FROM utilisateur WHERE idUtilisateur = ?");
+$query->execute([$idUtilisateur]);
 $userData = $query->fetch(PDO::FETCH_ASSOC);
 
-$mot_de_passe = $userData['mot_de_passe']
+$mot_de_passe = $userData['mot_de_passe'];
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">

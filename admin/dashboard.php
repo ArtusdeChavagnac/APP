@@ -30,12 +30,12 @@ if (isset($_SESSION['utilisateur_abonnement_idAbonnement'])) {
 
         <h1>Page d'Administration</h1>
         
-        <a href="gestionfaq.php" target="_blank">Gestion de la FAQ</a>
-        <a href="http://localhost/phpmyadmin" target="_blank">Gestion des CGU</a>
-        <a href="http://localhost/phpmyadmin" target="_blank">Gestion des Mentions Légales</a>
-        <a href="http://localhost/phpmyadmin" target="_blank">Gestion du Forum</a>
-        <a href="http://localhost/phpmyadmin" target="_blank">Gestion des événements</a>
-        <a href="http://localhost/phpmyadmin" target="_blank">Gestion des capteurs</a>
+        <a href="gestionfaq.php" target="_top">Gestion de la FAQ</a>
+        <a href="http://localhost/phpmyadmin" target="_top">Gestion des CGU</a>
+        <a href="http://localhost/phpmyadmin" target="_top">Gestion des Mentions Légales</a>
+        <a href="http://localhost/phpmyadmin" target="_top">Gestion du Forum</a>
+        <a href="http://localhost/phpmyadmin" target="_top">Gestion des événements</a>
+        <a href="http://localhost/phpmyadmin" target="_top">Gestion des capteurs</a>
         
 
         
@@ -68,7 +68,6 @@ if (isset($_SESSION['utilisateur_abonnement_idAbonnement'])) {
             echo '<th>Date de Naissance</th>';
             echo '<th>Adresse Email</th>';
             echo '<th>Numéro de Téléphone</th>';
-            echo '<th>Mot de Passe chiffré</th>';
             echo '<th>Action</th>';
             echo '<th>Action</th>';
             echo '</tr>';
@@ -81,7 +80,6 @@ if (isset($_SESSION['utilisateur_abonnement_idAbonnement'])) {
                 echo '<td>' . $row["date_de_naissance"] . '</td>';
                 echo '<td>' . $row["adresse_email"] . '</td>';
                 echo '<td>' . $row["numero_de_telephone"] . '</td>';
-                echo '<td>' . $row["mot_de_passe"] . '</td>';
                 echo '<td><a href="modifier.php?id=' . $row["idUtilisateur"] . '">Modifier</a></td>';
                 echo '<td><a href="supprimer.php?id=' . $row["idUtilisateur"] . '">Supprimer</a></td>';
                 echo '</tr>';
