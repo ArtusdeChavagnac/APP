@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -29,30 +31,13 @@
 
     <div id="div-contenu">
         <div>
-        <p>Bienvenue sur votre espace personnel.</p>
+        <p>Bienvenue sur votre espace personnel.</p><br>
         <img id="photoProfil" src="#" alt="Photo de profil" style="display: none; max-width: 100px; float: right; margin: 10px;">
-            <button onclick="modifierInformations()">Modifier mes informations</button>
-        
-                <form id="profilForm" style="display: none;">
-                    <label for="nom" style="display: inline-block; width: 150px; text-align: left;">Nom:</label>
-                    <input type="text" id="nom" name="nom" required><br>
-
-                    <label for="prenom" style="display: inline-block; width: 150px; text-align: left; ">Prénom:</label>
-                    <input type="text" id="prenom" name="prenom" required><br>
-
-                    <label for="email" style="display: inline-block; width: 150px; text-align: left;">Email:</label>
-                    <input type="email" id="email" name="email" required><br>
-
-                    <label for="telephone" style="display: inline-block; width: 150px; text-align: left;">Numéro de téléphone:</label>
-                    <input type="text" name="telephone" placeholder="Numéro de téléphone" required><br>
-
-                    <label for="dateNaissance" style="display: inline-block; width: 150px; text-align: left;">Date de naissance:</label>
-                    <input type="date" id="dateNaissance" name="dateNaissance"><br>
-                    
-                    <button type="button" onclick="enregistrerInformations()">Enregistrer</button>
-                </form>
+            <a href="modifier_informations.php">Modifier mes informations</a>
+            
+            <a href="modifier_mdp.php">Modifier mon mot de passe</a>
         </div>
-
+        <br>
         <div>
             <label for="artistesFavoris">Choisis ton artiste préféré:</label>
             <select id="artistesFavoris">
@@ -63,7 +48,7 @@
                 <option value="artiste5">Madonna</option>
             
             </select><br>
-
+        <br>
         
             <label for="concertsFavoris">Choisis ta salle de concerts favorite:</label>
             <select id="concertsFavoris">
@@ -73,6 +58,7 @@
                 <option value="concert4">Centre Bell-Montréal</option>
             
             </select><br>
+            <br>
             </div>
 
         
@@ -102,7 +88,35 @@
         }
 
         function enregistrerInformations() {
-            // Ajoutez ici le code pour enregistrer les informations du profil
+            var nom = document.getElementById('nom').value;
+            var prenom = document.getElementById('prenom').value;
+            var adresse_email = document.getElementById('adresse_email').value;
+            var numero_de_telephone = document.getElementById('numero_de_telephone').value;
+            var date_de_naissance = document.getElementById('date_de_naissance').value;
+
+            var data = {
+                nom: nom,
+                prenom: prenom,
+                adresse_email: adresse_email,
+                numero_de_telephone: numero_de_telephone,
+                date_de_naissance: date_de_naissance
+            };
+
+            $.ajax({
+                type: 'POST',
+                url: 'enregistrer_informations.php', 
+                data: data,
+                success: function (response) {
+                    alert("Informations enregistrées avec succès!");
+                    var profilForm = document.getElementById('profilForm');
+                    profilForm.style.display = 'none';
+                },
+                error: function (error) {
+                    alert("Une erreur s'est produite lors de l'enregistrement des informations.");
+                    console.error(error);
+                }
+            });
+
             alert("Voulez-vous vraiment enregistrer ces informations?");
             
             // Après l'enregistrement, masquez le formulaire
@@ -229,6 +243,53 @@
                 preview.src = "#";
                 preview.style.display = 'none';
             }
+        }
+        
+        function modifierMotDePasse() {
+            var motDePasseForm = document.getElementById('motDePasseForm');
+            motDePasseForm.style.display = 'block';
+        }
+
+        function enregistrerMotDePasse() {
+            // Récupérer les valeurs des champs du formulaire
+            var ancienMotDePasse = document.getElementById('ancienMotDePasse').value;
+            var nouveauMotDePasse = document.getElementById('nouveauMotDePasse').value;
+            var confirmationMotDePasse = document.getElementById('confirmationMotDePasse').value;
+
+            // Vérifier si les champs sont vides
+            if (!ancienMotDePasse || !nouveauMotDePasse || !confirmationMotDePasse) {
+                alert("Veuillez remplir tous les champs.");
+                return;
+            }
+
+            // Vérifier si les nouveaux mots de passe correspondent
+            if (nouveauMotDePasse !== confirmationMotDePasse) {
+                alert("Les nouveaux mots de passe ne correspondent pas.");
+                return;
+            }
+
+            // Construire l'objet avec les données à envoyer
+            var data = {
+                ancienMotDePasse: ancienMotDePasse,
+                nouveauMotDePasse: nouveauMotDePasse
+            };
+
+            // Envoyer les données au serveur via une requête AJAX
+            $.ajax({
+                type: 'POST',
+                url: 'modifier_mot_de_passe.php', // Remplacez par le chemin de votre script serveur
+                data: data,
+                success: function (response) {
+                    alert(response);
+                    var motDePasseForm = document.getElementById('motDePasseForm');
+                    motDePasseForm.style.display = 'none';
+                },
+                error: function (error) {
+                    alert("Une erreur s'est produite lors de la modification du mot de passe.");
+                    console.error(error);
+                }
+            });
+    
         }
     </script>
 </body>
