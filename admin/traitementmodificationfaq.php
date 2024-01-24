@@ -7,12 +7,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['idfaq']) && isset($_PO
     $reponse = $_POST['reponse'];
 
     // Utilisez une requête préparée pour éviter les injections SQL
-    $stmt = $conn->prepare("UPDATE faq SET texte = ? WHERE idfaq = ?");
-    $stmt->bind_param("si", $question, $faqId);
-    $stmt2 = $conn->prepare("UPDATE reponse_faq SET texte = ?  WHERE faq_idFaq = ?");
-    $stmt2->bind_param("si",$reponse, $faqId);
+    $stmt = $conn->prepare("UPDATE faq SET texte = ?, reponse = ? WHERE idfaq = ?");
+    $stmt->bind_param("ssi", $question, $reponse, $faqId);
 
-    if ($stmt->execute() AND $stmt2->execute()) {
+    if ($stmt->execute()) {
         // Rediriger vers la page gestionfaq.php après la modification
         header("Location: gestionfaq.php");
         exit();

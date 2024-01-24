@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="../stylesheet.css">
     <link rel="shortcut icon" href="../images/shortcut icon.png"> 
     <script src="../script.js"></script> 
-    <title>Modifier FAQ — SonoTech</title>
+    <title>Modifier Capteur — SonoTech</title>
 </head>
 <body>
     <header>
@@ -14,42 +14,43 @@
     </header>
     <div id="div-contenu">
 
-        <h1>Modifier FAQ</h1>
+        <h1>Modifier Capteur</h1>
 
         <?php 
         require("../connexion_bdd.php");
 
         // Vérifiez si un identifiant est passé via la requête GET
         if(isset($_GET['id'])) {
-            $faqId = $_GET['id'];
-            $sql = "SELECT * FROM faq WHERE idFaq = $faqId";
+            $CapteurId = $_GET['id'];
+            $sql = "SELECT * FROM capteur_sonore WHERE idCapteur_sonore = $CapteurId";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
                 $row = $result->fetch_assoc();
                 ?>
-                <h1>Modifier une Question/Réponse</h1>
+                <h1>Modifier un capteur</h1>
 
                 <!-- Formulaire pour modifier une question/réponse -->
-                <form action="traitementmodificationfaq.php" method="post">
-                    <input type="hidden" name="idfaq" value="<?php echo $row['idfaq']; ?>">
+                <form action="traitementmodificationcapteur.php" method="post">
+                    <input type="hidden" name="idCapteur_sonore" value="<?php echo $row['idCapteur_sonore']; ?>">
 
-                    <label for="question">Question :</label>
-                    <input type="text" name="texte" value="<?php echo $row['texte']; ?>" required>
+                    <label for="position">Position :</label>
+                    <input type="text" name="position" value="<?php echo $row['position']; ?>" required>
 
-                    <label for="reponse">Réponse :</label>
-                    <textarea name="reponse" required><?php echo $row['reponse']; ?></textarea>
-
+                    <label for="date">date</label>
+                    <textarea name="date" required><?php echo $row['date']; ?></textarea>
+                    <label for="niveau_sonore">Niveau Sonore</label>
+                    <textarea name="niveau_sonore" required><?php echo $row['niveau_sonore']; ?></textarea>
                     <button type="submit">Modifier</button>
                 </form>
                 <?php
             } else {
-                echo "Question/réponse non trouvée.";
+                echo "capteur non trouvée.";
             }
 
             $conn->close();
         } else {
-            echo "Identifiant de la question/réponse non spécifié.";
+            echo "Identifiant du capteur non spécifié.";
         }
         ?>
     </div>

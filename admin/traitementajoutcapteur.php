@@ -1,22 +1,24 @@
 <?php
-// Inclure le fichier de connexion à la base de données
+/// Inclure le fichier de connexion à la base de données
 require("../connexion_bdd.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Récupérer les données du formulaire
-    $question = $_POST["texte"];
-    $reponse = $_POST["reponse"];
+    $capteurId = $_POST['idCapteur_sonore'];
+    $position = $_POST['position'];
+    $date = $_POST['date'];
+    $niveauSonore = $_POST['niveau_sonore'];
 
     // Préparer la requête SQL d'insertion
-    $sql = "INSERT INTO faq (texte, reponse) VALUES (?, ?)";
+    $sql = "INSERT INTO capteur_sonore (position, `date`, niveau_sonore) VALUES (?, ?, ?)";
 
     // Préparer et exécuter la requête en utilisant les déclarations préparées
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ss", $question, $reponse);
+    $stmt->bind_param("ssd", $position, $date, $niveauSonore);  // Utiliser "d" pour le type de données double
 
     if ($stmt->execute()) {
-        // Redirection vers la page gestionfaq après l'ajout réussi
-        header("Location: gestionfaq.php");
+        // Redirection vers la page gestioncapteur après l'ajout réussi
+        header("Location: gestioncapteur.php");
         exit();
     } else {
         // En cas d'erreur lors de l'exécution de la requête
@@ -29,4 +31,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 // Fermer la connexion à la base de données
 $conn->close();
-?>

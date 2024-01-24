@@ -1,15 +1,5 @@
 <?php
 
-session_start();
-if (isset($_SESSION['utilisateur_abonnement_idAbonnement'])) {
-    if ($_SESSION['utilisateur_abonnement_idAbonnement'] != 2) {
-        echo "<script>window.location.href = '../index.php'</script> " ;
-    } 
-} else {
-    echo "<script>window.location.href = '../index.php'</script> " ;
-}
-
-
 require("../connexion_bdd.php");
 
 // Check if the user ID is set
@@ -20,12 +10,22 @@ if (isset($_GET['id'])) {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Retrieve updated values from the form
         $updatedName = $_POST['updated_name'];
-        $updatedSurname = $_POST['updated_surname'];
-        $updatedBirth = $_POST['updated_birth'];
+        $updatedPrenom = $_POST['updated_prenom'];
+        $updateddate_de_naissance = $_POST['updated_date_de_naissance'];
+        $updatedAdresseEmail = $_POST['updated_adresse_email'];
+        $updatedTelephone= $_POST['updated_numero_de_telephone'];
+        $updatedAbonnement= $_POST['updated_abonnement_idAbonnement'];
         // Add other fields as needed
 
         // Update the user data in the database
-        $sqlUpdate = "UPDATE utilisateur SET nom='$updatedName',prenom='$updatedSurname',date_de_naissance='$updatedBirth' WHERE idUtilisateur=$userId";
+        $sqlUpdate = "UPDATE utilisateur SET 
+        nom='$updatedName' ,
+        prenom='$updatedPrenom',
+        date_de_naissance='$updateddate_de_naissance',
+        adresse_email='$updatedAdresseEmail' ,
+        numero_de_telephone='$updatedTelephone '
+        abonnement_idAbonnement='$updatedAbonnement' WHERE idUtilisateur=$userId";
+
         $conn->query($sqlUpdate);
 
         // Redirect back to the dashboard or any other appropriate page
@@ -63,17 +63,18 @@ if (isset($_GET['id'])) {
     
     <form method="post" action="">
         <label for="updated_name">Nouveau Nom:</label>
-        <input type="text" name="updated_name" value="<?php  echo isset($userData['nom']) ? $userData['nom'] : ''; ?>" required><br>
-        <label for="updated_name">Nouveau Prénom:</label>
-        <input type="text" name="updated_surname" value="<?php echo isset($userData['prenom']) ? $userData['prenom'] : ''; ?>" required><br>
-        <label for="updated_name">Nouvelle date de Naissance:</label>
-        <input type="date" name="updated_birth" value="<?php echo isset($userData['date_de_naissance']) ? $userData['date_de_naissance'] : ''; ?>" required><br>
+        <input type="text" name="updated_name" value="<?php echo isset($userData['nom']) ? $userData['nom'] : ''; ?>" required>
+        <input type="text" name="updated_prenom" value="<?php echo isset($userData['prenom']) ? $userData['prenom'] : ''; ?>" required>
+        <input type="text" name="updated_date_de_naissance" value="<?php echo isset($userData['date_de_naissance']) ? $userData['date_de_naissance'] : ''; ?>" required>
+        <input type="text" name="updated_adresse_email" value="<?php echo isset($userData['adresse_email']) ? $userData['adresse_email'] : ''; ?>" required>
+        <input type="text" name="updated_numero_de_telephone" value="<?php echo isset($userData['numero_de_telephone']) ? $userData['numero_de_telephone'] : ''; ?>" required>
+        <input type="text" name="updated_abonnement_idAbonnement" value="<?php echo isset($userData['abonnement_idAbonnement']) ? $userData['abonnement_idAbonnement'] : ''; ?>" required>
 
-
-        <!-- Add other form fields as needed -->
+        
 
         <input type="submit" value="Enregistrer">
     </form>
+    
 
 </body>
 </html>

@@ -14,40 +14,42 @@
     </header>
     <div id="div-contenu">
 
-        <h1>Gestion FAQ</h1>
+        <h1>Gestion Capteurs</h1>
         <table border="1">
             <tr>
                 <th>ID</th>
-                <th>Question</th>
-                <th>Réponse</th>
+                <th>Position</th>
+                <th>date</th>
+                <th>Niveau sonore</th>
                 <th>Action</th>
                 <th>Action</th>
             </tr>
 
             <?php
             require("../connexion_bdd.php");
-            $sql = "SELECT * FROM faq";
+            $sql = "SELECT * FROM capteur_sonore";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     echo '<tr>';
-                    echo '<td>' . $row["idfaq"] . '</td>';
-                    echo '<td>' . $row["texte"] . '</td>';
-                    echo '<td>' . $row["reponse"] . '</td>';
+                    echo '<td>' . $row["idCapteur_sonore"] . '</td>';
+                    echo '<td>' . $row["position"] . '</td>';
+                    echo '<td>' . $row["date"] . '</td>';
+                    echo '<td>' . $row["niveau_sonore"] . '</td>';
                    
-                    echo '<td><a href="modifierfaq.php?id=' . $row["idfaq"] . '">Modifier</a></td>';
-                    echo '<td><a href="supprimerfaq.php?id=' . $row["idfaq"] . '">Supprimer</a></td>';
+                    echo '<td><a href="modifiercapteur.php?id=' . $row["idCapteur_sonore"] . '">Modifier</a></td>';
+                    echo '<td><a href="supprimercapteur.php?id=' . $row["idCapteur_sonore"] . '">Supprimer</a></td>';
                     
                     echo '</tr>';
                 }
             } else {
-                echo "Aucune question dans la FAQ.";
+                echo "Aucun capteur enregistré.";
             }
             ?>
 
         </table>
-        <a href="ajoutfaq.php" class="button">Ajouter</a>
+        <a href="ajoutcapteur.php" class="button">Ajouter</a>
     </div>
     <footer>
         <iframe src="../communs/footer.html"></iframe> 

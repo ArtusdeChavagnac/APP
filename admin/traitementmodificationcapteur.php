@@ -1,0 +1,28 @@
+<?php
+require("../connexion_bdd.php");
+
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['idCapteur_sonore']) && isset($_POST['position']) && isset($_POST['niveau_sonore']) && isset($_POST['date'])) {
+    $capteurId = $_POST['idCapteur_sonore'];
+    $position = $_POST['position'];
+    $date = $_POST['date'];
+    $niveauSonore = $_POST['niveau_sonore'];
+
+    // Utilisez une requête préparée pour éviter les injections SQL
+    $stmt = $conn->prepare("UPDATE capteur_sonore SET position = ?, `date` = ? ,niveau_sonore = ? WHERE idCapteur_sonore = ?");
+    $stmt->bind_param("ssii", $position, $date, $niveauSonore, $capteurId);
+
+    if ($stmt->execute()) {
+        // Rediriger vers la page gestionfaq.php après la modification
+        header("Location: gestioncapteur.php");
+        exit();
+    } else {
+        echo "Erreur lors de la modification : " . $stmt->error;
+    }
+
+    $stmt->close();
+} else {
+    echo "Erreur : Données manquantes.";
+}
+
+$conn->close();
+?>
