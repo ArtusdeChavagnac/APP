@@ -26,6 +26,7 @@ session_start();
 				<td><a href = "../a-propos.php" target = "_top">À propos</a>
 				<td><a href ="../rediffusions.php" target = "_top">Rediffusions</a></td>
 				<td><a href ="../faq.php" target ="_top">FAQ</a></td>
+				<td><a href ="../forum.php" target ="_top">Forum</a></td>
 				<td><?php
 
 					if (isset($_SESSION['utilisateur_abonnement_idAbonnement'])){
