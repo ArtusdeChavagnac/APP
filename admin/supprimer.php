@@ -15,8 +15,8 @@ if (isset($_GET['id'])) {
     $userId = $_GET['id'];
 
     // Delete the user from the database
-    $sqlDelete = "DELETE FROM utilisateur WHERE idUtilisateur=$userId";
-    $conn->query($sqlDelete);
+    $query = $conn->prepare("UPDATE utilisateur SET nom = ?, prenom = ?, adresse_email = ?, numero_de_telephone = ?, date_de_naissance = ?,mot_de_passe =? WHERE idUtilisateur = ?");
+    $query->execute(["erased","erased","erased","erased","2000-01-01","erased",$userId]);
 
     // Redirect back to the dashboard or any other appropriate page
     header("Location: dashboard.php");
