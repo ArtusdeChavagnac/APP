@@ -29,12 +29,19 @@
             $sql = "SELECT * FROM faq";
             $result = $conn->query($sql);
 
+
+
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
+                    $idFaq = $row["idfaq"];
+                    $sql = "SELECT texte FROM reponse_faq WHERE $idFaq = faq_idFaq ";
+                    $reponses = $conn->query($sql);
+                    $reponse = $reponses->fetch_assoc();
+
                     echo '<tr>';
                     echo '<td>' . $row["idfaq"] . '</td>';
                     echo '<td>' . $row["texte"] . '</td>';
-                    echo '<td>' . $row["reponse"] . '</td>';
+                    echo '<td>' . $reponse["texte"] . '</td>';
                    
                     echo '<td><a href="modifierfaq.php?id=' . $row["idfaq"] . '">Modifier</a></td>';
                     echo '<td><a href="supprimerfaq.php?id=' . $row["idfaq"] . '">Supprimer</a></td>';
@@ -53,4 +60,3 @@
         <iframe src="../communs/footer.php"></iframe> 
     </footer>
 </body>
-</html>

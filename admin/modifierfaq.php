@@ -27,6 +27,10 @@
 
             if ($result->num_rows > 0) {
                 $row = $result->fetch_assoc();
+                $idFaq = $row["idfaq"];
+                $sql = "SELECT texte FROM reponse_faq WHERE $idFaq = faq_idFaq ";
+                $reponses = $conn->query($sql);
+                $reponse = $reponses->fetch_assoc();
                 ?>
                 <h1>Modifier une Question/Réponse</h1>
 
@@ -38,7 +42,7 @@
                     <input type="text" name="texte" value="<?php echo $row['texte']; ?>" required>
 
                     <label for="reponse">Réponse :</label>
-                    <textarea name="reponse" required><?php echo $row['reponse']; ?></textarea>
+                    <textarea name="reponse" required><?php echo $reponse['texte']; ?></textarea>
 
                     <button type="submit">Modifier</button>
                 </form>
