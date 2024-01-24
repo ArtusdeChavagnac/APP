@@ -39,7 +39,7 @@ session_start();
 					<?php
 						if(isset($_SESSION["utilisateur_connecte"])) {
 							echo "<a href ='../moncompte.php' target ='_top'><button>Mon compte</button></span>";
-							echo "<a href ='../deconnection.php' target ='_top'><button>Déconnection</button></span> ";
+							echo "<a href ='../deconnection.php' target ='_top'><button>Déconnexion</button></span> ";
 						} else {
 							echo "<a href ='../connexion.php' target ='_top'><button>Se connecter</button></span>";
 						}
