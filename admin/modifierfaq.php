@@ -1,3 +1,14 @@
+<?php
+
+session_start();
+if (isset($_SESSION['utilisateur_abonnement_idAbonnement'])) {
+    if ($_SESSION['utilisateur_abonnement_idAbonnement'] != 2) {
+        echo "<script>window.location.href = '../index.php'</script> " ;
+    } 
+} else {
+    echo "<script>window.location.href = '../index.php'</script> " ;
+}
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>

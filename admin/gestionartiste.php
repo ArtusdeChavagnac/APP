@@ -25,47 +25,46 @@ if (isset($_SESSION['utilisateur_abonnement_idAbonnement'])) {
     </header>
     <div id="div-contenu">
 
-        <h1>Gestion FAQ</h1>
+        <h1>Gestion Artistes</h1>
         <table border="1">
             <tr>
                 <th>ID</th>
-                <th>Question</th>
-                <th>Réponse</th>
+                <th>Pseudo</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Adresse Email</th>
+                <th>Numéro de Téléphone</th>
+                <th>Style de Musique</th>
                 <th>Action</th>
                 <th>Action</th>
             </tr>
 
             <?php
             require("../connexion_bdd.php");
-            $sql = "SELECT * FROM faq";
+            $sql = "SELECT * FROM artiste";
             $result = $conn->query($sql);
-
-
 
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
-                    $idFaq = $row["idfaq"];
-                    $sql = "SELECT texte FROM reponse_faq WHERE $idFaq = faq_idFaq ";
-                    $reponses = $conn->query($sql);
-                    $reponse = $reponses->fetch_assoc();
-
                     echo '<tr>';
-                    echo '<td>' . $row["idfaq"] . '</td>';
-                    echo '<td>' . $row["texte"] . '</td>';
-                    echo '<td>' . $reponse["texte"] . '</td>';
-                   
-                    echo '<td><a href="modifierfaq.php?id=' . $row["idfaq"] . '">Modifier</a></td>';
-                    echo '<td><a href="supprimerfaq.php?id=' . $row["idfaq"] . '">Supprimer</a></td>';
-                    
+                    echo '<td>' . $row["idArtiste"] . '</td>';
+                    echo '<td>' . $row["pseudo"] . '</td>';
+                    echo '<td>' . $row["nom"] . '</td>';
+                    echo '<td>' . $row["prenom"] . '</td>';
+                    echo '<td>' . $row["adresse_email"] . '</td>';
+                    echo '<td>' . $row["numero_de_telephone"] . '</td>';
+                    echo '<td>' . $row["style_de_musique"] . '</td>';
+                    echo '<td><a href="modifierArtiste.php?id=' . $row["idArtiste"] . '">Modifier</a></td>';
+                    echo '<td><a href="supprimerartiste.php?id=' . $row["idArtiste"] . '">Supprimer</a></td>';
                     echo '</tr>';
                 }
             } else {
-                echo "Aucune question dans la FAQ.";
+                echo "Aucun artiste enregistré.";
             }
             ?>
 
-        </table>
-        <a href="ajoutfaq.php" class="button">Ajouter</a>
+</table>
+        <a href="ajouterArtiste.php" class="button">Ajouter</a>
     </div>
     <footer>
         <iframe src="../communs/footer.php"></iframe> 
