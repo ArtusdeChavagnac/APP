@@ -1,3 +1,16 @@
+<?php
+
+session_start();
+if (isset($_SESSION['utilisateur_abonnement_idAbonnement'])) {
+    if ($_SESSION['utilisateur_abonnement_idAbonnement'] != 2) {
+        echo "<script>window.location.href = '../index.php'</script> " ;
+    } 
+} else {
+    echo "<script>window.location.href = '../index.php'</script> " ;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -10,7 +23,7 @@
 </head>
 <body>
     <header>
-        <iframe src="../communs/header.html"></iframe>
+        <iframe src="../communs/header.php"></iframe>
     </header>
     <div id="div-contenu">
 
@@ -55,7 +68,7 @@
         ?>
     </div>
     <footer>
-        <iframe src="../communs/footer.html"></iframe> 
+        <iframe src="../communs/footer.php"></iframe> 
     </footer>
 </body>
 </html>

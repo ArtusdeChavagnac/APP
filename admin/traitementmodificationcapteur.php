@@ -1,4 +1,15 @@
 <?php
+
+session_start();
+if (isset($_SESSION['utilisateur_abonnement_idAbonnement'])) {
+    if ($_SESSION['utilisateur_abonnement_idAbonnement'] != 2) {
+        echo "<script>window.location.href = '../index.php'</script> " ;
+    } 
+} else {
+    echo "<script>window.location.href = '../index.php'</script> " ;
+}
+
+
 require("../connexion_bdd.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['idCapteur_sonore']) && isset($_POST['position']) && isset($_POST['niveau_sonore']) && isset($_POST['date'])) {

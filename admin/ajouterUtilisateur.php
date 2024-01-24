@@ -1,3 +1,15 @@
+<?php
+
+session_start();
+if (isset($_SESSION['utilisateur_abonnement_idAbonnement'])) {
+    if ($_SESSION['utilisateur_abonnement_idAbonnement'] != 2) {
+        echo "<script>window.location.href = '../index.php'</script> " ;
+    } 
+} else {
+    echo "<script>window.location.href = '../index.php'</script> " ;
+}
+
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -26,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
         $adresseEmail = isset($_POST['adresse_email']) ? $_POST['adresse_email'] : '';
         $numeroTelephone = isset($_POST['numero_de_telephone']) ? $_POST['numero_de_telephone'] : '';
         $MotDePasse = isset($_POST['mot_de_passe']) ? $_POST['mot_de_passe'] : '';
-        $hashedPassword = password_hash($motDePasse, PASSWORD_DEFAULT);
+        $hashedPassword = password_hash($MotDePasse, PASSWORD_DEFAULT);
 
         // Validation des données (vous pouvez ajouter davantage de validation si nécessaire)
 
@@ -95,7 +107,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
 </style>
 <body>
     <header>
-        <iframe src="../communs/header.html"></iframe>
+        <iframe src="../communs/header.php"></iframe>
     </header>
     <div id="div-contenu">
         <h1>Ajouter un Utilisateur</h1>
@@ -128,7 +140,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
         <a href="dashboard.php">Retour au tableau de bord</a>
     </div>
     <footer>
-        <iframe src="../communs/footer.html"></iframe> 
+        <iframe src="../communs/footer.php"></iframe> 
     </footer>
 </body>
 </html>

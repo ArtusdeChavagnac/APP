@@ -29,12 +29,12 @@ if (isset($_SESSION['utilisateur_abonnement_idAbonnement'])) {
 
         <h1>Page d'Administration</h1>
         
-        <a href="gestionfaq.php" target="_blank">Gestion de la FAQ</a>
-        <a href="http://localhost/phpmyadmin" target="_blank">Gestion des artistes</a>
-        <a href="http://localhost/phpmyadmin" target="_blank">Gestion des salles</a>
-        <a href="http://localhost/phpmyadmin" target="_blank">Gestion du Forum</a>
-        <a href="gestioncapteur.php" target="_blank">Gestion des Capteurs</a>
-        <a href="http://localhost/phpmyadmin" target="_blank">Gestion des évenements</a>
+        <a href="gestionfaq.php" target="_top">Gestion de la FAQ</a>
+        <a href="http://localhost/phpmyadmin" target="_top">Gestion des artistes</a>
+        <a href="http://localhost/phpmyadmin" target="_top">Gestion des salles</a>
+        <a href="http://localhost/phpmyadmin" target="_top">Gestion du Forum</a>
+        <a href="gestioncapteur.php" target="_top">Gestion des Capteurs</a>
+        <a href="http://localhost/phpmyadmin" target="_top">Gestion des évenements</a>
         
 
         
