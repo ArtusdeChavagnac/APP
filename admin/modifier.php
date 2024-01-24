@@ -20,10 +20,12 @@ if (isset($_GET['id'])) {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Retrieve updated values from the form
         $updatedName = $_POST['updated_name'];
+        $updatedSurname = $_POST['updated_surname'];
+        $updatedBirth = $_POST['updated_birth'];
         // Add other fields as needed
 
         // Update the user data in the database
-        $sqlUpdate = "UPDATE utilisateur SET nom='$updatedName' WHERE idUtilisateur=$userId";
+        $sqlUpdate = "UPDATE utilisateur SET nom='$updatedName',prenom='$updatedSurname',date_de_naissance='$updatedBirth' WHERE idUtilisateur=$userId";
         $conn->query($sqlUpdate);
 
         // Redirect back to the dashboard or any other appropriate page
@@ -61,7 +63,12 @@ if (isset($_GET['id'])) {
     
     <form method="post" action="">
         <label for="updated_name">Nouveau Nom:</label>
-        <input type="text" name="updated_name" value="<?php echo isset($userData['nom']) ? $userData['nom'] : ''; ?>" required>
+        <input type="text" name="updated_name" value="<?php  echo isset($userData['nom']) ? $userData['nom'] : ''; ?>" required><br>
+        <label for="updated_name">Nouveau Prénom:</label>
+        <input type="text" name="updated_surname" value="<?php echo isset($userData['prenom']) ? $userData['prenom'] : ''; ?>" required><br>
+        <label for="updated_name">Nouvelle date de Naissance:</label>
+        <input type="date" name="updated_birth" value="<?php echo isset($userData['date_de_naissance']) ? $userData['date_de_naissance'] : ''; ?>" required><br>
+
 
         <!-- Add other form fields as needed -->
 

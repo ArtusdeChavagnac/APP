@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : dim. 21 jan. 2024 à 18:33
+-- Généré le : mer. 24 jan. 2024 à 13:19
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -91,9 +91,9 @@ INSERT INTO `administrateur_has_capteur_sonore` (`idAmdinistrateur_has_capteur`,
 
 CREATE TABLE `artiste` (
   `idArtiste` int(11) NOT NULL,
+  `pseudo` varchar(45) DEFAULT NULL,
   `nom` varchar(45) NOT NULL,
   `prenom` varchar(45) NOT NULL,
-  `pseudo` varchar(45) DEFAULT NULL,
   `adresse_email` varchar(45) NOT NULL,
   `numero_de_telephone` varchar(10) NOT NULL,
   `style_de_musique` varchar(45) NOT NULL
@@ -103,8 +103,12 @@ CREATE TABLE `artiste` (
 -- Déchargement des données de la table `artiste`
 --
 
-INSERT INTO `artiste` (`idArtiste`, `nom`, `prenom`, `pseudo`, `adresse_email`, `numero_de_telephone`, `style_de_musique`) VALUES
-(1, 'Scott', 'Travis', NULL, 'example@gmail.com', '0111111111', 'Rap');
+INSERT INTO `artiste` (`idArtiste`, `pseudo`, `nom`, `prenom`, `adresse_email`, `numero_de_telephone`, `style_de_musique`) VALUES
+(1, 'Travis Scott', 'Scott', 'Travis', 'example@gmail.com', '0111111111', 'Rap'),
+(4, 'DJ Snake', 'Grigahcine', 'William', 'example1@gmail.com', '0111111112', 'Rap'),
+(5, 'Booba', 'Yaffa', 'Elie', 'example2@gmail.com', '0111111113', 'Rap'),
+(6, 'Rainbow Sisters', 'Chapin', 'Erin', 'example3@gmail.com', '0111111114', 'Accoustic'),
+(7, 'Sloane', 'Richard', 'Chantal', 'example4@gmail.com', '0111111115', '80\'s');
 
 -- --------------------------------------------------------
 
@@ -171,11 +175,11 @@ CREATE TABLE `concert` (
 
 INSERT INTO `concert` (`idConcert`, `image`, `date`, `duree`, `heure_debut`, `salle_idSalle`) VALUES
 (1, 'images/imgconcert/img1.jpg', '2024-01-19', 243, 1800, 1),
-(2, 'images/imgconcert/img2.jpg', '2024-01-23', 315, 1900, 1),
-(3, 'images/imgconcert/img3.jpg', '2024-01-27', 430, 1730, 1),
-(4, 'images/imgconcert/img4.jpg', '2024-01-20', 265, 1800, 1),
+(2, 'images/imgconcert/img2.jpg', '2024-01-23', 315, 1900, 5),
+(3, 'images/imgconcert/img3.jpg', '2024-01-27', 430, 1730, 4),
+(4, 'images/imgconcert/img4.jpg', '2024-01-20', 265, 1800, 2),
 (5, 'images/imgconcert/img5.jpg', '2024-01-29', 289, 1745, 1),
-(7, 'images/imgconcert/img6.jpg', '2024-01-23', 265, 1745, 1);
+(7, 'images/imgconcert/img6.jpg', '2024-01-23', 265, 1745, 3);
 
 -- --------------------------------------------------------
 
@@ -194,7 +198,13 @@ CREATE TABLE `concert_has_artiste` (
 --
 
 INSERT INTO `concert_has_artiste` (`idConcert_has_artiste`, `concert_idConcert`, `artiste_idArtiste`) VALUES
-(1, 1, 1);
+(1, 1, 1),
+(2, 2, 6),
+(3, 2, 7),
+(4, 3, 4),
+(5, 4, 7),
+(6, 5, 5),
+(7, 7, 4);
 
 -- --------------------------------------------------------
 
@@ -261,6 +271,30 @@ INSERT INTO `forum` (`idForum`, `question`, `date`, `utilsateur_idUtilisateur`) 
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `partenaires`
+--
+
+CREATE TABLE `partenaires` (
+  `idPartenaires` int(11) NOT NULL,
+  `nom` varchar(64) NOT NULL,
+  `mail` varchar(64) NOT NULL,
+  `siret` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Déchargement des données de la table `partenaires`
+--
+
+INSERT INTO `partenaires` (`idPartenaires`, `nom`, `mail`, `siret`) VALUES
+(1, 'Société Générale', 'societegenerale@gmail.com', '552 120 222 00013'),
+(2, 'Orange', 'orange@gmail.com', '380 129 866'),
+(3, 'Google', 'gmail@gmail.com', '443 061 841'),
+(4, 'Tesla', 'tesla@gmail.com', '524 335 262 00431'),
+(5, 'OpenAI', 'chatgpt@gmail.com', '443 061 841 00047');
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `preference_utilisateur`
 --
 
@@ -321,7 +355,7 @@ CREATE TABLE `reponse_forum` (
 
 CREATE TABLE `salle` (
   `idSalle` int(11) NOT NULL,
-  `adresse` varchar(45) NOT NULL,
+  `adresse` varchar(80) NOT NULL,
   `capteur_sonore_idCapteur_sonore` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
@@ -330,7 +364,11 @@ CREATE TABLE `salle` (
 --
 
 INSERT INTO `salle` (`idSalle`, `adresse`, `capteur_sonore_idCapteur_sonore`) VALUES
-(1, '10 rue de Vanves', 1);
+(1, '8 Rue Scribe, 75009 Paris', 1),
+(2, '28 Bd des Capucines, 75009 Paris', 2),
+(3, 'Stade de France 93200 Saint-Denis', 3),
+(4, 'La Seine Musicale, Île Seguin, 92100 Boulogne-Billancourt', 4),
+(5, '8 Bd de Bercy, 75012 Paris', 5);
 
 -- --------------------------------------------------------
 
@@ -373,10 +411,10 @@ CREATE TABLE `utilisateur` (
 --
 
 INSERT INTO `utilisateur` (`idUtilisateur`, `nom`, `prenom`, `date_de_naissance`, `adresse_email`, `numero_de_telephone`, `mot_de_passe`, `abonnement_idAbonnement`) VALUES
-(1, 'De Corta', 'Étienne', '2002-10-25', 'etienne.corta@gmail.com', '0652986299', '$2y$10$zqhuzRkLkxyGxF.u27JnU.9Fvg0z2bT.I6nbElgJAO/2Hs0PWWFwy', 2),
+(1, 'de Corta', 'Etienne', '2002-10-25', 'etienne.corta@gmail.com', '0652986299', '$2y$10$jBtq.A1qCUOWwemNRGQxveX./m61ms9e25pQd89I8rbLb8h5NcrZq', 2),
 (2, 'Dupont', 'Jean', '2002-10-25', 'jeandupont@gmail.com', '0611223344', '$2y$10$zqhuzRkLkxyGxF.u27JnU.9Fvg0z2bT.I6nbElgJAO/2Hs0PWWFwy', 1),
 (3, 'De Corta', 'Étienne', '2002-10-25', 'titousteam@gmail.com', '0652986299', '$2y$10$zqhuzRkLkxyGxF.u27JnU.9Fvg0z2bT.I6nbElgJAO/2Hs0PWWFwy', 1),
-(4, 'De Corta', 'Étienne', '2002-10-25', 'Etienne.corta@gmail.com', '0652986299', '$2y$10$zqhuzRkLkxyGxF.u27JnU.9Fvg0z2bT.I6nbElgJAO/2Hs0PWWFwy', 1);
+(5, 'Admin', 'Sonotech', '2023-10-21', 'sonotech@gmail.com', '0606060606', '$2y$10$NMFccX0NMJNNf84tAaXzge1iioQ7L6ZBCjMEs/vSUVbY0r7Q7JMGq', 2);
 
 -- --------------------------------------------------------
 
@@ -504,6 +542,12 @@ ALTER TABLE `forum`
   ADD KEY `fk_utilisateur_forum` (`utilsateur_idUtilisateur`);
 
 --
+-- Index pour la table `partenaires`
+--
+ALTER TABLE `partenaires`
+  ADD PRIMARY KEY (`idPartenaires`);
+
+--
 -- Index pour la table `preference_utilisateur`
 --
 ALTER TABLE `preference_utilisateur`
@@ -587,7 +631,7 @@ ALTER TABLE `administrateur_has_capteur_sonore`
 -- AUTO_INCREMENT pour la table `artiste`
 --
 ALTER TABLE `artiste`
-  MODIFY `idArtiste` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idArtiste` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT pour la table `avis`
@@ -611,7 +655,7 @@ ALTER TABLE `concert`
 -- AUTO_INCREMENT pour la table `concert_has_artiste`
 --
 ALTER TABLE `concert_has_artiste`
-  MODIFY `idConcert_has_artiste` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idConcert_has_artiste` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT pour la table `concert_has_utilisateur`
@@ -630,6 +674,12 @@ ALTER TABLE `faq`
 --
 ALTER TABLE `forum`
   MODIFY `idForum` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT pour la table `partenaires`
+--
+ALTER TABLE `partenaires`
+  MODIFY `idPartenaires` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT pour la table `preference_utilisateur`
@@ -653,7 +703,7 @@ ALTER TABLE `reponse_forum`
 -- AUTO_INCREMENT pour la table `salle`
 --
 ALTER TABLE `salle`
-  MODIFY `idSalle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idSalle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT pour la table `ticket`
@@ -665,7 +715,7 @@ ALTER TABLE `ticket`
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `idUtilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idUtilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT pour la table `utilisateur_has_concert`

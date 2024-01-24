@@ -70,7 +70,7 @@ catch(PDOException $e) {
 
 <h1>Lieux</h1>
 
-<p>Voilà les lieux que nous avons classifiés pour vous, vous y retouverez la qualité sonore moyenne et, pour les membres premium, la carte complète des niveaux sonores.</p>
+<p>Voilà les lieux que nous avons classifiés pour vous, vous y retouverez le niveau sonore en direct des différentes salles de concert.</p>
 
 <table>
 
@@ -82,7 +82,7 @@ $stmt->execute();
 
 echo '<tr>';
 echo '<th>Lieu</th>';
-echo '<th>Qualité moyenne</th>';
+echo '<th>Niveau sonore</th>';
 echo '</tr>';
 
 $lieuRawData = $stmt->fetchAll(PDO::FETCH_ASSOC);
