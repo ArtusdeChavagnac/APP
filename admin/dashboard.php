@@ -68,7 +68,6 @@ if (isset($_SESSION['utilisateur_abonnement_idAbonnement'])) {
             echo '<th>Adresse Email</th>';
             echo '<th>Numéro de Téléphone</th>';
             echo '<th>Abonnement</th>';
-            echo '<th>Mot de Passe chiffré</th>';
             echo '<th>Action</th>';
             echo '<th>Action</th>';
             echo '</tr>';
@@ -82,7 +81,6 @@ if (isset($_SESSION['utilisateur_abonnement_idAbonnement'])) {
                 echo '<td>' . $row["adresse_email"] . '</td>';
                 echo '<td>' . $row["numero_de_telephone"] . '</td>';
                 echo '<td>' . $row["abonnement_idAbonnement"] . '</td>';
-                echo '<td>' . $row["mot_de_passe"] . '</td>';
                 echo '<td><a href="modifier.php?id=' . $row["idUtilisateur"] . '">Modifier</a></td>';
                 echo '<td><a href="supprimer.php?id=' . $row["idUtilisateur"] . '">Supprimer</a></td>';
                 echo '</tr>';
