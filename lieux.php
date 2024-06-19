@@ -100,7 +100,7 @@ try {
             ?>
         </table>
 
-        <img src="images/carte_sonore_1.png" alt="Carte sonore des lieux">
+        <img src="images/carte_sonore2.png" alt="Carte sonore des lieux">
     </div>
     <footer>
         <iframe src="communs/footer.php" style="width: 100%; height: 100px; border: none;"></iframe>
