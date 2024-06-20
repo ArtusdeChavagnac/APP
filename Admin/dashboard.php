@@ -1,61 +1,97 @@
-<?php
-// Assurez-vous que l'utilisateur est authentifié en tant qu'administrateur
-// Vous pouvez implémenter une fonction de vérification d'authentification ici
-
-// Incluez votre code de connexion à la base de données ici
-
-// Exemple de code pour afficher la liste des utilisateurs
-$query = "SELECT * FROM utilisateurs";
-$result = mysqli_query($conn, $query);
-
-// ... Autres fonctionnalités à ajouter selon vos besoins ...
-
-?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="stylesheet.css">
-    <link rel="shortcut icon" href="images/shortcut icon.png">
-    <script src="script.js"></script>
+    <link rel="stylesheet" href="../stylesheet.css">
+    <link rel="shortcut icon" href="../images/shortcut icon.png"> 
+    <script src="../script.js"></script> 
     <title>Page d'Administration — SonoTech</title>
 </head>
 <body>
     <header>
-        <iframe src="communs/header.html"></iframe>
+        <iframe src="../communs/header.html"></iframe>
     </header>
     <div id="div-contenu">
 
         <h1>Page d'Administration</h1>
 
-        <!-- Afficher la liste des utilisateurs -->
+        
+        <a href="http://localhost/phpmyadmin/" target="_blank">Gestion des Utilisateurs</a>
+
+        
+        <a href="http://localhost/phpmyadmin" target="_blank">Gestion de la FAQ</a>
+
+        
+        <a href="http://localhost/phpmyadmin" target="_blank">Gestion des CGU</a>
+
+        
+        <a href="http://localhost/phpmyadmin" target="_blank">Gestion des Mentions Légales</a>
+
+        
+        <a href="http://localhost/phpmyadmin" target="_blank">Gestion du Forum</a>
+
+        
         <h2>Liste des Utilisateurs</h2>
-        <table>
-            <tr>
-                <th>ID</th>
-                <th>Nom</th>
-                <th>Email</th>
-                <!-- Ajoutez d'autres colonnes si nécessaire -->
-            </tr>
 
-            <?php
-            while ($row = mysqli_fetch_assoc($result)) {
-                echo "<tr>";
-                echo "<td>" . $row['id'] . "</td>";
-                echo "<td>" . $row['nom'] . "</td>";
-                echo "<td>" . $row['email'] . "</td>";
-                // Ajoutez d'autres colonnes si nécessaire
-                echo "</tr>";
+        
+        <?php
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "sonotech";
+
+        $conn = new mysqli($servername, $username, $password, $dbname);
+
+        // Vérification de la connexion
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        $sql = "SELECT * FROM utilisateur";
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            // Affichage du tableau
+            echo '<table border="1px">';
+            echo '<tr>';
+            echo '<th>ID</th>';
+            echo '<th>Nom</th>';
+            echo '<th>Prénom</th>';
+            echo '<th>Date de Naissance</th>';
+            echo '<th>Adresse Email</th>';
+            echo '<th>Numéro de Téléphone</th>';
+            echo '<th>Mot de Passe chiffré</th>';
+            echo '<th>Action</th>';
+            echo '<th>Action</th>';
+            echo '</tr>';
+
+            while ($row = $result->fetch_assoc()) {
+                echo '<tr>';
+                echo '<td>' . $row["idUtilisateur"] . '</td>';
+                echo '<td>' . $row["nom"] . '</td>';
+                echo '<td>' . $row["prenom"] . '</td>';
+                echo '<td>' . $row["date_de_naissance"] . '</td>';
+                echo '<td>' . $row["adresse_email"] . '</td>';
+                echo '<td>' . $row["numero_de_telephone"] . '</td>';
+                echo '<td>' . $row["mot_de_passe"] . '</td>';
+                echo '<td><a href="modifier.php?id=' . $row["idUtilisateur"] . '">Modifier</a></td>';
+                echo '<td><a href="supprimer.php?id=' . $row["idUtilisateur"] . '">Supprimer</a></td>';
+                echo '</tr>';
             }
-            ?>
-        </table>
-
-        <!-- Autres fonctionnalités à ajouter selon vos besoins -->
+            echo '</table>';
+        } else {
+            echo "Aucun utilisateur trouvé.";
+        }
+        
+        $conn->close();
+        ?>
+            
+        
 
     </div>
     <footer>
-        <iframe src="communs/footer.html"></iframe>
+        <iframe src="../communs/footer.html"></iframe> 
     </footer>
 </body>
 </html>
