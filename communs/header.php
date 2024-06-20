@@ -1,7 +1,6 @@
 <?php
 
 session_start();
-
 ?>
 
 <!DOCTYPE html>
@@ -27,11 +26,21 @@ session_start();
 				<td><a href = "../a-propos.php" target = "_top">À propos</a>
 				<td><a href ="../rediffusions.php" target = "_top">Rediffusions</a></td>
 				<td><a href ="../faq.php" target ="_top">FAQ</a></td>
+				<td><a href ="../forum.php" target ="_top">Forum</a></td>
+				<td><?php
+
+					if (isset($_SESSION['utilisateur_abonnement_idAbonnement'])){
+						if ($_SESSION['utilisateur_abonnement_idAbonnement'] == 2) {
+							echo "<a href = '../admin/dashboard.php' target ='_top'>DashBoard</a>";
+						}
+					}
+
+				?></td>
 				<td>
 					<?php
 						if(isset($_SESSION["utilisateur_connecte"])) {
 							echo "<a href ='../moncompte.php' target ='_top'><button>Mon compte</button></span>";
-							echo "<a href ='../deconnection.php' target ='_top'><button>Déconnection</button></span> ";
+							echo "<a href ='../deconnection.php' target ='_top'><button>Déconnexion</button></span> ";
 						} else {
 							echo "<a href ='../connexion.php' target ='_top'><button>Se connecter</button></span>";
 						}

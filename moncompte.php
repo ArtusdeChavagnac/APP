@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -7,6 +9,18 @@
     <link rel="shortcut icon" href="images/shortcut icon.png">
     <script src="../script.js"></script>
     <title>Mon compte SonoTech</title>
+
+    <style>
+        #photoProfil {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: none; 
+        }
+    </style>
 </head>
 <body>
     <nav>
@@ -17,82 +31,58 @@
 
     <div id="div-contenu">
         <div>
-        <p>Bienvenue sur votre espace personnel.</p>
-            <button onclick="modifierInformations()">Modifier mes informations</button>
-        
-                <form id="profilForm" style="display: none;">
-                    <label for="nom" style="display: inline-block; width: 150px; text-align: left;">Nom:</label>
-                    <input type="text" id="nom" name="nom" required><br>
-
-                    <label for="prenom" style="display: inline-block; width: 150px; text-align: left; ">Prénom:</label>
-                    <input type="text" id="prenom" name="prenom" required><br>
-
-                    <label for="email" style="display: inline-block; width: 150px; text-align: left;">Email:</label>
-                    <input type="email" id="email" name="email" required><br>
-
-                    <label for="telephone" style="display: inline-block; width: 150px; text-align: left;">Numéro de téléphone:</label>
-                    <input type="text" name="telephone" placeholder="Numéro de téléphone" required><br>
-
-                    <label for="dateNaissance" style="display: inline-block; width: 150px; text-align: left;">Date de naissance:</label>
-                    <input type="date" id="dateNaissance" name="dateNaissance"><br>
-                    
-                    <button type="button" onclick="enregistrerInformations()">Enregistrer</button>
-                </form>
+        <p>Bienvenue sur votre espace personnel.</p><br>
+        <img id="photoProfil" src="#" alt="Photo de profil" style="display: none; max-width: 100px; float: right; margin: 10px;">
+            <a href="modifier_informations.php">Modifier mes informations</a>
+            
+            <a href="modifier_mdp.php">Modifier mon mot de passe</a>
         </div>
-
+        <br>
         <div>
             <label for="artistesFavoris">Choisis ton artiste préféré:</label>
             <select id="artistesFavoris">
                 <option value="artiste1">BOOBA</option>
                 <option value="artiste2">Travis Scott</option>
                 <option value="artiste3">DJ Snake</option>
+                <option value="artiste4">Lartiste</option>
+                <option value="artiste5">Madonna</option>
             
             </select><br>
-
+        <br>
         
             <label for="concertsFavoris">Choisis ta salle de concerts favorite:</label>
             <select id="concertsFavoris">
                 <option value="concert1">Olympia-Paris</option>
                 <option value="concert2">Zénith-Paris</option>
                 <option value="concert3">Bercy-Paris</option>
+                <option value="concert4">Centre Bell-Montréal</option>
             
             </select><br>
+            <br>
             </div>
 
         
                 <button onclick="voirAnciensConcerts()">Voir mes anciens concerts</button>
 
-        
-                <button onclick="mettrePhotoProfil()">Ajouter une photo de profil</button>
-
                 <button onclick="voirAbonnement()">Voir mon abonnement</button>
-        
+
+                <button onclick="mettrePhotoProfil()">Ajouter une photo de profil</button>
                 <input type="file" id="inputPhoto" style="display: none;" accept="image/*" onchange="previewPhoto()">
+                <img id="photoProfilPreview" src="#" alt="Photo de profil" style="display: none;position: fixed; top: 10px; right: 10px; width: 60px; height: 60px; border-radius: 50%;">
+
+                <button onclick="modifierPhotoProfil()">Modifier la photo de profil</button>
+                <button onclick="enregistrerPhotoProfil()">Enregistrer</button>
 
                 <button id="deconnexionBtn" onclick="demanderConfirmation()">
                     <span class="icon">🔒</span> Se déconnecter
-                </button>       
-        
-                <img id="photoProfilPreview" src="#" alt="Photo de profil" style="display: none;position: fixed; top: 10px; right: 10px; width: 60px; height: 60px; border-radius: 50%;">
+                </button> 
     </div>
 
     <footer>
         <iframe src="communs/footer.php"></iframe>
     </footer>
     <script>
-        function modifierInformations() {
-            var profilForm = document.getElementById('profilForm');
-            profilForm.style.display = 'block';
-        }
-
-        function enregistrerInformations() {
-            // Ajoutez ici le code pour enregistrer les informations du profil
-            alert("Fonctionnalité à implémenter : Enregistrer les informations");
-            
-            // Après l'enregistrement, masquez le formulaire
-            var profilForm = document.getElementById('profilForm');
-            profilForm.style.display = 'none';
-        }
+       
 
         function choisirArtistesFavoris() {
             var artistesFavoris = document.getElementById('artistesFavoris');
@@ -107,8 +97,9 @@
         }
 
         function voirAnciensConcerts() {
-            // Ajoutez ici le code pour voir les anciens concerts
-            alert("Fonctionnalité à implémenter : Voir les anciens concerts");
+            
+            alert("Voir mes anciens concerts");
+            window.location.href = "anciens_concerts.php";
         }
 
         function mettrePhotoProfil() {
@@ -116,8 +107,16 @@
             inputPhoto.click(); // Cliquez sur l'input file pour choisir une photo
         }
         function voirAbonnement() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    // Afficher le résultat dans une boîte de dialogue, une zone sur la page, etc.
+                    alert("Informations d'abonnement : 1");
+                }
+            };
+            xhttp.open("GET", "abonnement.php", true);
+            xhttp.send();
         
-        alert("Fonctionnalité à implémenter : Voir mon abonnement");
         }
         function demanderConfirmation() {
             var confirmation = window.confirm("Voulez-vous vraiment vous déconnecter?");
@@ -132,16 +131,70 @@
         window.location.href = "deconnection.php"; 
         }
 
+        // Fonction pour récupérer la photo de profil depuis le stockage local
+        function getStoredPhoto() {
+            var storedPhoto = localStorage.getItem('userPhoto');
+            if (storedPhoto) {
+                var photoProfil = document.getElementById('photoProfil');
+                photoProfil.src = storedPhoto;
+                photoProfil.style.display = 'block';
+            }
+        }
+
+        
+        window.onload = getStoredPhoto;
+
+        function modifierPhotoProfil() {
+            var inputPhoto = document.getElementById('inputPhoto');
+            inputPhoto.click(); // Cliquez sur l'input file pour choisir une photo
+        }
+
+        // Fonction pour enregistrer la nouvelle photo de profil dans le stockage local
+        function enregistrerPhotoProfil() {
+            var inputPhoto = document.getElementById('inputPhoto');
+            var preview = document.getElementById('photoProfil');
+
+            // Vérifier si une nouvelle photo a été choisie
+            if (inputPhoto.files.length > 0) {
+                var file = inputPhoto.files[0];
+                var reader = new FileReader();
+
+                reader.onloadend = function () {
+                    preview.src = reader.result;
+                    preview.style.display = 'block';
+
+                    // Stocker la nouvelle photo dans le stockage local
+                    localStorage.setItem('userPhoto', reader.result);
+
+                    // Cacher l'input de prévisualisation
+                    inputPhoto.style.display = 'none';
+                };
+
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function mettrePhotoProfil() {
+            var inputPhoto = document.getElementById('inputPhoto');
+            inputPhoto.click(); // Cliquez sur l'input file pour choisir une photo
+        }
+
         function previewPhoto() {
             var inputPhoto = document.getElementById('inputPhoto');
             var preview = document.getElementById('photoProfilPreview');
-            
+
             var file = inputPhoto.files[0];
             var reader = new FileReader();
 
             reader.onloadend = function () {
                 preview.src = reader.result;
                 preview.style.display = 'block';
+
+                // Stocker la photo dans le stockage local
+                localStorage.setItem('userPhoto', reader.result);
+
+                // Cacher l'input de prévisualisation
+                inputPhoto.style.display = 'ight; margin: 10px;';
             }
 
             if (file) {

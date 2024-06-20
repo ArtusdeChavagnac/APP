@@ -13,7 +13,7 @@
 
         <h1>Nous contacter</h1>
 
-        <form action="envoi_message.php" method="post">
+        <form action="contact.php" method="post">
             <label for="nom">Nom :</label><br>
             <input type="text" id="nom" name="nom" required><br>
 

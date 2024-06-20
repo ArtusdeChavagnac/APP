@@ -1,3 +1,16 @@
+<?php
+
+session_start();
+if (isset($_SESSION['utilisateur_abonnement_idAbonnement'])) {
+    if ($_SESSION['utilisateur_abonnement_idAbonnement'] !=2) {
+        echo "<script>window.location.href = '../index.php'</script> ";
+    } 
+} else {
+    echo "<script>window.location.href = '../index.php'</script> " ;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -10,26 +23,21 @@
 </head>
 <body>
     <header>
-        <iframe src="../communs/header.html"></iframe>
+        <iframe src="../communs/header.php"></iframe>
     </header>
     <div id="div-contenu">
 
         <h1>Page d'Administration</h1>
+        
+        <a href="gestionfaq.php" target="_top">Gestion de la FAQ</a>
+        <a href="gestionartiste.php" target="_top">Gestion des artistes</a>
+        <a href="http://localhost/phpmyadmin" target="_top">Gestion des salles</a>
+        <a href="http://localhost/phpmyadmin" target="_top">Gestion du Forum</a>
+        <a href="gestioncapteur.php" target="_top">Gestion des Capteurs</a>
+        <a href="http://localhost/phpmyadmin" target="_top">Gestion des évenements</a>
+        <a href="log.php" target="_top">Log des Cpateurs</a>
 
         
-        <a href="http://localhost/phpmyadmin/" target="_blank">Gestion des Utilisateurs</a>
-
-        
-        <a href="http://localhost/phpmyadmin" target="_blank">Gestion de la FAQ</a>
-
-        
-        <a href="http://localhost/phpmyadmin" target="_blank">Gestion des CGU</a>
-
-        
-        <a href="http://localhost/phpmyadmin" target="_blank">Gestion des Mentions Légales</a>
-
-        
-        <a href="http://localhost/phpmyadmin" target="_blank">Gestion du Forum</a>
 
         
         <h2>Liste des Utilisateurs</h2>
@@ -61,7 +69,7 @@
             echo '<th>Date de Naissance</th>';
             echo '<th>Adresse Email</th>';
             echo '<th>Numéro de Téléphone</th>';
-            echo '<th>Mot de Passe chiffré</th>';
+            echo '<th>Abonnement</th>';
             echo '<th>Action</th>';
             echo '<th>Action</th>';
             echo '</tr>';
@@ -74,7 +82,7 @@
                 echo '<td>' . $row["date_de_naissance"] . '</td>';
                 echo '<td>' . $row["adresse_email"] . '</td>';
                 echo '<td>' . $row["numero_de_telephone"] . '</td>';
-                echo '<td>' . $row["mot_de_passe"] . '</td>';
+                echo '<td>' . $row["abonnement_idAbonnement"] . '</td>';
                 echo '<td><a href="modifier.php?id=' . $row["idUtilisateur"] . '">Modifier</a></td>';
                 echo '<td><a href="supprimer.php?id=' . $row["idUtilisateur"] . '">Supprimer</a></td>';
                 echo '</tr>';
@@ -84,14 +92,21 @@
             echo "Aucun utilisateur trouvé.";
         }
         
+        
+
+        
         $conn->close();
         ?>
+    <form method="" action="ajouterUtilisateur.php">
+        <input type="hidden" name="action" value="Ajouter">
+        <input type="submit" value="Ajouter un utilisateur">
+    </form>
             
         
 
     </div>
     <footer>
-        <iframe src="../communs/footer.html"></iframe> 
+        <iframe src="../communs/footer.php"></iframe> 
     </footer>
 </body>
 </html>

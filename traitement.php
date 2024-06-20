@@ -95,7 +95,7 @@ if (isset($_POST["email"]) and isset($_POST["motDePasse"]) and isset($_POST["nom
 
 				$stmt->execute();
 
-				header("Location: index.php");
+				header("Location: connexion.php");
 				exit();
 			}
 		}

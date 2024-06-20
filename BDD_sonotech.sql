@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : ven. 19 jan. 2024 à 14:55
+-- Généré le : mer. 24 jan. 2024 à 20:22
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -91,9 +91,9 @@ INSERT INTO `administrateur_has_capteur_sonore` (`idAmdinistrateur_has_capteur`,
 
 CREATE TABLE `artiste` (
   `idArtiste` int(11) NOT NULL,
+  `pseudo` varchar(45) DEFAULT NULL,
   `nom` varchar(45) NOT NULL,
   `prenom` varchar(45) NOT NULL,
-  `pseudo` varchar(45) DEFAULT NULL,
   `adresse_email` varchar(45) NOT NULL,
   `numero_de_telephone` varchar(10) NOT NULL,
   `style_de_musique` varchar(45) NOT NULL
@@ -103,8 +103,12 @@ CREATE TABLE `artiste` (
 -- Déchargement des données de la table `artiste`
 --
 
-INSERT INTO `artiste` (`idArtiste`, `nom`, `prenom`, `pseudo`, `adresse_email`, `numero_de_telephone`, `style_de_musique`) VALUES
-(1, 'Scott', 'Travis', NULL, 'example@gmail.com', '0111111111', 'Rap');
+INSERT INTO `artiste` (`idArtiste`, `pseudo`, `nom`, `prenom`, `adresse_email`, `numero_de_telephone`, `style_de_musique`) VALUES
+(1, 'Travis Scott', 'Scott', 'Travis', 'example@gmail.com', '0111111111', 'Rap'),
+(4, 'DJ Snake', 'Grigahcine', 'William', 'example1@gmail.com', '0111111112', 'Rap'),
+(5, 'Booba', 'Yaffa', 'Elie', 'example2@gmail.com', '0111111113', 'Rap'),
+(6, 'Rainbow Sisters', 'Chapin', 'Erin', 'example3@gmail.com', '0111111114', 'Accoustic'),
+(7, 'Sloane', 'Richard', 'Chantal', 'example4@gmail.com', '0111111115', '80\'s');
 
 -- --------------------------------------------------------
 
@@ -144,7 +148,7 @@ CREATE TABLE `capteur_sonore` (
 --
 
 INSERT INTO `capteur_sonore` (`idCapteur_sonore`, `position`, `date`, `niveau_sonore`) VALUES
-(1, '0', '2024-01-01', '30'),
+(1, 'Opera Garnier', '2024-01-01', '30'),
 (2, 'Olympia', '2024-01-21', '75'),
 (3, 'Stade de France', '2024-01-22', '71'),
 (4, 'Seine musicale', '2024-01-20', '60'),
@@ -171,11 +175,11 @@ CREATE TABLE `concert` (
 
 INSERT INTO `concert` (`idConcert`, `image`, `date`, `duree`, `heure_debut`, `salle_idSalle`) VALUES
 (1, 'images/imgconcert/img1.jpg', '2024-01-19', 243, 1800, 1),
-(2, 'images/imgconcert/img2.jpg', '2024-01-23', 315, 1900, 1),
-(3, 'images/imgconcert/img3.jpg', '2024-01-27', 430, 1730, 1),
-(4, 'images/imgconcert/img4.jpg', '2024-01-20', 265, 1800, 1),
+(2, 'images/imgconcert/img2.jpg', '2024-01-23', 315, 1900, 5),
+(3, 'images/imgconcert/img3.jpg', '2024-01-27', 430, 1730, 4),
+(4, 'images/imgconcert/img4.jpg', '2024-01-20', 265, 1800, 2),
 (5, 'images/imgconcert/img5.jpg', '2024-01-29', 289, 1745, 1),
-(7, 'images/imgconcert/img6.jpg', '2024-01-23', 265, 1745, 1);
+(7, 'images/imgconcert/img6.jpg', '2024-01-23', 265, 1745, 3);
 
 -- --------------------------------------------------------
 
@@ -194,7 +198,13 @@ CREATE TABLE `concert_has_artiste` (
 --
 
 INSERT INTO `concert_has_artiste` (`idConcert_has_artiste`, `concert_idConcert`, `artiste_idArtiste`) VALUES
-(1, 1, 1);
+(1, 1, 1),
+(2, 2, 6),
+(3, 2, 7),
+(4, 3, 4),
+(5, 4, 7),
+(6, 5, 5),
+(7, 7, 4);
 
 -- --------------------------------------------------------
 
@@ -245,18 +255,42 @@ INSERT INTO `faq` (`idfaq`, `texte`, `date`) VALUES
 --
 
 CREATE TABLE `forum` (
-  `idForum` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `question` varchar(1028) NOT NULL,
-  `date` date NOT NULL DEFAULT '2000-01-01',
-  `utilsateur_idUtilisateur` int(11) NOT NULL
+  `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Déchargement des données de la table `forum`
 --
 
-INSERT INTO `forum` (`idForum`, `question`, `date`, `utilsateur_idUtilisateur`) VALUES
-(1, 'Combien coute l\'abonnement premium', '2000-01-01', 1);
+INSERT INTO `forum` (`id`, `question`, `user_id`) VALUES
+(1, 'Combien coute l\'abonnement premium', 1),
+(2, 'test', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `partenaires`
+--
+
+CREATE TABLE `partenaires` (
+  `idPartenaires` int(11) NOT NULL,
+  `nom` varchar(64) NOT NULL,
+  `mail` varchar(64) NOT NULL,
+  `siret` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Déchargement des données de la table `partenaires`
+--
+
+INSERT INTO `partenaires` (`idPartenaires`, `nom`, `mail`, `siret`) VALUES
+(1, 'Société Générale', 'societegenerale@gmail.com', '552 120 222 00013'),
+(2, 'Orange', 'orange@gmail.com', '380 129 866'),
+(3, 'Google', 'gmail@gmail.com', '443 061 841'),
+(4, 'Tesla', 'tesla@gmail.com', '524 335 262 00431'),
+(5, 'OpenAI', 'chatgpt@gmail.com', '443 061 841 00047');
 
 -- --------------------------------------------------------
 
@@ -276,6 +310,27 @@ CREATE TABLE `preference_utilisateur` (
 
 INSERT INTO `preference_utilisateur` (`idPreference_utilisateur`, `style_de_musique`, `artiste_idArtiste`) VALUES
 (1, 'Rap', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `reponses`
+--
+
+CREATE TABLE `reponses` (
+  `id` int(11) NOT NULL,
+  `question_id` int(11) NOT NULL,
+  `reponse` varchar(1024) NOT NULL,
+  `user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Déchargement des données de la table `reponses`
+--
+
+INSERT INTO `reponses` (`id`, `question_id`, `reponse`, `user_id`) VALUES
+(1, 1, 'Beaucoup', 1),
+(2, 1, 'oui', 1);
 
 -- --------------------------------------------------------
 
@@ -302,26 +357,12 @@ INSERT INTO `reponse_faq` (`idReponse`, `texte`, `date`, `faq_idFaq`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `reponse_forum`
---
-
-CREATE TABLE `reponse_forum` (
-  `idReponse_forum` int(11) NOT NULL,
-  `forum_idForum` int(11) NOT NULL,
-  `reponse` varchar(1024) NOT NULL,
-  `date` date NOT NULL,
-  `utilisateur_idUtilisateur` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Structure de la table `salle`
 --
 
 CREATE TABLE `salle` (
   `idSalle` int(11) NOT NULL,
-  `adresse` varchar(45) NOT NULL,
+  `adresse` varchar(80) NOT NULL,
   `capteur_sonore_idCapteur_sonore` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
@@ -330,7 +371,11 @@ CREATE TABLE `salle` (
 --
 
 INSERT INTO `salle` (`idSalle`, `adresse`, `capteur_sonore_idCapteur_sonore`) VALUES
-(1, '10 rue de Vanves', 1);
+(1, '8 Rue Scribe, 75009 Paris', 1),
+(2, '28 Bd des Capucines, 75009 Paris', 2),
+(3, 'Stade de France 93200 Saint-Denis', 3),
+(4, 'La Seine Musicale, Île Seguin, 92100 Boulogne-Billancourt', 4),
+(5, '8 Bd de Bercy, 75012 Paris', 5);
 
 -- --------------------------------------------------------
 
@@ -348,7 +393,8 @@ CREATE TABLE `ticket` (
 --
 
 INSERT INTO `ticket` (`idTicket`, `place`) VALUES
-(1, '45b');
+(1, 'normale'),
+(2, 'VIP');
 
 -- --------------------------------------------------------
 
@@ -372,10 +418,10 @@ CREATE TABLE `utilisateur` (
 --
 
 INSERT INTO `utilisateur` (`idUtilisateur`, `nom`, `prenom`, `date_de_naissance`, `adresse_email`, `numero_de_telephone`, `mot_de_passe`, `abonnement_idAbonnement`) VALUES
-(1, 'De Corta', 'Étienne', '2002-10-25', 'etienne.corta@gmail.com', '0652986299', '$2y$10$zqhuzRkLkxyGxF.u27JnU.9Fvg0z2bT.I6nbElgJAO/2Hs0PWWFwy', 2),
+(1, 'de Corta', 'Etienne', '2002-10-25', 'etienne.corta@gmail.com', '0652986299', '$2y$10$jBtq.A1qCUOWwemNRGQxveX./m61ms9e25pQd89I8rbLb8h5NcrZq', 2),
 (2, 'Dupont', 'Jean', '2002-10-25', 'jeandupont@gmail.com', '0611223344', '$2y$10$zqhuzRkLkxyGxF.u27JnU.9Fvg0z2bT.I6nbElgJAO/2Hs0PWWFwy', 1),
 (3, 'De Corta', 'Étienne', '2002-10-25', 'titousteam@gmail.com', '0652986299', '$2y$10$zqhuzRkLkxyGxF.u27JnU.9Fvg0z2bT.I6nbElgJAO/2Hs0PWWFwy', 1),
-(4, 'De Corta', 'Étienne', '2002-10-25', 'Etienne.corta@gmail.com', '0652986299', '$2y$10$zqhuzRkLkxyGxF.u27JnU.9Fvg0z2bT.I6nbElgJAO/2Hs0PWWFwy', 1);
+(5, 'Admin', 'Sonotech', '2023-10-21', 'sonotech@gmail.com', '0606060606', '$2y$10$NMFccX0NMJNNf84tAaXzge1iioQ7L6ZBCjMEs/vSUVbY0r7Q7JMGq', 2);
 
 -- --------------------------------------------------------
 
@@ -395,7 +441,14 @@ CREATE TABLE `utilisateur_has_concert` (
 --
 
 INSERT INTO `utilisateur_has_concert` (`idUtilisateur_has_concert`, `utilisateur_idUtilisateur`, `concert_idConcert`, `ticket_idTicket`) VALUES
-(1, 2, 1, 1);
+(1, 2, 1, 1),
+(43, 3, 3, 1),
+(44, 3, 3, 1),
+(45, 3, 3, 1),
+(46, 2, 4, 2),
+(47, 2, 7, 2),
+(48, 2, 7, 2),
+(49, 2, 7, 2);
 
 -- --------------------------------------------------------
 
@@ -436,7 +489,7 @@ ALTER TABLE `administrateur`
 -- Index pour la table `administrateur_has_capteur_sonore`
 --
 ALTER TABLE `administrateur_has_capteur_sonore`
-  ADD PRIMARY KEY (`administrateur_idAdministrateur`,`capteur_sonore_idCapteur_sonore`,`idAmdinistrateur_has_capteur`) USING BTREE,
+  ADD PRIMARY KEY (`idAmdinistrateur_has_capteur`,`capteur_sonore_idCapteur_sonore`,`administrateur_idAdministrateur`) USING BTREE,
   ADD KEY `fk_capteur_sonore_admin` (`capteur_sonore_idCapteur_sonore`),
   ADD KEY `fk_admin_capteur_sonore` (`administrateur_idAdministrateur`);
 
@@ -477,9 +530,10 @@ ALTER TABLE `concert_has_artiste`
 -- Index pour la table `concert_has_utilisateur`
 --
 ALTER TABLE `concert_has_utilisateur`
-  ADD PRIMARY KEY (`concert_idConcert`,`utilisateur_idUtilisateur`,`avis_idAvis`,`idConcert_has_utilisateur`) USING BTREE,
+  ADD PRIMARY KEY (`idConcert_has_utilisateur`,`concert_idConcert`,`utilisateur_idUtilisateur`,`avis_idAvis`) USING BTREE,
   ADD KEY `fk_avis_concert` (`avis_idAvis`) USING BTREE,
-  ADD KEY `fk_utilisateur_concert` (`utilisateur_idUtilisateur`,`concert_idConcert`) USING BTREE;
+  ADD KEY `fk_utilisateur_concert` (`utilisateur_idUtilisateur`,`concert_idConcert`) USING BTREE,
+  ADD KEY `fk_concert_utilisateur` (`concert_idConcert`);
 
 --
 -- Index pour la table `faq`
@@ -491,8 +545,14 @@ ALTER TABLE `faq`
 -- Index pour la table `forum`
 --
 ALTER TABLE `forum`
-  ADD PRIMARY KEY (`idForum`,`utilsateur_idUtilisateur`) USING BTREE,
-  ADD KEY `fk_utilisateur_forum` (`utilsateur_idUtilisateur`);
+  ADD PRIMARY KEY (`id`,`user_id`) USING BTREE,
+  ADD KEY `fk_utilisateur_forum` (`user_id`);
+
+--
+-- Index pour la table `partenaires`
+--
+ALTER TABLE `partenaires`
+  ADD PRIMARY KEY (`idPartenaires`);
 
 --
 -- Index pour la table `preference_utilisateur`
@@ -502,18 +562,18 @@ ALTER TABLE `preference_utilisateur`
   ADD KEY `fk_artiste_preference` (`artiste_idArtiste`);
 
 --
+-- Index pour la table `reponses`
+--
+ALTER TABLE `reponses`
+  ADD PRIMARY KEY (`id`,`user_id`) USING BTREE,
+  ADD KEY `fk_utilisateur_reponse_forum` (`user_id`);
+
+--
 -- Index pour la table `reponse_faq`
 --
 ALTER TABLE `reponse_faq`
   ADD PRIMARY KEY (`idReponse`,`faq_idFaq`) USING BTREE,
   ADD KEY `fk_reponse_faq` (`faq_idFaq`);
-
---
--- Index pour la table `reponse_forum`
---
-ALTER TABLE `reponse_forum`
-  ADD PRIMARY KEY (`idReponse_forum`,`utilisateur_idUtilisateur`) USING BTREE,
-  ADD KEY `fk_utilisateur_reponse_forum` (`utilisateur_idUtilisateur`);
 
 --
 -- Index pour la table `salle`
@@ -539,7 +599,7 @@ ALTER TABLE `utilisateur`
 -- Index pour la table `utilisateur_has_concert`
 --
 ALTER TABLE `utilisateur_has_concert`
-  ADD PRIMARY KEY (`utilisateur_idUtilisateur`,`concert_idConcert`,`ticket_idTicket`,`idUtilisateur_has_concert`) USING BTREE,
+  ADD PRIMARY KEY (`idUtilisateur_has_concert`,`concert_idConcert`,`ticket_idTicket`,`utilisateur_idUtilisateur`) USING BTREE,
   ADD KEY `fk_utilisateur_ticket` (`ticket_idTicket`),
   ADD KEY `fk_concert_utilisateur3` (`concert_idConcert`),
   ADD KEY `fk_utilisateur_concert3` (`utilisateur_idUtilisateur`) USING BTREE;
@@ -548,7 +608,7 @@ ALTER TABLE `utilisateur_has_concert`
 -- Index pour la table `utilisateur_has_preference_utilisateur`
 --
 ALTER TABLE `utilisateur_has_preference_utilisateur`
-  ADD PRIMARY KEY (`utilisateur_idUtilisateur`,`preference_utilisateur_idPreference_utilisateur`,`idUtilisateur_has_preference_utilisateur`) USING BTREE,
+  ADD PRIMARY KEY (`idUtilisateur_has_preference_utilisateur`,`preference_utilisateur_idPreference_utilisateur`,`utilisateur_idUtilisateur`) USING BTREE,
   ADD KEY `fk_utilisateur_preference` (`utilisateur_idUtilisateur`) USING BTREE,
   ADD KEY `fk_preference_utilisateur` (`preference_utilisateur_idPreference_utilisateur`) USING BTREE;
 
@@ -569,10 +629,16 @@ ALTER TABLE `administrateur`
   MODIFY `idAdministrateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT pour la table `administrateur_has_capteur_sonore`
+--
+ALTER TABLE `administrateur_has_capteur_sonore`
+  MODIFY `idAmdinistrateur_has_capteur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT pour la table `artiste`
 --
 ALTER TABLE `artiste`
-  MODIFY `idArtiste` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idArtiste` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT pour la table `avis`
@@ -596,7 +662,13 @@ ALTER TABLE `concert`
 -- AUTO_INCREMENT pour la table `concert_has_artiste`
 --
 ALTER TABLE `concert_has_artiste`
-  MODIFY `idConcert_has_artiste` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idConcert_has_artiste` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT pour la table `concert_has_utilisateur`
+--
+ALTER TABLE `concert_has_utilisateur`
+  MODIFY `idConcert_has_utilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT pour la table `faq`
@@ -608,7 +680,13 @@ ALTER TABLE `faq`
 -- AUTO_INCREMENT pour la table `forum`
 --
 ALTER TABLE `forum`
-  MODIFY `idForum` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT pour la table `partenaires`
+--
+ALTER TABLE `partenaires`
+  MODIFY `idPartenaires` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT pour la table `preference_utilisateur`
@@ -617,34 +695,46 @@ ALTER TABLE `preference_utilisateur`
   MODIFY `idPreference_utilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT pour la table `reponses`
+--
+ALTER TABLE `reponses`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT pour la table `reponse_faq`
 --
 ALTER TABLE `reponse_faq`
   MODIFY `idReponse` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT pour la table `reponse_forum`
---
-ALTER TABLE `reponse_forum`
-  MODIFY `idReponse_forum` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT pour la table `salle`
 --
 ALTER TABLE `salle`
-  MODIFY `idSalle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idSalle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT pour la table `ticket`
 --
 ALTER TABLE `ticket`
-  MODIFY `idTicket` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idTicket` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `idUtilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idUtilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT pour la table `utilisateur_has_concert`
+--
+ALTER TABLE `utilisateur_has_concert`
+  MODIFY `idUtilisateur_has_concert` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+
+--
+-- AUTO_INCREMENT pour la table `utilisateur_has_preference_utilisateur`
+--
+ALTER TABLE `utilisateur_has_preference_utilisateur`
+  MODIFY `idUtilisateur_has_preference_utilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Contraintes pour les tables déchargées
@@ -683,7 +773,7 @@ ALTER TABLE `concert_has_utilisateur`
 -- Contraintes pour la table `forum`
 --
 ALTER TABLE `forum`
-  ADD CONSTRAINT `fk_utilisateur_forum` FOREIGN KEY (`utilsateur_idUtilisateur`) REFERENCES `utilisateur` (`idUtilisateur`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_utilisateur_forum` FOREIGN KEY (`user_id`) REFERENCES `utilisateur` (`idUtilisateur`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Contraintes pour la table `preference_utilisateur`
@@ -692,16 +782,16 @@ ALTER TABLE `preference_utilisateur`
   ADD CONSTRAINT `fk_artiste_preference` FOREIGN KEY (`artiste_idArtiste`) REFERENCES `artiste` (`idArtiste`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
+-- Contraintes pour la table `reponses`
+--
+ALTER TABLE `reponses`
+  ADD CONSTRAINT `fk_utilisateur_reponse_forum` FOREIGN KEY (`user_id`) REFERENCES `utilisateur` (`idUtilisateur`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
 -- Contraintes pour la table `reponse_faq`
 --
 ALTER TABLE `reponse_faq`
   ADD CONSTRAINT `fk_reponse_faq` FOREIGN KEY (`faq_idFaq`) REFERENCES `faq` (`idfaq`) ON DELETE NO ACTION;
-
---
--- Contraintes pour la table `reponse_forum`
---
-ALTER TABLE `reponse_forum`
-  ADD CONSTRAINT `fk_utilisateur_reponse_forum` FOREIGN KEY (`utilisateur_idUtilisateur`) REFERENCES `utilisateur` (`idUtilisateur`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Contraintes pour la table `salle`

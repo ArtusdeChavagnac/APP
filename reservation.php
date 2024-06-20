@@ -1,3 +1,37 @@
+<?php
+
+session_start();
+if (isset($_SESSION['utilisateur_connecte'])) {
+    $statut = $_SESSION['utilisateur_connecte'];    
+} else {
+    $statut = false;
+}
+
+
+$db = "sonotech";
+$servername = "localhost";
+$username = "root";
+$password = "";
+
+$conn = new mysqli($servername, $username, $password);
+
+
+if ($conn->connect_error) {
+    die("Connection failed : ".$conn->connect_error);
+}
+
+
+try {
+    $conn = new PDO("mysql:host=$servername;dbname=$db", $username, $password);
+    // set the PDO error mode to exception
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+}
+catch(PDOException $e) {
+    echo "Connection failed: " . $e->getMessage();
+}
+
+?>
+
 <html lang="fr">
 <head>
     <meta charset="utf-8">
@@ -14,47 +48,22 @@
         <h1>Réservation de Billets</h1>
         
         <img src="" id="displayedImage" alt="Displayed Image">
-    <script>
-        function getParameterByName(name, url) {
-            if (!url) url = window.location.href;
-            name = name.replace(/[\[\]]/g, "\\$&");
-            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-                results = regex.exec(url);
-            if (!results) return null;
-            if (!results[2]) return '';
-            return decodeURIComponent(results[2].replace(/\+/g, " "));
-        }
+        <?php
 
-        // Récupère l'URL de l'image à afficher depuis les paramètres de l'URL
-        var imageSrc = getParameterByName('src');
-
-        // Affiche l'image
-        if (imageSrc) {
-            document.getElementById('displayedImage').src = imageSrc;
+        if (isset($_POST["imageSrc"])) {
+            $imageSrc = $_POST['imageSrc'];
+            $idConcert = $_POST['idConcert'];
+            $_SESSION['idConcert'] = $idConcert;
+            echo "<script>document.getElementById('displayedImage').src= '$imageSrc'</script>";
         } else {
-            // Redirige vers la page d'accueil si l'URL de l'image n'est pas fournie
-            window.location.href = 'index.php';
+            echo "<script>window.loaction.href = 'index.php'</script>";
         }
-    </script>
-    <script type="text/javascript">
-        function submitconfirm()
-        {
-    
-        
-        var result = confirm("Etes-vous sure de valider votre achat?");
-        if (result == true) {
-            alert("Merci pour votre achat");
-        }
-        else {
-            alert("");
-        }
-        }
-            
-    </script>
+
+        ?>
 
 
         <!-- Formulaire de réservation -->
-        <form id="reservation-form">
+        <form id="reservation-form" action="traitement_reservation.php" method="post">
                 
             </select>
 
@@ -75,13 +84,14 @@
             <label for="heure">Choisissez une heure :</label>
             <input type="time" id="heure" name="heure" required>
 
-            <label for="nombre-billets">Nombre de billets :</label>
-            <input type="number" id="nombre-billets" name="nombre-billets" min="1" required> <br>
+            <label for="nombre_billets">Nombre de billets :</label>
+            <input type="number" id="nombre_billets" name="nombre_billets" min="1" required> <br>
 
             <label for="prix-total">Prix total :</label>
             <span id="prix-total">0 €</span>
 
-            <button type="submit" onclick= "submitconfirm()">Réserver</button>
+            <button type="submit">Réserver</button>
+
         </form>
     </div>
 
@@ -105,3 +115,4 @@
     </script>
 </body>
 </html>
+

@@ -1,3 +1,32 @@
+<?php
+
+require("connexion_bdd.php");
+
+$db = "sonotech";
+$servername = "localhost";
+$username = "root";
+$password = "";
+
+$conn = new mysqli($servername, $username, $password);
+
+
+if ($conn->connect_error) {
+	die("Connection failed : ".$conn->connect_error);
+}
+
+
+try {
+	$conn = new PDO("mysql:host=$servername;dbname=$db", $username, $password);
+	// set the PDO error mode to exception
+	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+}
+catch(PDOException $e) {
+	echo "Connection failed: " . $e->getMessage();
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang = "fr">
 <head>
@@ -18,9 +47,19 @@
 <p>Voilà une liste des entreprises qui ont choisi de nous accompagner dans ce projet. C'est grâce à leur soutien que nous pouvons vous offrir une meilleure expérience auditive.</p>
 
 <ul>
-	<li>Entreprise 1</li>
-	<li>Entreprise 2</li>
-	<li>Entreprise 3</li>
+	<?php
+
+	$query = "SELECT nom FROM $db.partenaires";
+	$stmt = $conn->prepare($query);
+	$stmt->execute();
+	$partenaires = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+	foreach ($partenaires as $row) {
+		$nom = $row['nom'];
+		echo "<li>$nom</li>";
+	}
+
+	?>
 </ul>
 
 

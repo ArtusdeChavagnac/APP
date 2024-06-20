@@ -25,7 +25,29 @@ catch(PDOException $e) {
 }
 
 ?>
+<?php
 
+$servername = "127.0.0.1";
+$username = "root";
+$password = "";
+$dbname = "sonotech";
+
+try{
+	$bdd = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+} catch (PDOException $e) {
+    echo "La connexion à la base de données a échoué : ". $e->getMessage();
+}
+
+$allartists = $bdd ->query('SELECT * FROM artiste');
+if (isset($_GET['q']) AND !empty($_GET['q'])){
+    $recherche = htmlspecialchars($_GET['q']);
+    $allartists = $bdd -> query('SELECT * FROM artiste WHERE prenom LIKE"%'.$recherche.'%"');
+}
+
+
+
+$bdd = null ;
+?>
 <!DOCTYPE html>
 <html lang = "fr">
 <head>
@@ -36,9 +58,32 @@ catch(PDOException $e) {
 	<script src = script.js></script>
 	<title>Accueil — SonoTech</title>
 	<script>
-	function openImage(imageSrc) {
+	function openImage(imageSrc,idConcert) {
 		// Redirige vers la page avec l'image en utilisant JavaScript
-		window.location.href = 'reservation.php?src=' + encodeURIComponent(imageSrc);
+
+		var imageSrc = imageSrc;
+		var idConcert = idConcert;
+
+		var form = document.createElement('form');
+		form.method = 'POST';
+		form.action = 'reservation.php';
+
+		var inputIdConcert = document.createElement('input');
+		inputIdConcert.type = 'hidden';
+		inputIdConcert.name = 'idConcert';
+		inputIdConcert.value = idConcert;
+
+		var inputImageSrc = document.createElement('input');
+		inputImageSrc.type = 'hidden';
+		inputImageSrc.name = 'imageSrc';
+		inputImageSrc.value = imageSrc;
+
+		form.appendChild(inputIdConcert);
+		form.appendChild(inputImageSrc);
+
+		document.body.appendChild(form);
+		form.submit();
+
 	}
 	</script>
 </head>
@@ -46,10 +91,30 @@ catch(PDOException $e) {
 <header>
 	<iframe src = "communs/header.php"></iframe>
 	<div class="search-bar">
-            <form action="resultats-recherche.php" method="get">
+            <form method="GET">
                 <input type="text" name="q" placeholder="Rechercher...">
                 <input type="submit" value="Rechercher">
-            </form>
+			</form> 
+
+			<section class="afficher_artiste">
+
+				<?php
+					if($allartists->rowCount() > 0){
+						while($artist = $allartists->fetch()){
+							?>
+							<p><?=$artist['prenom']; ?></p>
+							<?php
+						}
+					}else{
+						?>
+						<p>Aucun artiste trouvé</p>
+						<?php
+					}
+				?>
+
+			</section>
+        
+			
     </div>
 	</header>
 <div id = "div-contenu">
@@ -69,33 +134,17 @@ catch(PDOException $e) {
 
 	$concertData = array();
 	foreach($concertRawData as $row) {
-		$idConcert = $row["idConcert"];
-		$concertData[$idConcert] = $row['image'];
+		$image = $row['image'];
+		$idConcert = $row['idConcert'];
+		echo "<img src= '$image' onclick= 'openImage(\"$image\", \"$idConcert\")' alt='Concert 1'>";
 	}
 
-	foreach($concertData as $row){
-		echo "<img src='$row' onclick='openImage(\"$row\")' alt='Concert 1'>";
-	}
 ?>
+
 
 
 <h2>Notre projet</h2>
 <p>Grâce à nos technologies d'analyses sonores avancées, profitez des meilleures places au sein des concerts les plus inoubliables. Différentes options de placement sont disponibles selon votre budget ! Avec SonoTech finit les acouphènes en sortant des concerts, les places trop bruyantes ou avec une mauvaise qualité sonore ne seront jamais vendues sur ce site.</p>	
-<h2>FAQ</h2>
-        <div class="faq">
-            <details>
-                <summary>Quels sont vos modes de paiement acceptés ?</summary>
-                <p>Nous acceptons les paiements par carte bancaire, virement et espèces.</p>
-            </details>
-            <details>
-                <summary>Comment puis-je annuler ma réservation ?</summary>
-                <p>Pour annuler votre réservation, veuillez nous contacter par téléphone ou par email au moins 48 heures à l'avance.</p>
-            </details>
-            <details>
-				<summary>Proposez-vous des réductions pour les étudiants ?</summary>
-				<p>Oui, nous offrons des réductions spéciales pour les étudiants sur présentation d'une carte étudiante valide.</p>
-			</details>
-        </div>	
 <p></p>
 </div>
 <footer><iframe src = "communs/footer.php"></iframe></footer>
