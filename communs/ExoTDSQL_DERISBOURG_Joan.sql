@@ -1,12 +1,12 @@
-SELECT LastName, FirstName FROM Employees;
-SELECT * FROM Orders WHERE OrderDate LIKE '01/%/1997';
-INSERT INTO Shippers (ShipperID, ShipperName) VALUES (4, 'UPS France');
-DELETE FROM Employees WHERE EmployeeID = 7;
-SELECT COUNT(*) FROM Orders WHERE EmployeeID = 7 AND YEAR(OrderDate) = 1996;
-SELECT EmployeeID, COUNT(*) AS NumberOfOrders FROM Orders GROUP BY EmployeeID;
-SELECT MIN(Price) AS prixMin, MAX(Price) AS prixMax, AVG(Price) AS prixMoyen FROM Products;
-SELECT ProductName FROM Products ORDER BY ProductName ASC;
-SELECT DISTINCT Shippers.ShipperName
-FROM Shippers
-JOIN Orders ON Shippers.ShipperID = Orders.ShipperID
-WHERE YEAR(OrderDate) = 1996;
+select lastname, firstname from employees;
+select * from orders where orderdate like '01/%/1997';
+insert into shippers (shipperid, shippername) values (4, 'ups france');
+delete from employees where employeeid = 7;
+select count(*) from orders where employeeid = 7 and year(orderdate) = 1996;
+select employeeid, count(*) as numberoforders from orders group by employeeid;
+select min(price) as prixmin, max(price) as prixmax, avg(price) as prixmoyen from products;
+select productname from products order by productname asc;
+select distinct shippers.shippername
+from shippers
+join orders on shippers.shipperid = orders.shipperid
+where year(orderdate) = 1996;

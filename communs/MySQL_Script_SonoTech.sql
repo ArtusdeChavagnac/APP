@@ -1,353 +1,338 @@
--- Configuration des paramètres de la session
-SET @OLD_UNIQUE_CHECKS = @@UNIQUE_CHECKS, UNIQUE_CHECKS = 0;
-SET @OLD_FOREIGN_KEY_CHECKS = @@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS = 0;
-SET @OLD_SQL_MODE = @@SQL_MODE, SQL_MODE = 'ONLY_FULL_GROUP_BY, STRICT_TRANS_TABLES, NO_ZERO_IN_DATE, NO_ZERO_DATE, ERROR_FOR_DIVISION_BY_ZERO, NO_ENGINE_SUBSTITUTION';
-CREATE SCHEMA IF NOT EXISTS `Base_de_données` DEFAULT CHARACTER SET utf8;
-USE `Base_de_données`;
-CREATE TABLE IF NOT EXISTS `Base_de_données`.`Abonnement` (
-`id_Abonnement` INT NOT NULL,
-`Type_abonnement` VARCHAR(45) NOT NULL,
-`Fonctionalité` VARCHAR(45) NOT NULL,
-`Coût` VARCHAR(45) NOT NULL,
-`Date_début` VARCHAR(45) NULL,
-`Date_fin` VARCHAR(45) NULL,
-PRIMARY KEY (`id_Abonnement`)
+set @old_unique_checks = @@unique_checks, unique_checks = 0;
+set @old_foreign_key_checks = @@foreign_key_checks, foreign_key_checks = 0;
+set @old_sql_mode = @@sql_mode, sql_mode = 'only_full_group_by, strict_trans_tables, no_zero_in_date, no_zero_date, error_for_division_by_zero, no_engine_substitution';
+create schema if not exists `base_de_données` default character set utf8;
+use `base_de_données`;
+create table if not exists `base_de_données`.`abonnement` (
+`id_abonnement` int not null,
+`type_abonnement` varchar(45) not null,
+`fonctionalité` varchar(45) not null,
+`coût` varchar(45) not null,
+`date_début` varchar(45) null,
+`date_fin` varchar(45) null,
+primary key (`id_abonnement`)
 )
-ENGINE = InnoDB;
-CREATE TABLE IF NOT EXISTS `Base_de_données`.`Utilisateur` (
-`id_Utilisateur` INT NOT NULL,
-`Nom` VARCHAR(45) NOT NULL,
-`Prénom` VARCHAR(45) NOT NULL,
-`Date_de_naissance` VARCHAR(45) NOT NULL,
-`Adresse_email` VARCHAR(45) BINARY NOT NULL,
-`Numéro_de_téléphone` VARCHAR(45) NOT NULL,
-`Abonnement_id_Abonnement` INT NOT NULL,
-PRIMARY KEY (`id_Utilisateur`, `Abonnement_id_Abonnement`),
-UNIQUE INDEX `Numéro_de_téléphone_UNIQUE` (`Numéro_de_téléphone` ASC),
-INDEX `fk_Utilisateur_Abonnement1_idx` (`Abonnement_id_Abonnement` ASC),
-CONSTRAINT `fk_Utilisateur_Abonnement1`
-FOREIGN KEY (`Abonnement_id_Abonnement`)
-REFERENCES `Base_de_données`.`Abonnement` (`id_Abonnement`)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION
+engine = innodb;
+create table if not exists `base_de_données`.`utilisateur` (
+`id_utilisateur` int not null,
+`nom` varchar(45) not null,
+`prénom` varchar(45) not null,
+`date_de_naissance` varchar(45) not null,
+`adresse_email` varchar(45) binary not null,
+`numéro_de_téléphone` varchar(45) not null,
+`abonnement_id_abonnement` int not null,
+primary key (`id_utilisateur`, `abonnement_id_abonnement`),
+unique index `numéro_de_téléphone_unique` (`numéro_de_téléphone` asc),
+index `fk_utilisateur_abonnement1_idx` (`abonnement_id_abonnement` asc),
+constraint `fk_utilisateur_abonnement1`
+foreign key (`abonnement_id_abonnement`)
+references `base_de_données`.`abonnement` (`id_abonnement`)
+on delete no action
+on update no action
 )
-ENGINE = InnoDB;
-CREATE TABLE IF NOT EXISTS `Base_de_données`.`Artiste` (
-`id_Artiste` INT NOT NULL,
-`Nom` VARCHAR(45) NOT NULL,
-`Prénom` VARCHAR(45) NOT NULL,
-`Pseudo` VARCHAR(45) NULL,
-`Adresse_email` VARCHAR(45) NOT NULL,
-`Numéro_de_téléphone` VARCHAR(45) NOT NULL,
-`Style_de_musique` VARCHAR(45) NOT NULL,
-PRIMARY KEY (`id_Artiste`),
-UNIQUE INDEX `Numéro_de_téléphone_UNIQUE` (`Numéro_de_téléphone` ASC),
-UNIQUE INDEX `Adresse_email_UNIQUE` (`Adresse_email` ASC),
-UNIQUE INDEX `Pseudo_UNIQUE` (`Pseudo` ASC)
+engine = innodb;
+create table if not exists `base_de_données`.`artiste` (
+`id_artiste` int not null,
+`nom` varchar(45) not null,
+`prénom` varchar(45) not null,
+`pseudo` varchar(45) null,
+`adresse_email` varchar(45) not null,
+`numéro_de_téléphone` varchar(45) not null,
+`style_de_musique` varchar(45) not null,
+primary key (`id_artiste`),
+unique index `numéro_de_téléphone_unique` (`numéro_de_téléphone` asc),
+unique index `adresse_email_unique` (`adresse_email` asc),
+unique index `pseudo_unique` (`pseudo` asc)
 )
-ENGINE = InnoDB;
-CREATE TABLE IF NOT EXISTS `Base_de_données`.`Préférences_utilisateur` (
-`id_Préférences_utilisateur` INT NOT NULL,
-`Style_de_musique` VARCHAR(45) NULL,
-`Artiste_id_Artiste` INT NOT NULL,
-PRIMARY KEY (`id_Préférences_utilisateur`, `Artiste_id_Artiste`),
-INDEX `fk_Préférences_utilisateur_Artiste1_idx` (`Artiste_id_Artiste` ASC),
-CONSTRAINT `fk_Préférences_utilisateur_Artiste1`
-FOREIGN KEY (`Artiste_id_Artiste`)
-REFERENCES `Base_de_données`.`Artiste` (`id_Artiste`)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION
+engine = innodb;
+create table if not exists `base_de_données`.`préférences_utilisateur` (
+`id_préférences_utilisateur` int not null,
+`style_de_musique` varchar(45) null,
+`artiste_id_artiste` int not null,
+primary key (`id_préférences_utilisateur`, `artiste_id_artiste`),
+index `fk_préférences_utilisateur_artiste1_idx` (`artiste_id_artiste` asc),
+constraint `fk_préférences_utilisateur_artiste1`
+foreign key (`artiste_id_artiste`)
+references `base_de_données`.`artiste` (`id_artiste`)
+on delete no action
+on update no action
 )
-ENGINE = InnoDB;
-CREATE TABLE IF NOT EXISTS `Base_de_données`.`Billet` (
-`id_Billet` INT NOT NULL,
-`Place` VARCHAR(45) NULL,
-PRIMARY KEY (`id_Billet`)
+engine = innodb;
+create table if not exists `base_de_données`.`billet` (
+`id_billet` int not null,
+`place` varchar(45) null,
+primary key (`id_billet`)
 )
-ENGINE = InnoDB;
-CREATE TABLE IF NOT EXISTS `Base_de_données`.`Avis` (
-`id_Avis` INT NULL,
-`Critique` VARCHAR(45) NULL,
-`Note` VARCHAR(45) NULL,
-`Date` VARCHAR(45) NULL,
-PRIMARY KEY (`id_Avis`)
+engine = innodb;
+create table if not exists `base_de_données`.`avis` (
+`id_avis` int null,
+`critique` varchar(45) null,
+`note` varchar(45) null,
+`date` varchar(45) null,
+primary key (`id_avis`)
 )
-ENGINE = InnoDB;
-CREATE TABLE IF NOT EXISTS `Base_de_données`.`Capteur_sonore` (
-`id_Capteur_sonore` INT NOT NULL,
-`Position` VARCHAR(45) NOT NULL,
-`Date` VARCHAR(45) NOT NULL,
-`Niveau_sonore` VARCHAR(45) NOT NULL,
-PRIMARY KEY (`id_Capteur_sonore`)
+engine = innodb;
+create table if not exists `base_de_données`.`capteur_sonore` (
+`id_capteur_sonore` int not null,
+`position` varchar(45) not null,
+`date` varchar(45) not null,
+`niveau_sonore` varchar(45) not null,
+primary key (`id_capteur_sonore`)
 )
-ENGINE = InnoDB;
-CREATE TABLE IF NOT EXISTS `Base_de_données`.`Salle` (
-`id_Salle` INT NOT NULL,
-`Adresse` VARCHAR(45) NOT NULL,
-`Carte_sonore` VARCHAR(45) NULL,
-`Capteur_sonore_id_Capteur_sonore` INT NOT NULL,
-PRIMARY KEY (`id_Salle`, `Capteur_sonore_id_Capteur_sonore`),
-UNIQUE INDEX `Adresse_UNIQUE` (`Adresse` ASC),
-UNIQUE INDEX `Carte_sonore_UNIQUE` (`Carte_sonore` ASC),
-INDEX `fk_Salle_Capteur_sonore1_idx` (`Capteur_sonore_id_Capteur_sonore` ASC),
-CONSTRAINT `fk_Salle_Capteur_sonore1`
-FOREIGN KEY (`Capteur_sonore_id_Capteur_sonore`)
-REFERENCES `Base_de_données`.`Capteur_sonore` (`id_Capteur_sonore`)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION
+engine = innodb;
+create table if not exists `base_de_données`.`salle` (
+`id_salle` int not null,
+`adresse` varchar(45) not null,
+`carte_sonore` varchar(45) null,
+`capteur_sonore_id_capteur_sonore` int not null,
+primary key (`id_salle`, `capteur_sonore_id_capteur_sonore`),
+unique index `adresse_unique` (`adresse` asc),
+unique index `carte_sonore_unique` (`carte_sonore` asc),
+index `fk_salle_capteur_sonore1_idx` (`capteur_sonore_id_capteur_sonore` asc),
+constraint `fk_salle_capteur_sonore1`
+foreign key (`capteur_sonore_id_capteur_sonore`)
+references `base_de_données`.`capteur_sonore` (`id_capteur_sonore`)
+on delete no action
+on update no action
 )
-ENGINE = InnoDB;
-CREATE TABLE IF NOT EXISTS `Base_de_données`.`Concert` (
-`id_Concert` INT NOT NULL,
-`Date` VARCHAR(45) NOT NULL,
-`Durée` VARCHAR(45) NOT NULL,
-`Heure_de_début` VARCHAR(45) NOT NULL,
-`Utilisateur_id_Utilisateur` INT NOT NULL,
-`Utilisateur_Abonnement_id_Abonnement` INT NOT NULL,
-`Utilisateur_Concert_id_Concert` INT NOT NULL,
-`Salle_id_Salle` INT NOT NULL,
-PRIMARY KEY (
-`id_Concert`,
-`Utilisateur_id_Utilisateur`,
-`Utilisateur_Abonnement_id_Abonnement`,
-`Utilisateur_Concert_id_Concert`,
-`Salle_id_Salle`
+engine = innodb;
+create table if not exists `base_de_données`.`concert` (
+`id_concert` int not null,
+`date` varchar(45) not null,
+`durée` varchar(45) not null,
+`heure_de_début` varchar(45) not null,
+`utilisateur_id_utilisateur` int not null,
+`utilisateur_abonnement_id_abonnement` int not null,
+`utilisateur_concert_id_concert` int not null,
+`salle_id_salle` int not null,
+primary key (
+`id_concert`,
+`utilisateur_id_utilisateur`,
+`utilisateur_abonnement_id_abonnement`,
+`utilisateur_concert_id_concert`,
+`salle_id_salle`
 ),
-INDEX `fk_Concert_Salle1_idx` (`Salle_id_Salle` ASC),
-CONSTRAINT `fk_Concert_Salle1`
-FOREIGN KEY (`Salle_id_Salle`)
-REFERENCES `Base_de_données`.`Salle` (`id_Salle`)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION
+index `fk_concert_salle1_idx` (`salle_id_salle` asc),
+constraint `fk_concert_salle1`
+foreign key (`salle_id_salle`)
+references `base_de_données`.`salle` (`id_salle`)
+on delete no action
+on update no action
 )
-ENGINE = InnoDB;
-CREATE TABLE IF NOT EXISTS `Base_de_données`.`Administrateur` (
-`id_Administrateur` INT NOT NULL,
-`Nom` VARCHAR(45) NOT NULL,
-`Prénom` VARCHAR(45) NOT NULL,
-`Expérience` VARCHAR(45) NULL,
-PRIMARY KEY (`id_Administrateur`)
+engine = innodb;
+create table if not exists `base_de_données`.`administrateur` (
+`id_administrateur` int not null,
+`nom` varchar(45) not null,
+`prénom` varchar(45) not null,
+`expérience` varchar(45) null,
+primary key (`id_administrateur`)
 )
-ENGINE = InnoDB;
-CREATE TABLE IF NOT EXISTS `Base_de_données`.`Utilisateur_has_Concert` (
-`Utilisateur_id_Utilisateur` INT NOT NULL,
-`Utilisateur_Abonnement_id_Abonnement` INT NOT NULL,
-`Concert_id_Concert` INT NOT NULL,
-`Concert_Utilisateur_id_Utilisateur` INT NOT NULL,
-`Concert_Utilisateur_Abonnement_id_Abonnement` INT NOT NULL,
-`Concert_Utilisateur_Concert_id_Concert` INT NOT NULL,
-`Billet_id_Billet` INT NOT NULL,
-PRIMARY KEY (
-`Utilisateur_id_Utilisateur`,
-`Utilisateur_Abonnement_id_Abonnement`,
-`Concert_id_Concert`,
-`Concert_Utilisateur_id_Utilisateur`,
-`Concert_Utilisateur_Abonnement_id_Abonnement`,
-`Concert_Utilisateur_Concert_id_Concert`,
-`Billet_id_Billet`
+engine = innodb;
+create table if not exists `base_de_données`.`utilisateur_has_concert` (
+`utilisateur_id_utilisateur` int not null,
+`utilisateur_abonnement_id_abonnement` int not null,
+`concert_id_concert` int not null,
+`concert_utilisateur_id_utilisateur` int not null,
+`concert_utilisateur_abonnement_id_abonnement` int not null,
+`concert_utilisateur_concert_id_concert` int not null,
+`billet_id_billet` int not null,
+primary key (
+`utilisateur_id_utilisateur`,
+`utilisateur_abonnement_id_abonnement`,
+`concert_id_concert`,
+`concert_utilisateur_id_utilisateur`,
+`concert_utilisateur_abonnement_id_abonnement`,
+`concert_utilisateur_concert_id_concert`,
+`billet_id_billet`
 ),
-INDEX `fk_Utilisateur_has_Concert_Concert1_idx` (
-`Concert_id_Concert` ASC,
-`Concert_Utilisateur_id_Utilisateur` ASC,
-`Concert_Utilisateur_Abonnement_id_Abonnement` ASC,
-`Concert_Utilisateur_Concert_id_Concert` ASC
+index `fk_utilisateur_has_concert_concert1_idx` (
+`concert_id_concert` asc,
+`concert_utilisateur_id_utilisateur` asc,
+`concert_utilisateur_abonnement_id_abonnement` asc,
+`concert_utilisateur_concert_id_concert` asc
 ),
-INDEX `fk_Utilisateur_has_Concert_Utilisateur1_idx` (
-`Utilisateur_id_Utilisateur` ASC,
-`Utilisateur_Abonnement_id_Abonnement` ASC
+index `fk_utilisateur_has_concert_utilisateur1_idx` (
+`utilisateur_id_utilisateur` asc,
+`utilisateur_abonnement_id_abonnement` asc
 ),
-INDEX `fk_Utilisateur_has_Concert_Billet1_idx` (`Billet_id_Billet` ASC),
-CONSTRAINT `fk_Utilisateur_has_Concert_Utilisateur1`
-FOREIGN KEY (`Utilisateur_id_Utilisateur`, `Utilisateur_Abonnement_id_Abonnement`)
-REFERENCES `Base_de_données`.`Utilisateur` (`id_Utilisateur`, `Abonnement_id_Abonnement`)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION,
-CONSTRAINT `fk_Utilisateur_has_Concert_Concert1`
-FOREIGN KEY (
-`Concert_id_Concert`,
-`Concert_Utilisateur_id_Utilisateur`,
-`Concert_Utilisateur_Abonnement_id_Abonnement`,
-`Concert_Utilisateur_Concert_id_Concert`
+index `fk_utilisateur_has_concert_billet1_idx` (`billet_id_billet` asc),
+constraint `fk_utilisateur_has_concert_utilisateur1`
+foreign key (`utilisateur_id_utilisateur`, `utilisateur_abonnement_id_abonnement`)
+references `base_de_données`.`utilisateur` (`id_utilisateur`, `abonnement_id_abonnement`)
+on delete no action
+on update no action,
+constraint `fk_utilisateur_has_concert_concert1`
+foreign key (
+`concert_id_concert`,
+`concert_utilisateur_id_utilisateur`,
+`concert_utilisateur_abonnement_id_abonnement`,
+`concert_utilisateur_concert_id_concert`
 )
-REFERENCES `Base_de_données`.`Concert` (
-`id_Concert`,
-`Utilisateur_id_Utilisateur`,
-`Utilisateur_Abonnement_id_Abonnement`,
-`Utilisateur_Concert_id_Concert`
+references `base_de_données`.`concert` (
+`id_concert`,
+`utilisateur_id_utilisateur`,
+`utilisateur_abonnement_id_abonnement`,
+`utilisateur_concert_id_concert`
 )
-ON DELETE NO ACTION
-ON UPDATE NO ACTION,
-CONSTRAINT `fk_Utilisateur_has_Concert_Billet1`
-FOREIGN KEY (`Billet_id_Billet`)
-REFERENCES `Base_de_données`.`Billet` (`id_Billet`)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION
+on delete no action
+on update no action,
+constraint `fk_utilisateur_has_concert_billet1`
+foreign key (`billet_id_billet`)
+references `base_de_données`.`billet` (`id_billet`)
+on delete no action
+on update no action
 )
-ENGINE = InnoDB;
-CREATE TABLE IF NOT EXISTS `Base_de_données`.`Concert_has_Utilisateur` (
-`Concert_id_Concert` INT NOT NULL,
-`Concert_Utilisateur_id_Utilisateur` INT NOT NULL,
-`Concert_Utilisateur_Abonnement_id_Abonnement` INT NOT NULL,
-`Concert_Utilisateur_Concert_id_Concert` INT NOT NULL,
-`Utilisateur_id_Utilisateur` INT NOT NULL,
-`Utilisateur_Abonnement_id_Abonnement` INT NOT NULL,
-`Avis_id_Avis` INT NOT NULL,
-PRIMARY KEY (
-`Concert_id_Concert`,
-`Concert_Utilisateur_id_Utilisateur`,
-`Concert_Utilisateur_Abonnement_id_Abonnement`,
-`Concert_Utilisateur_Concert_id_Concert`,
-`Utilisateur_id_Utilisateur`,
-`Utilisateur_Abonnement_id_Abonnement`,
-`Avis_id_Avis`
+engine = innodb;
+create table if not exists `base_de_données`.`concert_has_utilisateur` (
+`concert_id_concert` int not null,
+`concert_utilisateur_id_utilisateur` int not null,
+`concert_utilisateur_abonnement_id_abonnement` int not null,
+`concert_utilisateur_concert_id_concert` int not null,
+`utilisateur_id_utilisateur` int not null,
+`utilisateur_abonnement_id_abonnement` int not null,
+`avis_id_avis` int not null,
+primary key (
+`concert_id_concert`,
+`concert_utilisateur_id_utilisateur`,
+`concert_utilisateur_abonnement_id_abonnement`,
+`concert_utilisateur_concert_id_concert`,
+`utilisateur_id_utilisateur`,
+`utilisateur_abonnement_id_abonnement`,
+`avis_id_avis`
 ),
-INDEX `fk_Concert_has_Utilisateur_Utilisateur1_idx` (
-`Utilisateur_id_Utilisateur` ASC,
-`Utilisateur_Abonnement_id_Abonnement` ASC
+index `fk_concert_has_utilisateur_utilisateur1_idx` (
+`utilisateur_id_utilisateur` asc,
+`utilisateur_abonnement_id_abonnement` asc
 ),
-INDEX `fk_Concert_has_Utilisateur_Concert1_idx` (
-`Concert_id_Concert` ASC,
-`Concert_Utilisateur_id_Utilisateur` ASC,
-`Concert_Utilisateur_Abonnement_id_Abonnement` ASC,
-`Concert_Utilisateur_Concert_id_Concert` ASC
+index `fk_concert_has_utilisateur_concert1_idx` (
+`concert_id_concert` asc,
+`concert_utilisateur_id_utilisateur` asc,
+`concert_utilisateur_abonnement_id_abonnement` asc,
+`concert_utilisateur_concert_id_concert` asc
 ),
-INDEX `fk_Concert_has_Utilisateur_Avis1_idx` (`Avis_id_Avis` ASC),
-CONSTRAINT `fk_Concert_has_Utilisateur_Concert1`
-FOREIGN KEY (
-`Concert_id_Concert`,
-`Concert_Utilisateur_id_Utilisateur`,
-`Concert_Utilisateur_Abonnement_id_Abonnement`,
-`Concert_Utilisateur_Concert_id_Concert`
+index `fk_concert_has_utilisateur_avis1_idx` (`avis_id_avis` asc),
+constraint `fk_concert_has_utilisateur_concert1`
+foreign key (
+`concert_id_concert`,
+`concert_utilisateur_id_utilisateur`,
+`concert_utilisateur_abonnement_id_abonnement`,
+`concert_utilisateur_concert_id_concert`
 )
-REFERENCES `Base_de_données`.`Concert` (
-`id_Concert`,
-`Utilisateur_id_Utilisateur`,
-`Utilisateur_Abonnement_id_Abonnement`,
-`Utilisateur_Concert_id_Concert`
+references `base_de_données`.`concert` (
+`id_concert`,
+`utilisateur_id_utilisateur`,
+`utilisateur_abonnement_id_abonnement`,
+`utilisateur_concert_id_concert`
 )
-ON DELETE NO ACTION
-ON UPDATE NO ACTION,
-CONSTRAINT `fk_Concert_has_Utilisateur_Utilisateur1`
-FOREIGN KEY (`Utilisateur_id_Utilisateur`, `Utilisateur_Abonnement_id_Abonnement`)
-REFERENCES `Base_de_données`.`Utilisateur` (`id_Utilisateur`, `Abonnement_id_Abonnement`)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION,
-CONSTRAINT `fk_Concert_has_Utilisateur_Avis1`
-FOREIGN KEY (`Avis_id_Avis`)
-REFERENCES `Base_de_données`.`Avis` (`id_Avis`)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION
+on delete no action
+on update no action,
+constraint `fk_concert_has_utilisateur_utilisateur1`
+foreign key (`utilisateur_id_utilisateur`, `utilisateur_abonnement_id_abonnement`)
+references `base_de_données`.`utilisateur` (`id_utilisateur`, `abonnement_id_abonnement`)
+on delete no action
+on update no action,
+constraint `fk_concert_has_utilisateur_avis1`
+foreign key (`avis_id_avis`)
+references `base_de_données`.`avis` (`id_avis`)
+on delete no action
+on update no action
 )
-ENGINE = InnoDB;
-CREATE TABLE IF NOT EXISTS `Base_de_données`.`Administrateur_has_Capteur_sonore` (
-`Administrateur_id_Administrateur` INT NOT NULL,
-`Capteur_sonore_id_Capteur_sonore` INT NOT NULL,
-`Carte_sonore` VARCHAR(45) NULL,
-`Informations` VARCHAR(45) NULL,
-PRIMARY KEY (`Administrateur_id_Administrateur`, `Capteur_sonore_id_Capteur_sonore`),
-INDEX `fk_Administrateur_has_Capteur_sonore_Capteur_sonore1_idx` (`Capteur_sonore_id_Capteur_sonore` ASC),
-INDEX `fk_Administrateur_has_Capteur_sonore_Administrateur1_idx` (`Administrateur_id_Administrateur` ASC),
-UNIQUE INDEX `Carte_sonore_UNIQUE` (`Carte_sonore` ASC),
-UNIQUE INDEX `Administrateur_has_Capteur_sonorecol_UNIQUE` (`Informations` ASC),
-CONSTRAINT `fk_Administrateur_has_Capteur_sonore_Administrateur1`
-FOREIGN KEY (`Administrateur_id_Administrateur`)
-REFERENCES `Base_de_données`.`Administrateur` (`id_Administrateur`)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION,
-CONSTRAINT `fk_Administrateur_has_Capteur_sonore_Capteur_sonore1`
-FOREIGN KEY (`Capteur_sonore_id_Capteur_sonore`)
-REFERENCES `Base_de_données`.`Capteur_sonore` (`id_Capteur_sonore`)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION
+engine = innodb;
+create table if not exists `base_de_données`.`administrateur_has_capteur_sonore` (
+`administrateur_id_administrateur` int not null,
+`capteur_sonore_id_capteur_sonore` int not null,
+`carte_sonore` varchar(45) null,
+`informations` varchar(45) null,
+primary key (`administrateur_id_administrateur`, `capteur_sonore_id_capteur_sonore`),
+index `fk_administrateur_has_capteur_sonore_capteur_sonore1_idx` (`capteur_sonore_id_capteur_sonore` asc),
+index `fk_administrateur_has_capteur_sonore_administrateur1_idx` (`administrateur_id_administrateur` asc),
+unique index `carte_sonore_unique` (`carte_sonore` asc),
+unique index `administrateur_has_capteur_sonorecol_unique` (`informations` asc),
+constraint `fk_administrateur_has_capteur_sonore_administrateur1`
+foreign key (`administrateur_id_administrateur`)
+references `base_de_données`.`administrateur` (`id_administrateur`)
+on delete no action
+on update no action,
+constraint `fk_administrateur_has_capteur_sonore_capteur_sonore1`
+foreign key (`capteur_sonore_id_capteur_sonore`)
+references `base_de_données`.`capteur_sonore` (`id_capteur_sonore`)
+on delete no action
+on update no action
 )
-ENGINE = InnoDB;
-CREATE TABLE IF NOT EXISTS `Base_de_données`.`Concert_has_Artiste` (
-`Concert_id_Concert` INT NOT NULL,
-`Concert_Utilisateur_id_Utilisateur` INT NOT NULL,
-`Concert_Utilisateur_Abonnement_id_Abonnement` INT NOT NULL,
-`Concert_Utilisateur_Concert_id_Concert` INT NOT NULL,
-`Artiste_id_Artiste` INT NOT NULL,
-PRIMARY KEY (
-`Concert_id_Concert`,
-`Concert_Utilisateur_id_Utilisateur`,
-`Concert_Utilisateur_Abonnement_id_Abonnement`,
-`Concert_Utilisateur_Concert_id_Concert`,
-`Artiste_id_Artiste`
+engine = innodb;
+create table if not exists `base_de_données`.`concert_has_artiste` (
+`concert_id_concert` int not null,
+`concert_utilisateur_id_utilisateur` int not null,
+`concert_utilisateur_abonnement_id_abonnement` int not null,
+`concert_utilisateur_concert_id_concert` int not null,
+`artiste_id_artiste` int not null,
+primary key (
+`concert_id_concert`,
+`concert_utilisateur_id_utilisateur`,
+`concert_utilisateur_abonnement_id_abonnement`,
+`concert_utilisateur_concert_id_concert`,
+`artiste_id_artiste`
 ),
-INDEX `fk_Concert_has_Artiste_Artiste1_idx` (`Artiste_id_Artiste` ASC),
-INDEX `fk_Concert_has_Artiste_Concert1_idx` (
-`Concert_id_Concert` ASC,
-`Concert_Utilisateur_id_Utilisateur` ASC,
-`Concert_Utilisateur_Abonnement_id_Abonnement` ASC,
-`Concert_Utilisateur_Concert_id_Concert` ASC
+index `fk_concert_has_artiste_artiste1_idx` (`artiste_id_artiste` asc),
+index `fk_concert_has_artiste_concert1_idx` (
+`concert_id_concert` asc,
+`concert_utilisateur_id_utilisateur` asc,
+`concert_utilisateur_abonnement_id_abonnement` asc,
+`concert_utilisateur_concert_id_concert` asc
 ),
-CONSTRAINT `fk_Concert_has_Artiste_Concert1`
-FOREIGN KEY (
-`Concert_id_Concert`,
-`Concert_Utilisateur_id_Utilisateur`,
-`Concert_Utilisateur_Abonnement_id_Abonnement`,
-`Concert_Utilisateur_Concert_id_Concert`
+constraint `fk_concert_has_artiste_concert1`
+foreign key (
+`concert_id_concert`,
+`concert_utilisateur_id_utilisateur`,
+`concert_utilisateur_abonnement_id_abonnement`,
+`concert_utilisateur_concert_id_concert`
 )
-REFERENCES `Base_de_données`.`Concert` (
-`id_Concert`,
-`Utilisateur_id_Utilisateur`,
-`Utilisateur_Abonnement_id_Abonnement`,
-`Utilisateur_Concert_id_Concert`
+references `base_de_données`.`concert` (
+`id_concert`,
+`utilisateur_id_utilisateur`,
+`utilisateur_abonnement_id_abonnement`,
+`utilisateur_concert_id_concert`
 )
-ON DELETE NO ACTION
-ON UPDATE NO ACTION,
-CONSTRAINT `fk_Concert_has_Artiste_Artiste1`
-FOREIGN KEY (`Artiste_id_Artiste`)
-REFERENCES `Base_de_données`.`Artiste` (`id_Artiste`)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION
+on delete no action
+on update no action,
+constraint `fk_concert_has_artiste_artiste1`
+foreign key (`artiste_id_artiste`)
+references `base_de_données`.`artiste` (`id_artiste`)
+on delete no action
+on update no action
 )
-ENGINE = InnoDB;
-CREATE TABLE IF NOT EXISTS `Base_de_données`.`Utilisateur_has_Préférences_utilisateur` (
-`Utilisateur_id_Utilisateur` INT NOT NULL,
-`Utilisateur_Abonnement_id_Abonnement` INT NOT NULL,
-`Préférences_utilisateur_id_Préférences_utilisateur` INT NOT NULL,
-`Préférences_utilisateur_Artiste_id_Artiste` INT NOT NULL,
-PRIMARY KEY (
-`Utilisateur_id_Utilisateur`,
-`Utilisateur_Abonnement_id_Abonnement`,
-`Préférences_utilisateur_id_Préférences_utilisateur`,
-`Préférences_utilisateur_Artiste_id_Artiste`
+engine = innodb;
+create table if not exists `base_de_données`.`utilisateur_has_préférences_utilisateur` (
+`utilisateur_id_utilisateur` int not null,
+`utilisateur_abonnement_id_abonnement` int not null,
+`préférences_utilisateur_id_préférences_utilisateur` int not null,
+`préférences_utilisateur_artiste_id_artiste` int not null,
+primary key (
+`utilisateur_id_utilisateur`,
+`utilisateur_abonnement_id_abonnement`,
+`préférences_utilisateur_id_préférences_utilisateur`,
+`préférences_utilisateur_artiste_id_artiste`
 ),
-INDEX `fk_Utilisateur_has_Préférences_utilisateur_Préférence ut_idx` (
-`Préférences_utilisateur_id_Préférences_utilisateur` ASC,
-`Préférences_utilisateur_Artiste_id_Artiste` ASC
+index `fk_utilisateur_has_préférences_utilisateur_préférence ut_idx` (
+`préférences_utilisateur_id_préférences_utilisateur` asc,
+`préférences_utilisateur_artiste_id_artiste` asc
 ),
-INDEX `fk_Utilisateur_has_Préférences_utilisateur_Utilisateur1_idx` (
-`Utilisateur_id_Utilisateur` ASC,
-`Utilisateur_Abonnement_id_Abonnement` ASC
+index `fk_utilisateur_has_préférences_utilisateur_utilisateur1_idx` (
+`utilisateur_id_utilisateur` asc,
+`utilisateur_abonnement_id_abonnement` asc
 ),
-CONSTRAINT `fk_Utilisateur_has_Préférences_utilisateur_Utilisateur1`
-FOREIGN KEY (`Utilisateur_id_Utilisateur`, `Utilisateur_Abonnement_id_Abonnement`)
-REFERENCES `Base_de_données`.`Utilisateur` (`id_Utilisateur`, `Abonnement_id_Abonnement`)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION,
-CONSTRAINT `fk_Utilisateur_has_Préférences_utilisateur_Préférence util1`
-FOREIGN KEY (`Préférences_utilisateur_id_Préférences_utilisateur`, `Préférences_utilisateur_Artiste_id_Artiste`)
-REFERENCES `Base_de_données`.`Préférences_utilisateur` (`id_Préférences_utilisateur`, `Artiste_id_Artiste`)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION
+constraint `fk_utilisateur_has_préférences_utilisateur_utilisateur1`
+foreign key (`utilisateur_id_utilisateur`, `utilisateur_abonnement_id_abonnement`)
+references `base_de_données`.`utilisateur` (`id_utilisateur`, `abonnement_id_abonnement`)
+on delete no action
+on update no action,
+constraint `fk_utilisateur_has_préférences_utilisateur_préférence util1`
+foreign key (`préférences_utilisateur_id_préférences_utilisateur`, `préférences_utilisateur_artiste_id_artiste`)
+references `base_de_données`.`préférences_utilisateur` (`id_préférences_utilisateur`, `artiste_id_artiste`)
+on delete no action
+on update no action
 )
-ENGINE = InnoDB;
--- Restauration des paramètres de la session
-SET SQL_MODE = @OLD_SQL_MODE;
-SET FOREIGN_KEY_CHECKS = @OLD_FOREIGN_KEY_CHECKS;
-SET UNIQUE_CHECKS = @OLD_UNIQUE_CHECKS;
--- Utilisation de types de données appropriés
--- Assurez-vous d'utiliser les types de données les plus appropriés pour chaque colonne. Par exemple, utilisez des types de date pour les colonnes de date au lieu de VARCHAR.
--- Utilisation de noms de colonnes sans espaces
--- Évitez d'utiliser des espaces dans les noms de colonnes. Utilisez plutôt une notation comme "nom_colonne" ou "nomColonne".
--- Utilisation de clés primaires auto-incrémentées
--- Pour les colonnes d'ID, vous pouvez utiliser des clés primaires auto-incrémentées (par exemple, id INT AUTO_INCREMENT PRIMARY KEY pour MySQL) au lieu de spécifier les valeurs manuellement.
--- Utilisation de FOREIGN KEY avec ON DELETE CASCADE
--- Selon la logique métier de votre application, vous pourriez envisager d'utiliser ON DELETE CASCADE pour les clés étrangères afin de maintenir la cohérence des données.
--- Gestion des contraintes UNIQUE
--- L'utilisation de contraintes UNIQUE sur des colonnes telles que "Numéro_de_téléphone" et "Adresse_email" est une bonne pratique, mais assurez-vous que cela correspond à vos besoins métier.
--- Normalisation de la base_de_données
--- En fonction des besoins de votre application, envisagez de normaliser davantage votre schéma de base_de_données pour éviter la redondance des données.
--- Assurez-vous également de tester soigneusement votre script SQL sur un environnement de test avant de l'appliquer à une base_de_données en production.
+engine = innodb;
+set sql_mode = @old_sql_mode;
+set foreign_key_checks = @old_foreign_key_checks;
+set unique_checks = @old_unique_checks;

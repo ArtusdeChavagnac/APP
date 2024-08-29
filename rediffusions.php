@@ -58,26 +58,26 @@
 </table>
 <h2>Regarder une rediffusion</h2>
 <p>Sélectionnez un concert ci-dessus pour accéder à sa rediffusion.</p>
-<div class = "contenu-video">
+<div class = "div-contenu-video">
 <video controls width = "500" height = "250">
 <source src = "videos\Concert SDM.mp4" type = "video/mp4">
 Votre navigateur ne supporte pas la lecture de vidéos.
 </video>
-<span class = "titre-video">SDM à l'Olympia</span>
+<span class = "div-titre-video">SDM à l'Olympia</span>
 </div>
-<div class = "contenu-video">
+<div class = "div-contenu-video">
 <video controls width = "500" height = "250">
 <source src = "videos\damso feu de bois.mp4" type = "video/mp4">
 Votre navigateur ne supporte pas la lecture de vidéos.
 </video>
-<span class = "titre-video">Victoire de la musique</span>
+<span class = "div-titre-video">Victoire de la musique</span>
 </div>
-<div class = "contenu-video">
+<div class = "div-contenu-video">
 <video controls width = "500" height = "250">
 <source src = "videos\Sexion d'assaut.mp4" type = "video/mp4">
 Votre navigateur ne supporte pas la lecture de vidéos.
 </video>
-<span class = "titre-video">Sexion d'assaut - Bercy</span>
+<span class = "div-titre-video">Sexion d'assaut - Bercy</span>
 </div>
 </div>
 <footer>

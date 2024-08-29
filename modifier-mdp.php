@@ -51,9 +51,9 @@ display: none;
 <img id = "photoProfil" src = "#" alt = "Photo de profil" style = "display: none; max-width: 100px; float: right; margin: 10px;">
 <form method = "post" action = "traitement-mdp.php">
 <label for = "motdepasse" style = "display: inline-block; width: 150px; text-align: left;">Mot de passe:</label>
-<input type = "password" name = "oldpsd" value = "" placeholder = "Mot de passe actuel"/>
-<input type = "password" name = "psd" value = "" placeholder = "Nouveau mot de passe"/>
-<input type = "password" name = "confpsd" value = "" placeholder = "Confirmation du mot de passe"/>
+<input type = "password" name = "oldpsd" value = "" placeholder = "Mot de passe actuel">
+<input type = "password" name = "psd" value = "" placeholder = "Nouveau mot de passe">
+<input type = "password" name = "confpsd" value = "" placeholder = "Confirmation du mot de passe">
 <input type = "submit" name = "form6" value = "Modifier">
 </form>
 </div>

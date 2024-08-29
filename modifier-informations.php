@@ -52,7 +52,7 @@ display: none;
 <img id = "photoProfil" src = "#" alt = "Photo de profil" style = "display: none; max-width: 100px; float: right; margin: 10px;">
 <form id = "profilForm" method = "post" action = "traitement-formulaire.php">
 <label for = "nom" style = "display: inline-block; width: 150px; text-align: left;">Nom:</label>
-<input type = "text" name = "nom" value = "<?php echo $nom; ?>"/><br>
+<input type = "text" name = "nom" value = "<?php echo $nom; ?>"><br>
 <label for = "prenom" style = "display: inline-block; width: 150px; text-align: left; ">Prénom:</label>
 <input type = "text" name = "prenom" value = "<?php echo $prenom; ?>"><br>
 <label for = "adresse_email" style = "display: inline-block; width: 150px; text-align: left;">Email:</label>

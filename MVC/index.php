@@ -1,4 +1,4 @@
-<!doctype HTML>
+<!doctype html>
 <html>
 <head>
 <title>Liste des utilisateurs</title>
