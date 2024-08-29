@@ -26,15 +26,15 @@ session_start();
 <td><a href = "../faq.php" target = "_top">FAQ</a></td>
 <td><a href = "../forum.php" target = "_top">Forum</a></td>
 <td><?php
-if (isset($_SESSION['utilisateur_abonnement_idAbonnement'])){
-if ($_SESSION['utilisateur_abonnement_idAbonnement'] == 2) {
+if (isset($_SESSIon['utilisateur_abonnement_idAbonnement'])){
+if ($_SESSIon['utilisateur_abonnement_idAbonnement'] == 2) {
 echo "<a href = '../administration/dashboard.php' target ='_top'>DashBoard</a>";
 }
 }
 ?></td>
 <td>
 <?php
-if(isset($_SESSION["utilisateur_connecte"])) {
+if(isset($_SESSIon["utilisateur_connecte"])) {
 echo "<a href ='../mon-compte.php' target ='_top'><button>Mon compte</button></span>";
 echo "<a href ='../deconnection.php' target ='_top'><button>Déconnexion</button></span>";
 } else {

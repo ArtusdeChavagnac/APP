@@ -42,9 +42,9 @@ text-align: right;
 <?php
 require("connexion-bdd.php");
 $sql = "select * from faq";
-$result = $conn->query($sql);
+$result = $conn -> query($sql);
 echo "<ul>";
-while ($row = $result->fetch_assoc()) {
+while ($row = $result -> fetch_assoc()) {
 echo "<li>";
 echo "<div class = "question">";
 echo "<strong>Question:</strong> {$row["texte"]}<br>";
@@ -60,7 +60,7 @@ echo "</div>";
 echo "</li>";
 }
 echo "</ul>";
-$conn->close();
+$conn -> close();
 ?>
 </div>
 <footer><iframe src = "commun/footer.php"></iframe></footer>

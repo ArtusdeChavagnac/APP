@@ -5,18 +5,18 @@ $username = "root";
 $password = "";
 $dbname = "sonotech";
 try{
-$bdd = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+$bdd = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTIon));
 } catch (PDOException $e) {
-echo "La connexion à la base de données a échoué : ". $e->getMessage();
+echo "La connexion à la base de données a échoué : ". $e -> getMessage();
 }
-if (isset($_SESSION['utilisateur_connecte'])){
-$idUtilisateur = $_SESSION['utilisateur_id'];
+if (isset($_SESSIon['utilisateur_connecte'])){
+$idUtilisateur = $_SESSIon['utilisateur_id'];
 } else {
 echo "<script>window.location.href = 'connexion.php'</script>";
 }
-$query = $bdd->prepare("select mot_de_passe from utilisateur where idUtilisateur = ?");
-$query->execute([$idUtilisateur]);
-$userData = $query->fetch(PDO::FETCH_ASSOC);
+$query = $bdd -> prepare("select mot_de_passe from utilisateur where idUtilisateur = ?");
+$query -> execute([$idUtilisateur]);
+$userData = $query -> fetch(PDO::FETCH_asSOC);
 $mot_de_passe = $userData['mot_de_passe'];
 ?>
 <!doctype html>

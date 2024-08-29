@@ -1,7 +1,7 @@
 <?php
 session_start();
-if (isset($_SESSION['utilisateur_abonnement_idAbonnement'])) {
-if ($_SESSION['utilisateur_abonnement_idAbonnement'] != 2) {
+if (isset($_SESSIon['utilisateur_abonnement_idAbonnement'])) {
+if ($_SESSIon['utilisateur_abonnement_idAbonnement'] != 2) {
 echo "<script>window.location.href = '../index.php'</script>";
 } 
 } else {
@@ -12,19 +12,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['idfaq']) && isset($_PO
 $faqId = $_POST['idfaq'];
 $question = $_POST['texte'];
 $reponse = $_POST['reponse'];
-$stmt = $conn->prepare("upsup faq set texte = ? where idfaq = ?");
-$stmt->bind_param("si", $question, $faqId);
-$stmt2 = $conn->prepare("update reponse_faq set texte = ? where faq_idFaq = ?");
-$stmt2->bind_param("si",$reponse, $faqId);
-if ($stmt->execute() AND $stmt2->execute()) {
+$stmt = $conn -> prepare("upsup faq set texte = ? where idfaq = ?");
+$stmt -> bind_param("si", $question, $faqId);
+$stmt2 = $conn -> prepare("update reponse_faq set texte = ? where faq_idFaq = ?");
+$stmt2 -> bind_param("si",$reponse, $faqId);
+if ($stmt -> execute() AND $stmt2 -> execute()) {
 header("Location: gestion-faq.php");
 exit();
 } else {
-echo "Erreur lors de la modification : " . $stmt->error;
+echo "Erreur lors de la modification : " . $stmt -> error;
 }
-$stmt->close();
+$stmt -> close();
 } else {
 echo "Erreur : Données manquantes.";
 }
-$conn->close();
+$conn -> close();
 ?>

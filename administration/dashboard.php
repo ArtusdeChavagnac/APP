@@ -1,7 +1,7 @@
 <?php
 session_start();
-if (isset($_SESSION['utilisateur_abonnement_idAbonnement'])) {
-if ($_SESSION['utilisateur_abonnement_idAbonnement'] !=2) {
+if (isset($_SESSIon['utilisateur_abonnement_idAbonnement'])) {
+if ($_SESSIon['utilisateur_abonnement_idAbonnement'] !=2) {
 echo "<script>window.location.href = '../index.php'</script>";
 } 
 } else {
@@ -38,12 +38,12 @@ $username = "root";
 $password = "";
 $dbname = "sonotech";
 $conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-die("Connection failed: " . $conn->connect_error);
+if ($conn -> connect_error) {
+die("Connection failed: " . $conn -> connect_error);
 }
 $sql = "select * from utilisateur";
-$result = $conn->query($sql);
-if ($result->num_rows > 0) {
+$result = $conn -> query($sql);
+if ($result -> num_rows > 0) {
 echo '<table border = "1px">';
 echo '<tr>';
 echo '<th>ID</th>';
@@ -56,7 +56,7 @@ echo '<th>Abonnement</th>';
 echo '<th>Action</th>';
 echo '<th>Action</th>';
 echo '</tr>';
-while ($row = $result->fetch_assoc()) {
+while ($row = $result -> fetch_assoc()) {
 echo '<tr>';
 echo '<td>' . $row["idUtilisateur"] . '</td>';
 echo '<td>' . $row["nom"] . '</td>';
@@ -73,7 +73,7 @@ echo '</table>';
 } else {
 echo "Aucun utilisateur trouvé.";
 }
-$conn->close();
+$conn -> close();
 ?>
 <form method = "" action = "ajouter-utilisateur.php">
 <input type = "hidden" name = "action" value = "Ajouter">

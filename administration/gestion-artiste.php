@@ -1,7 +1,7 @@
 <?php
 session_start();
-if (isset($_SESSION['utilisateur_abonnement_idAbonnement'])) {
-if ($_SESSION['utilisateur_abonnement_idAbonnement'] != 2) {
+if (isset($_SESSIon['utilisateur_abonnement_idAbonnement'])) {
+if ($_SESSIon['utilisateur_abonnement_idAbonnement'] != 2) {
 echo "<script>window.location.href = '../index.php'</script>";
 } 
 } else {
@@ -39,9 +39,9 @@ echo "<script>window.location.href = '../index.php'</script>";
 <?php
 require("../connexion-bdd.php");
 $sql = "select * from artiste";
-$result = $conn->query($sql);
-if ($result->num_rows > 0) {
-while ($row = $result->fetch_assoc()) {
+$result = $conn -> query($sql);
+if ($result -> num_rows > 0) {
+while ($row = $result -> fetch_assoc()) {
 echo '<tr>';
 echo '<td>' . $row["idArtiste"] . '</td>';
 echo '<td>' . $row["pseudo"] . '</td>';

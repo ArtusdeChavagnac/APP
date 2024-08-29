@@ -1,7 +1,7 @@
 <?php
 session_start();
-if (isset($_SESSION['utilisateur_abonnement_idAbonnement'])) {
-if ($_SESSION['utilisateur_abonnement_idAbonnement'] != 2) {
+if (isset($_SESSIon['utilisateur_abonnement_idAbonnement'])) {
+if ($_SESSIon['utilisateur_abonnement_idAbonnement'] != 2) {
 echo "<script>window.location.href = '../index.php'</script>";
 } 
 } else {
@@ -29,9 +29,9 @@ require("../connexion-bdd.php");
 if(isset($_GET['id'])) {
 $CapteurId = $_GET['id'];
 $sql = "select * from capteur_sonore where idCapteur_sonore = $CapteurId";
-$result = $conn->query($sql);
-if ($result->num_rows > 0) {
-$row = $result->fetch_assoc();
+$result = $conn -> query($sql);
+if ($result -> num_rows > 0) {
+$row = $result -> fetch_assoc();
 ?>
 <h1>Modifier un capteur</h1>
 <form action = "traitement-modifier-capteur.php.php" method = "post">
@@ -48,7 +48,7 @@ $row = $result->fetch_assoc();
 } else {
 echo "capteur non trouvée.";
 }
-$conn->close();
+$conn -> close();
 } else {
 echo "Identifiant du capteur non spécifié.";
 }

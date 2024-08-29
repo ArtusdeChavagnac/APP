@@ -5,17 +5,17 @@ $username = "root";
 $password = "";
 $dbname = "sonotech";
 try{
-$bdd = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+$bdd = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTIon));
 } catch (PDOException $e) {
-echo "La connexion à la base de données a échoué : ". $e->getMessage();
+echo "La connexion à la base de données a échoué : ". $e -> getMessage();
 }
-if (isset($_SESSION['utilisateur_connecte'])){
-$idUtilisateur = $_SESSION['utilisateur_id'];
-$nom = $_SESSION['utilisateur_nom'];
-$prenom = $_SESSION['utilisateur_prenom'];
-$email = $_SESSION['utilisateur_adresse_email'];
-$telephone = $_SESSION['utilisateur_numero_de_telephone'];
-$date_naissance = $_SESSION['utilisateur_date_de_naissance'];
+if (isset($_SESSIon['utilisateur_connecte'])){
+$idUtilisateur = $_SESSIon['utilisateur_id'];
+$nom = $_SESSIon['utilisateur_nom'];
+$prenom = $_SESSIon['utilisateur_prenom'];
+$email = $_SESSIon['utilisateur_adresse_email'];
+$telephone = $_SESSIon['utilisateur_numero_de_telephone'];
+$date_naissance = $_SESSIon['utilisateur_date_de_naissance'];
 } else {
 echo "<script>window.location.href = 'connexion.php'</script>";
 }

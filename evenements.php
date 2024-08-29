@@ -5,21 +5,21 @@ $servername = "localhost";
 $username = "root";
 $password = "";
 $conn = new mysqli($servername,$username,$password);
-if ($conn->connect_error) {
-die("Connection failed : ".$conn->connect_error);
+if ($conn -> connect_error) {
+die("Connection failed : ".$conn -> connect_error);
 }
 try {
 $conn = new PDO("mysql:host=$servername;dbname=$db", $username, $password);
-$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$conn -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTIon);
 }
 catch(PDOException $e)
 {
-echo "Connection failed: " . $e->getMessage();
+echo "Connection failed: " . $e -> getMessage();
 }
 $query = "select idConcert from $db.concert";
-$stmt = $conn->prepare($query);
-$stmt->execute();
-$idConcert = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$stmt = $conn -> prepare($query);
+$stmt -> execute();
+$idConcert = $stmt -> fetchAll(PDO::FETCH_asSOC);
 ?>
 <!doctype html>
 <html lang = "fr">
@@ -55,31 +55,31 @@ echo"<tr>";
 foreach($idConcert as $idConcert){
 $idConcert = $idConcert["idConcert"];
 $query = "select date, duree, heure_debut, salle_idSalle from $db.concert where idConcert = $idConcert";
-$stmt = $conn->prepare($query);
-$stmt->execute();
-$concertData = $stmt->fetch(PDO::FETCH_ASSOC);
+$stmt = $conn -> prepare($query);
+$stmt -> execute();
+$concertData = $stmt -> fetch(PDO::FETCH_asSOC);
 $idSalle = $concertData["salle_idSalle"];
 $query = "select adresse,capteur_sonore_idCapteur_sonore from $db.salle where idSalle = $idSalle";
-$stmt = $conn->prepare($query);
-$stmt->execute();
-$salleData = $stmt->fetch(PDO::FETCH_ASSOC);
+$stmt = $conn -> prepare($query);
+$stmt -> execute();
+$salleData = $stmt -> fetch(PDO::FETCH_asSOC);
 $idCapteur_sonore = $salleData["capteur_sonore_idCapteur_sonore"];
 $query = "select artiste_idArtiste from $db.concert_has_artiste where concert_idConcert= $idConcert";
-$stmt = $conn->prepare($query);
-$stmt->execute();
-$idArtiste = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$stmt = $conn -> prepare($query);
+$stmt -> execute();
+$idArtiste = $stmt -> fetchAll(PDO::FETCH_asSOC);
 $artisteData = array();
 foreach($idArtiste as $artiste){
 $artiste = $artiste["artiste_idArtiste"];
 $query = "select pseudo from $db.artiste where idArtiste = $artiste";
-$stmt = $conn->prepare($query);
-$stmt->execute();
-$artisteData[] = $stmt->fetch(PDO::FETCH_ASSOC);
+$stmt = $conn -> prepare($query);
+$stmt -> execute();
+$artisteData[] = $stmt -> fetch(PDO::FETCH_asSOC);
 }
 $query = "select niveau_sonore from $db.capteur_sonore where idCapteur_sonore = $idCapteur_sonore";
-$stmt = $conn->prepare($query);
-$stmt->execute();
-$niveau_sonore = $stmt->fetch(PDO::FETCH_ASSOC);
+$stmt = $conn -> prepare($query);
+$stmt -> execute();
+$niveau_sonore = $stmt -> fetch(PDO::FETCH_asSOC);
 $date = $concertData["date"];
 $heure_debutRaw = $concertData["heure_debut"];
 $heure_debut = str_split($heure_debutRaw, strlen($heure_debutRaw) / 2);

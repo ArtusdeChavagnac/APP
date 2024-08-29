@@ -4,18 +4,18 @@ $servername = "localhost";
 $username = "root";
 $password = "";
 $conn = new mysqli($servername, $username, $password);
-if ($conn->connect_error) {
-die("Connection failed : ".$conn->connect_error);
+if ($conn -> connect_error) {
+die("Connection failed : ".$conn -> connect_error);
 }
 try {
 $conn = new PDO("mysql:host=$servername;dbname=$db", $username, $password);
-$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$conn -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTIon);
 }
 catch(PDOException $e) {
-echo "Connection failed: " . $e->getMessage();
+echo "Connection failed: " . $e -> getMessage();
 }
 session_start();
-if (isset($_SESSION['utilisateur_connecte'])== false){
+if (isset($_SESSIon['utilisateur_connecte'])== false){
 echo "<script>alert('Vous devez d\'abord vous connecter')</script>";
 echo "<script>window.location.href = 'connexion.php'</script>";
 } else {
@@ -27,13 +27,13 @@ $idTicket = intval(1);
 $idTicket = intval(2);
 }
 $values = array_fill(0, $nombre_de_places,$type);
-$idConcert = intval($_SESSION['idConcert']);
-$idUtilisateur = intval($_SESSION['utilisateur_id']);
+$idConcert = intval($_SESSIon['idConcert']);
+$idUtilisateur = intval($_SESSIon['utilisateur_id']);
 echo $idUtilisateur;
 $query = "INSERT INTO $db.utilisateur_has_concert (`idUtilisateur_has_concert`, `utilisateur_idUtilisateur`, `concert_idConcert`, `ticket_idTicket`) VALUES (NULL, $idUtilisateur, $idConcert, $idTicket)";
 foreach ($values as $row) {
-$stmt = $conn->prepare($query);
-$stmt->execute();
+$stmt = $conn -> prepare($query);
+$stmt -> execute();
 }
 if ($nombre_de_places == 1) {
 echo "<script>alert('Votre place a été réservé')

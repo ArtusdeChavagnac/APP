@@ -1,7 +1,7 @@
 <?php
 session_start();
-if (isset($_SESSION['utilisateur_abonnement_idAbonnement'])) {
-if ($_SESSION['utilisateur_abonnement_idAbonnement'] != 2) {
+if (isset($_SESSIon['utilisateur_abonnement_idAbonnement'])) {
+if ($_SESSIon['utilisateur_abonnement_idAbonnement'] != 2) {
 echo "<script>window.location.href = '../index.php'</script>";
 } 
 } else {
@@ -29,9 +29,9 @@ require("../connexion-bdd.php");
 if(isset($_GET['id'])) {
 $artisteId = $_GET['id'];
 $sql = "select * from artiste where idArtiste = $artisteId";
-$result = $conn->query($sql);
-if ($result->num_rows > 0) {
-$row = $result->fetch_assoc();
+$result = $conn -> query($sql);
+if ($result -> num_rows > 0) {
+$row = $result -> fetch_assoc();
 ?>
 <h1>Modifier un artiste</h1>
 <form action = "traitement-modifier-artiste.php.php" method = "post">
@@ -54,7 +54,7 @@ $row = $result->fetch_assoc();
 } else {
 echo "Artiste non trouvé.";
 }
-$conn->close();
+$conn -> close();
 } else {
 echo "Identifiant de l'artiste non spécifié.";
 }

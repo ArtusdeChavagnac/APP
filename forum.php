@@ -11,8 +11,8 @@
 <body>
 <?php
 session_start();
-$idUtilisateur = $_SESSION["utilisateur_id"];
-$utilisteur_prenom = $_SESSION["utilisateur_prenom"];
+$idUtilisateur = $_SESSIon["utilisateur_id"];
+$utilisteur_prenom = $_SESSIon["utilisateur_prenom"];
 echo "<p>Vous êtes connecté en tant que $utilisteur_prenom</p>";
 ?>
 <header><iframe src = "commun/header.php"></iframe></header>

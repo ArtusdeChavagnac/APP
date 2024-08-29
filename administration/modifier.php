@@ -1,7 +1,7 @@
 <?php
 session_start();
-if (isset($_SESSION['utilisateur_abonnement_idAbonnement'])) {
-if ($_SESSION['utilisateur_abonnement_idAbonnement'] != 2) {
+if (isset($_SESSIon['utilisateur_abonnement_idAbonnement'])) {
+if ($_SESSIon['utilisateur_abonnement_idAbonnement'] != 2) {
 echo "<script>window.location.href = '../index.php'</script>";
 } 
 } else {
@@ -25,14 +25,14 @@ adresse_email='$updatedAdresseEmail',
 numero_de_telephone='$updatedTelephone',
 abonnement_idAbonnement='$updatedAbonnement'
 where idUtilisateur=$userId";
-$conn->query($sqlUpdate);
+$conn -> query($sqlUpdate);
 header("Location: dashboard.php");
 exit();
 }
 $sqlSelect = "select * from utilisateur where idUtilisateur=$userId";
-$resultSelect = $conn->query($sqlSelect);
-if ($resultSelect->num_rows == 1) {
-$userData = $resultSelect->fetch_assoc();
+$resultSelect = $conn -> query($sqlSelect);
+if ($resultSelect -> num_rows == 1) {
+$userData = $resultSelect -> fetch_assoc();
 } else {
 echo "Utilisateur non trouvé.";
 }

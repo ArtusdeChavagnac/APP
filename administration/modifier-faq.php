@@ -1,7 +1,7 @@
 <?php
 session_start();
-if (isset($_SESSION['utilisateur_abonnement_idAbonnement'])) {
-if ($_SESSION['utilisateur_abonnement_idAbonnement'] != 2) {
+if (isset($_SESSIon['utilisateur_abonnement_idAbonnement'])) {
+if ($_SESSIon['utilisateur_abonnement_idAbonnement'] != 2) {
 echo "<script>window.location.href = '../index.php'</script>";
 } 
 } else {
@@ -29,13 +29,13 @@ require("../connexion-bdd.php");
 if(isset($_GET['id'])) {
 $faqId = $_GET['id'];
 $sql = "select * from faq where idFaq = $faqId";
-$result = $conn->query($sql);
-if ($result->num_rows > 0) {
-$row = $result->fetch_assoc();
+$result = $conn -> query($sql);
+if ($result -> num_rows > 0) {
+$row = $result -> fetch_assoc();
 $idFaq = $row["idfaq"];
 $sql = "select texte from reponse_faq where $idFaq = faq_idFaq";
-$reponses = $conn->query($sql);
-$reponse = $reponses->fetch_assoc();
+$reponses = $conn -> query($sql);
+$reponse = $reponses -> fetch_assoc();
 ?>
 <h1>Modifier une Question/Réponse</h1>
 <form action = "traitement-modifier-faq.php.php" method = "post">
@@ -50,7 +50,7 @@ $reponse = $reponses->fetch_assoc();
 } else {
 echo "Question/réponse non trouvée.";
 }
-$conn->close();
+$conn -> close();
 } else {
 echo "Identifiant de la question/réponse non spécifié.";
 }

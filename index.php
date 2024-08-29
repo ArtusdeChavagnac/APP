@@ -5,15 +5,15 @@ $servername = "localhost";
 $username = "root";
 $password = "";
 $conn = new mysqli($servername, $username, $password);
-if ($conn->connect_error) {
-die("Connection failed : ".$conn->connect_error);
+if ($conn -> connect_error) {
+die("Connection failed : ".$conn -> connect_error);
 }
 try {
 $conn = new PDO("mysql:host=$servername;dbname=$db", $username, $password);
-$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$conn -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTIon);
 }
 catch(PDOException $e) {
-echo "Connection failed: " . $e->getMessage();
+echo "Connection failed: " . $e -> getMessage();
 }
 ?>
 <?php
@@ -22,11 +22,11 @@ $username = "root";
 $password = "";
 $dbname = "sonotech";
 try{
-$bdd = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+$bdd = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTIon));
 } catch (PDOException $e) {
-echo "La connexion à la base de données a échoué : ". $e->getMessage();
+echo "La connexion à la base de données a échoué : ". $e -> getMessage();
 }
-$allartists = $bdd ->query("select * from artiste");
+$allartists = $bdd -> query("select * from artiste");
 if (isset($_GET["q"]) AND !empty($_GET["q"])){
 $recherche = htmlspecialchars($_GET["q"]);
 $allartists = $bdd -> query("select * from artiste where prenom LIKE"%".$recherche."%"");
@@ -74,8 +74,8 @@ form.submit();
 </form> 
 <section class = "afficher_artiste">
 <?php
-if($allartists->rowCount() > 0){
-while($artist = $allartists->fetch()){
+if($allartists -> rowCount() > 0){
+while($artist = $allartists -> fetch()){
 ?>
 <p><?=$artist["prenom"]; ?></p>
 <?php
@@ -95,9 +95,9 @@ while($artist = $allartists->fetch()){
 <h2>Nos prochains événements</h2>
 <?php
 $query = "select idConcert, image from $db.concert";
-$stmt = $conn->prepare($query);
-$stmt->execute();
-$concertRawData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$stmt = $conn -> prepare($query);
+$stmt -> execute();
+$concertRawData = $stmt -> fetchAll(PDO::FETCH_asSOC);
 $concertData = array();
 foreach($concertRawData as $row) {
 $image = $row["image"];

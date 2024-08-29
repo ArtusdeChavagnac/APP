@@ -1,7 +1,7 @@
 <?php
 session_start();
-if (isset($_SESSION['utilisateur_abonnement_idAbonnement'])) {
-if ($_SESSION['utilisateur_abonnement_idAbonnement'] != 2) {
+if (isset($_SESSIon['utilisateur_abonnement_idAbonnement'])) {
+if ($_SESSIon['utilisateur_abonnement_idAbonnement'] != 2) {
 echo "<script>window.location.href = '../index.php'</script>";
 } 
 } else {
@@ -13,17 +13,17 @@ $capteurId = $_POST['idCapteur_sonore'];
 $position = $_POST['position'];
 $date = $_POST['date'];
 $niveauSonore = $_POST['niveau_sonore'];
-$stmt = $conn->prepare("update capteur_sonore set position = ?, `date` = ? ,niveau_sonore = ? where idCapteur_sonore = ?");
-$stmt->bind_param("ssii", $position, $date, $niveauSonore, $capteurId);
-if ($stmt->execute()) {
+$stmt = $conn -> prepare("update capteur_sonore set position = ?, `date` = ? ,niveau_sonore = ? where idCapteur_sonore = ?");
+$stmt -> bind_param("ssii", $position, $date, $niveauSonore, $capteurId);
+if ($stmt -> execute()) {
 header("Location: gestion-capteur.php");
 exit();
 } else {
-echo "Erreur lors de la modification : " . $stmt->error;
+echo "Erreur lors de la modification : " . $stmt -> error;
 }
-$stmt->close();
+$stmt -> close();
 } else {
 echo "Erreur : Données manquantes.";
 }
-$conn->close();
+$conn -> close();
 ?>

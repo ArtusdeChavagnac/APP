@@ -5,15 +5,15 @@ $servername = "localhost";
 $username = "root";
 $password = "";
 $conn = new mysqli($servername, $username, $password);
-if ($conn->connect_error) {
-die("Connection failed : ".$conn->connect_error);
+if ($conn -> connect_error) {
+die("Connection failed : ".$conn -> connect_error);
 }
 try {
 $conn = new PDO("mysql:host=$servername;dbname=$db", $username, $password);
-$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$conn -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTIon);
 }
 catch(PDOException $e) {
-echo "Connection failed: " . $e->getMessage();
+echo "Connection failed: " . $e -> getMessage();
 }
 ?>
 <!doctype html>
@@ -34,9 +34,9 @@ echo "Connection failed: " . $e->getMessage();
 <ul>
 <?php
 $query = "select nom from $db.partenaires";
-$stmt = $conn->prepare($query);
-$stmt->execute();
-$partenaires = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$stmt = $conn -> prepare($query);
+$stmt -> execute();
+$partenaires = $stmt -> fetchAll(PDO::FETCH_asSOC);
 foreach ($partenaires as $row) {
 $nom = $row['nom'];
 echo "<li>$nom</li>";

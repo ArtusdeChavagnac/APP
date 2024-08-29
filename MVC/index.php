@@ -21,7 +21,7 @@ $prenom = "";
 $id = "";
 if($_GET["action"]= = "modifier") {
 $reponse=selectUser($db,$_GET["nom"],$_GET["prenom"],$_GET["ID"]);
-while($user = $reponse->fetch()){
+while($user = $reponse -> fetch()){
 $nom = $user["nom"];
 $prenom = $user["prenom"];
 $id = $user["id"];

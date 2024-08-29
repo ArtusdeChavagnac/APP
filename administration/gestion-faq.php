@@ -1,7 +1,7 @@
 <?php
 session_start();
-if (isset($_SESSION['utilisateur_abonnement_idAbonnement'])) {
-if ($_SESSION['utilisateur_abonnement_idAbonnement'] != 2) {
+if (isset($_SESSIon['utilisateur_abonnement_idAbonnement'])) {
+if ($_SESSIon['utilisateur_abonnement_idAbonnement'] != 2) {
 echo "<script>window.location.href = '../index.php'</script>";
 } 
 } else {
@@ -35,13 +35,13 @@ echo "<script>window.location.href = '../index.php'</script>";
 <?php
 require("../connexion-bdd.php");
 $sql = "select * from faq";
-$result = $conn->query($sql);
-if ($result->num_rows > 0) {
-while ($row = $result->fetch_assoc()) {
+$result = $conn -> query($sql);
+if ($result -> num_rows > 0) {
+while ($row = $result -> fetch_assoc()) {
 $idFaq = $row["idfaq"];
 $sql = "select texte from reponse_faq where $idFaq = faq_idFaq";
-$reponses = $conn->query($sql);
-$reponse = $reponses->fetch_assoc();
+$reponses = $conn -> query($sql);
+$reponse = $reponses -> fetch_assoc();
 echo '<tr>';
 echo '<td>' . $row["idfaq"] . '</td>';
 echo '<td>' . $row["texte"] . '</td>';
