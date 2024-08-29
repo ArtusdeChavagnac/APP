@@ -1,7 +1,7 @@
 <?php
 session_start();
-if (isset($_SESSIon['utilisateur_abonnement_idAbonnement'])) {
-if ($_SESSIon['utilisateur_abonnement_idAbonnement'] != 2) {
+if (isset($_SESSION['utilisateur_abonnement_idAbonnement'])) {
+if ($_SESSION['utilisateur_abonnement_idAbonnement'] != 2) {
 echo "<script>window.location.href = '../index.php'</script>";
 } 
 } else {
@@ -11,13 +11,13 @@ require("../connexion-bdd.php");
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $question = $_POST["texte"];
 $reponse = $_POST["reponse"];
-$sql = "INSERT INTO faq (texte, date) VALUES (?, NOW())";
+$sql = "insert into faq (texte, date) values (?, NOW())";
 $stmt = $conn -> prepare($sql);
 if ($stmt) {
 $stmt -> bind_param("s", $question);
 if ($stmt -> execute()) {
 $faqId = $stmt -> insert_id;
-$sqlReponse = "INSERT INTO reponse_faq (texte, date, faq_idFaq) VALUES (?, NOW(), ?)";
+$sqlReponse = "insert into reponse_faq (texte, date, faq_idFaq) values (?, NOW(), ?)";
 $stmtReponse = $conn -> prepare($sqlReponse);
 if ($stmtReponse) {
 $stmtReponse -> bind_param("si", $reponse, $faqId);

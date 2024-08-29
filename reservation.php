@@ -1,7 +1,7 @@
 <?php
 session_start();
-if (isset($_SESSIon['utilisateur_connecte'])) {
-$statut = $_SESSIon['utilisateur_connecte'];
+if (isset($_SESSION['utilisateur_connecte'])) {
+$statut = $_SESSION['utilisateur_connecte'];
 } else {
 $statut = false;
 }
@@ -15,7 +15,7 @@ die("Connection failed : ".$conn -> connect_error);
 }
 try {
 $conn = new PDO("mysql:host=$servername;dbname=$db", $username, $password);
-$conn -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTIon);
+$conn -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 }
 catch(PDOException $e) {
 echo "Connection failed: " . $e -> getMessage();
@@ -39,7 +39,7 @@ echo "Connection failed: " . $e -> getMessage();
 if (isset($_POST["imageSrc"])) {
 $imageSrc = $_POST['imageSrc'];
 $idConcert = $_POST['idConcert'];
-$_SESSIon['idConcert'] = $idConcert;
+$_SESSION['idConcert'] = $idConcert;
 echo "<script>document.getElementById('displayedImage').src= '$imageSrc'</script>";
 } else {
 echo "<script>window.loaction.href = 'index.php'</script>";

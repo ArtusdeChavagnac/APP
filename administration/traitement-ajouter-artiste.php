@@ -7,7 +7,7 @@ $prenom = $_POST['prenom'];
 $adresseEmail = $_POST['adresse_email'];
 $numeroTelephone = $_POST['numero_de_telephone'];
 $styleDeMusique = $_POST['style_de_musique'];
-$sql = "INSERT INTO artiste (pseudo, nom, prenom, adresse_email, numero_de_telephone, style_de_musique) VALUES (?, ?, ?, ?, ?, ?)";
+$sql = "insert into artiste (pseudo, nom, prenom, adresse_email, numero_de_telephone, style_de_musique) values (?, ?, ?, ?, ?, ?)";
 $stmt = $conn -> prepare($sql);
 $stmt -> bind_param("ssssss", $pseudo, $nom, $prenom, $adresseEmail, $numeroTelephone, $styleDeMusique);
 if ($stmt -> execute()) {

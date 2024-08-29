@@ -1,7 +1,7 @@
 <?php
 function crypterMdp($password) {
 // return sha1($password);
-return password_hash($password, PasSWORD_BCRYPT);
+return password_hash($password, PASSWORD_BCRYPT);
 }
 function estUneChaine($chaine): bool{
 if (empty($chaine)) {
@@ -27,7 +27,7 @@ die("Connection failed : ".$conn -> connect_error);
 }
 try {
 $conn = new PDO("mysql:host=$servername;dbname=$db", $username, $password);
-$conn -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTIon);
+$conn -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 }
 catch(PDOException $e)
 {
@@ -58,7 +58,7 @@ if ($nombre_de_lignes > 0) {
 echo "<script>alert('Cette adresse e-mail est déjà utilisé')
 window.location.href = 'inscription.php';</script>";
 } else {
-$stmt = $conn -> prepare("INSERT INTO $db.utilisateur(nom,prenom,date_de_naissance,adresse_email, numero_de_telephone, mot_de_passe,abonnement_idAbonnement) VALUES (:nom, :prenom, :date_de_naissance, :adresse_email, :numero_de_telephone, :mot_de_passe, :abonnement_idAbonnement)");
+$stmt = $conn -> prepare("insert into $db.utilisateur(nom,prenom,date_de_naissance,adresse_email, numero_de_telephone, mot_de_passe,abonnement_idAbonnement) values (:nom, :prenom, :date_de_naissance, :adresse_email, :numero_de_telephone, :mot_de_passe, :abonnement_idAbonnement)");
 $nom = htmlspecialchars($nom);
 $prenom = htmlspecialchars($prenom);
 $mail = htmlspecialchars($mail);

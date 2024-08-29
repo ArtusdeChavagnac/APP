@@ -10,7 +10,7 @@ die("Connection failed : ".$conn -> connect_error);
 }
 try {
 $conn = new PDO("mysql:host=$servername;dbname=$db", $username, $password);
-$conn -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTIon);
+$conn -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 }
 catch(PDOException $e) {
 echo "Connection failed: " . $e -> getMessage();
@@ -36,7 +36,7 @@ echo "Connection failed: " . $e -> getMessage();
 $query = "select nom from $db.partenaires";
 $stmt = $conn -> prepare($query);
 $stmt -> execute();
-$partenaires = $stmt -> fetchAll(PDO::FETCH_asSOC);
+$partenaires = $stmt -> fetchAll(PDO::FETCH_ASSOC);
 foreach ($partenaires as $row) {
 $nom = $row['nom'];
 echo "<li>$nom</li>";

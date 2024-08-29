@@ -10,7 +10,7 @@ die("Connection failed : ".$conn -> connect_error);
 }
 try {
 $conn = new PDO("mysql:host=$servername;dbname=$db", $username, $password);
-$conn -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTIon);
+$conn -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 }
 catch(PDOException $e) {
 echo "Connection failed: " . $e -> getMessage();
@@ -22,7 +22,7 @@ $username = "root";
 $password = "";
 $dbname = "sonotech";
 try{
-$bdd = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTIon));
+$bdd = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 } catch (PDOException $e) {
 echo "La connexion à la base de données a échoué : ". $e -> getMessage();
 }
@@ -97,7 +97,7 @@ while($artist = $allartists -> fetch()){
 $query = "select idConcert, image from $db.concert";
 $stmt = $conn -> prepare($query);
 $stmt -> execute();
-$concertRawData = $stmt -> fetchAll(PDO::FETCH_asSOC);
+$concertRawData = $stmt -> fetchAll(PDO::FETCH_ASSOC);
 $concertData = array();
 foreach($concertRawData as $row) {
 $image = $row["image"];

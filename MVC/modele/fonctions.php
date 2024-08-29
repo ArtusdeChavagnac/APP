@@ -5,7 +5,7 @@ $reponse -> execute(array($nom, $prenom, $id));
 return $reponse;
 }
 function insertUsers($db, $nom, $prenom) {
-$reponse = $db -> prepare("INSERT INTO users (nom, prenom) VALUES (?, ?)");
+$reponse = $db -> prepare("insert into users (nom, prenom) values (?, ?)");
 $reponse -> execute(array($nom, $prenom));
 return $reponse;
 }

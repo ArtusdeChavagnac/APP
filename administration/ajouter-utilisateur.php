@@ -1,7 +1,7 @@
 <?php
 session_start();
-if (isset($_SESSIon['utilisateur_abonnement_idAbonnement'])) {
-if ($_SESSIon['utilisateur_abonnement_idAbonnement'] != 2) {
+if (isset($_SESSION['utilisateur_abonnement_idAbonnement'])) {
+if ($_SESSION['utilisateur_abonnement_idAbonnement'] != 2) {
 echo "<script>window.location.href = '../index.php'</script>";
 } 
 } else {
@@ -29,9 +29,9 @@ $dateDeNaissance = isset($_POST['date_de_naissance']) ? $_POST['date_de_naissanc
 $adresseEmail = isset($_POST['adresse_email']) ? $_POST['adresse_email'] : '';
 $numeroTelephone = isset($_POST['numero_de_telephone']) ? $_POST['numero_de_telephone'] : '';
 $MotDePasse = isset($_POST['mot_de_passe']) ? $_POST['mot_de_passe'] : '';
-$hashedPassword = password_hash($MotDePasse, PasSWORD_DEFAULT);
-$sqlInsert = "INSERT INTO utilisateur (nom, prenom, date_de_naissance, adresse_email, numero_de_telephone,mot_de_passe) 
-VALUES ('$nom', '$prenom', '$dateDeNaissance', '$adresseEmail', '$numeroTelephone','$hashedPassword')";
+$hashedPassword = password_hash($MotDePasse, PASSWORD_DEFAULT);
+$sqlInsert = "insert into utilisateur (nom, prenom, date_de_naissance, adresse_email, numero_de_telephone,mot_de_passe) 
+values ('$nom', '$prenom', '$dateDeNaissance', '$adresseEmail', '$numeroTelephone','$hashedPassword')";
 if ($conn -> query($sqlInsert) === TRUE) {
 echo "";
 } else {

@@ -68,7 +68,7 @@ echo "Erreur lors de la mise à jour des données: " . $stmt_update -> error;
 }
 $stmt_update -> close();
 } else {
-$stmt_insert = $conn -> prepare("INSERT INTO capteur_sonore (idCapteur_sonore, niveau_sonore, date, position) VALUES (?, ?, ?, ?)");
+$stmt_insert = $conn -> prepare("insert into capteur_sonore (idCapteur_sonore, niveau_sonore, date, position) values (?, ?, ?, ?)");
 if ($stmt_insert === false) {
 die('Erreur de préparation de la requête: ' . $conn -> error);
 }

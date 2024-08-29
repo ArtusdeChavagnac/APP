@@ -1,7 +1,7 @@
 <?php
 session_start();
-if (isset($_SESSIon['utilisateur_abonnement_idAbonnement'])) {
-if ($_SESSIon['utilisateur_abonnement_idAbonnement'] != 2) {
+if (isset($_SESSION['utilisateur_abonnement_idAbonnement'])) {
+if ($_SESSION['utilisateur_abonnement_idAbonnement'] != 2) {
 echo "<script>window.location.href = '../index.php'</script>";
 } 
 } else {
@@ -13,7 +13,7 @@ $capteurId = $_POST['idCapteur_sonore'];
 $position = $_POST['position'];
 $date = $_POST['date'];
 $niveauSonore = $_POST['niveau_sonore'];
-$sql = "INSERT INTO capteur_sonore (position, `date`, niveau_sonore) VALUES (?, ?, ?)";
+$sql = "insert into capteur_sonore (position, `date`, niveau_sonore) values (?, ?, ?)";
 $stmt = $conn -> prepare($sql);
 $stmt -> bind_param("ssd", $position, $date, $niveauSonore);
 if ($stmt -> execute()) {

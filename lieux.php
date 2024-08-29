@@ -6,7 +6,7 @@ $username = "root";
 $password = "";
 try {
 $conn = new PDO("mysql:host=$servername;dbname=$db", $username, $password);
-$conn -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTIon);
+$conn -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch(PDOException $e) {
 die("Connection failed: " . $e -> getMessage());
 }
@@ -102,7 +102,7 @@ display: block;
 $query = "select * from capteur_sonore";
 $stmt = $conn -> prepare($query);
 $stmt -> execute();
-$lieuRawData = $stmt -> fetchAll(PDO::FETCH_asSOC);
+$lieuRawData = $stmt -> fetchAll(PDO::FETCH_ASSOC);
 foreach($lieuRawData as $row){
 echo "<tr>";
 echo "<td>{$row['position']}</td>";
