@@ -35,6 +35,8 @@ if (isset($_SESSION['utilisateur_abonnement_idAbonnement'])) {
         <a href="http://localhost/phpmyadmin" target="_top">Gestion du Forum</a>
         <a href="gestioncapteur.php" target="_top">Gestion des Capteurs</a>
         <a href="http://localhost/phpmyadmin" target="_top">Gestion des évenements</a>
+        <a href="log.php" target="_top">Log des Cpateurs</a>
+
         
 
         
