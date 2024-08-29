@@ -27,7 +27,7 @@ echo "Connection failed: " . $e->getMessage();
 <title>Nos partenaires — SonoTech</title>
 </head>
 <body>
-<header><iframe src = "communs/header.php"></iframe></header>
+<header><iframe src = "commun/header.php"></iframe></header>
 <div id = "div-contenu">
 <h1>Nos partenaires</h1>
 <p>Voilà une liste des entreprises qui ont choisi de nous accompagner dans ce projet. C'est grâce à leur soutien que nous pouvons vous offrir une meilleure expérience auditive.</p>
@@ -44,6 +44,6 @@ echo "<li>$nom</li>";
 ?>
 </ul>
 </div>
-<footer><iframe src = "communs/footer.php"></iframe></footer>
+<footer><iframe src = "commun/footer.php"></iframe></footer>
 </body>
 </html>

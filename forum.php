@@ -15,7 +15,7 @@ $idUtilisateur = $_SESSION['utilisateur_id'];
 $utilisteur_prenom = $_SESSION['utilisateur_prenom'];
 echo "<p>Vous êtes connecté en tant que $utilisteur_prenom</p>";
 ?>
-<header><iframe src = "communs/header.php"></iframe></header>
+<header><iframe src = "commun/header.php"></iframe></header>
 <h2>Poser une question</h2>
 <form method = "post" action = "traitement-forum.php">
 <label for = "question">Votre question:</label>
@@ -26,6 +26,6 @@ echo "<p>Vous êtes connecté en tant que $utilisteur_prenom</p>";
 <?php
 include 'afficher-question.php';
 ?>
-<footer><iframe src = "communs/footer.php"></iframe></footer>
+<footer><iframe src = "commun/footer.php"></iframe></footer>
 </body>
 </html>

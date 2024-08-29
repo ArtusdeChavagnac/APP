@@ -32,7 +32,7 @@ $idConcert = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <title>Événements — SonoTech</title>
 </head>
 <body>
-<header><iframe src = "communs/header.php"></iframe></header>
+<header><iframe src = "commun/header.php"></iframe></header>
 <div id = "div-contenu">
 <h1>Événements</h1>
 <p>Voici les prochains événements auxquels nous participons.</p>
@@ -105,6 +105,6 @@ echo "</tr>";
 </tr>
 </table>
 </div>
-<footer><iframe src = "communs/footer.php"></iframe></footer>
+<footer><iframe src = "commun/footer.php"></iframe></footer>
 </body>
 </html>

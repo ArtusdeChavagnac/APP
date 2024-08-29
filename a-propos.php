@@ -9,7 +9,7 @@
 <title>À propos — SonoTech</title>
 </head>
 <body>
-<header><iframe src = "communs/header.php"></iframe></header>
+<header><iframe src = "commun/header.php"></iframe></header>
 <div id = "div-contenu">
 <h1>À propos</h1>
 <h4>SonoTech - là où la passion musicale devient une expérience inoubliable</h4>
@@ -22,6 +22,6 @@ Rejoignez-nous dans cette aventure où la musique et la technologie se rencontre
 <p>Le projet SonoTech a été développé par :</p>
 <p>Artus Étienne Joan Kelyan Kevin Louis</p>
 </div>
-<footer><iframe src = "communs/footer.php"></iframe></footer>
+<footer><iframe src = "commun/footer.php"></iframe></footer>
 </body>
 </html>

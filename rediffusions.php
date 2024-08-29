@@ -9,7 +9,7 @@
 <title>Rediffusions — SonoTech</title>
 </head>
 <body>
-<header><iframe src = "communs/header.php"></iframe></header>
+<header><iframe src = "commun/header.php"></iframe></header>
 <div id = "div-contenu">
 <h1>Rediffusions de Concerts</h1>
 <p>Bienvenue sur notre page de rediffusions de concerts. Découvrez ci-dessous les performances passées disponibles en rediffusion :</p>
@@ -83,7 +83,7 @@ Votre navigateur ne supporte pas la lecture de vidéos.
 <footer>
 <p>&copy; 2023 Rediffusions de Concerts. Tous droits réservés.</p>
 <br>
-<iframe src = "communs/footer.php"></iframe>
+<iframe src = "commun/footer.php"></iframe>
 </footer>
 </body>
 </html>

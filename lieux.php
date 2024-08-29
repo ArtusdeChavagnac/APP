@@ -88,7 +88,7 @@ display: block;
 </head>
 <body>
 <header>
-<iframe src = "communs/header.php" style = "width: 100%; height: 100px; border: none;"></iframe>
+<iframe src = "commun/header.php" style = "width: 100%; height: 100px; border: none;"></iframe>
 </header>
 <div id = "div-contenu">
 <h1>Lieux</h1>
@@ -118,7 +118,7 @@ $conn = null;
 </div>
 </div>
 <footer>
-<iframe src = "communs/footer.php" style = "width: 100%; height: 100px; border: none;"></iframe>
+<iframe src = "commun/footer.php" style = "width: 100%; height: 100px; border: none;"></iframe>
 </footer>
 <script>
 function showCaption(text) {

@@ -7,7 +7,7 @@
 <link rel = "shortcut icon" href = "images/shortcut icon.png">
 <script src = "script.js"></script>
 </head>
-<header><iframe src = "communs/header.php"></iframe></header>
+<header><iframe src = "commun/header.php"></iframe></header>
 <body>
 <div id = "body-transparent">
 <header>
@@ -25,7 +25,7 @@
 </div>
 </div>
 <footer>
-<p><iframe src = "communs/footer.php"></iframe></p>
+<p><iframe src = "commun/footer.php"></iframe></p>
 </footer>
 </body>
 </html>

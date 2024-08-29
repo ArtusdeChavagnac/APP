@@ -46,7 +46,7 @@ $_SESSION['utilisateur_abonnement_idAbonnement'] = $utilisateurData['abonnement_
 echo $_SESSION['utilisateur_id'];
 if ($utilisateurData['abonnement_idAbonnement'] == 2) {
 echo "<script>alert('Vous êtes connecté')
-window.location.href = 'admin/dashboard.php';</script>";
+window.location.href = 'administration/dashboard.php';</script>";
 } else {
 echo "<script>alert('Vous êtes connecté')
 window.location.href = 'index.php';</script>";

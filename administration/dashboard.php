@@ -20,15 +20,15 @@ echo "<script>window.location.href = '../index.php'</script> " ;
 </head>
 <body>
 <header>
-<iframe src = "../communs/header.php"></iframe>
+<iframe src = "../commun/header.php"></iframe>
 </header>
 <div id = "div-contenu">
 <h1>Page d'Administration</h1>
-<a href = "gestionfaq.php" target = "_top">Gestion de la FAQ</a>
-<a href = "gestionartiste.php" target = "_top">Gestion des artistes</a>
+<a href = "gestion-faq.php" target = "_top">Gestion de la FAQ</a>
+<a href = "gestion-artiste.php" target = "_top">Gestion des artistes</a>
 <a href = "http://localhost/phpmyadmin" target = "_top">Gestion des salles</a>
 <a href = "http://localhost/phpmyadmin" target = "_top">Gestion du Forum</a>
-<a href = "gestioncapteur.php" target = "_top">Gestion des Capteurs</a>
+<a href = "gestion-capteur.php" target = "_top">Gestion des Capteurs</a>
 <a href = "http://localhost/phpmyadmin" target = "_top">Gestion des évenements</a>
 <a href = "log.php" target = "_top">Log des Cpateurs</a>
 <h2>Liste des Utilisateurs</h2>
@@ -75,13 +75,13 @@ echo "Aucun utilisateur trouvé.";
 }
 $conn->close();
 ?>
-<form method = "" action = "ajouterUtilisateur.php">
+<form method = "" action = "ajouter-utilisateur.php">
 <input type = "hidden" name = "action" value = "Ajouter">
 <input type = "submit" value = "Ajouter un utilisateur">
 </form>
 </div>
 <footer>
-<iframe src = "../communs/footer.php"></iframe> 
+<iframe src = "../commun/footer.php"></iframe> 
 </footer>
 </body>
 </html>

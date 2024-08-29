@@ -31,7 +31,7 @@ echo "Connection failed: " . $e->getMessage();
 <title>Réservation de Billets — SonoTech</title>
 </head>
 <body>
-<header><iframe src = "communs/header.php"></iframe></header>
+<header><iframe src = "commun/header.php"></iframe></header>
 <div id = "div-contenu">
 <h1>Réservation de Billets</h1>
 <img src = "" id = "displayedImage" alt = "Displayed Image">
@@ -67,7 +67,7 @@ echo "<script>window.loaction.href = 'index.php'</script>";
 <button type = "submit">Réserver</button>
 </form>
 </div>
-<footer><iframe src = "communs/footer.php"></iframe></footer>
+<footer><iframe src = "commun/footer.php"></iframe></footer>
 <script>
 document.getElementById('nombre-billets').addEventListener('input', function() {
 var nombreBillets = this.value;

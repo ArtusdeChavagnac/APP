@@ -22,7 +22,7 @@ display: none;
 </head>
 <body>
 <nav>
-<iframe src = "communs/header.php"></iframe>
+<iframe src = "commun/header.php"></iframe>
 </nav>
 <h1>Mon compte</h1>
 <div id = "div-contenu">
@@ -64,7 +64,7 @@ display: none;
 </button> 
 </div>
 <footer>
-<iframe src = "communs/footer.php"></iframe>
+<iframe src = "commun/footer.php"></iframe>
 </footer>
 <script>
  

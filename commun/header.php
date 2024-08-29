@@ -28,7 +28,7 @@ session_start();
 <td><?php
 if (isset($_SESSION['utilisateur_abonnement_idAbonnement'])){
 if ($_SESSION['utilisateur_abonnement_idAbonnement'] == 2) {
-echo "<a href = '../admin/dashboard.php' target ='_top'>DashBoard</a>";
+echo "<a href = '../administration/dashboard.php' target ='_top'>DashBoard</a>";
 }
 }
 ?></td>

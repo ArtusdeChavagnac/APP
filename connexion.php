@@ -16,7 +16,7 @@ exit();
 <title>Connexion — SonoTech</title>
 </head>
 <body>
-<header><iframe src = "communs/header.php"></iframe></header>
+<header><iframe src = "commun/header.php"></iframe></header>
 <div id = "div-contenu">
 <h1>Connexion</h1>
 <form action = "script-connection.php" method = "post" onsubmit = "return submitconfirm()">
@@ -26,6 +26,6 @@ exit();
 </form>
 <a href = "inscription.php">Je n'ai pas de compte.</a>
 </div>
-<footer><iframe src = "communs/footer.php"></iframe></footer>
+<footer><iframe src = "commun/footer.php"></iframe></footer>
 </body>
 </html>

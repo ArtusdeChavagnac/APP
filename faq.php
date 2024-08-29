@@ -36,7 +36,7 @@ text-align: right;
 </style>
 </head>
 <body>
-<header><iframe src = "communs/header.php"></iframe></header>
+<header><iframe src = "commun/header.php"></iframe></header>
 <div id = "div-contenu">
 <h1>FAQ</h1>
 <?php
@@ -63,6 +63,6 @@ echo '</ul>';
 $conn->close();
 ?>
 </div>
-<footer><iframe src = "communs/footer.php"></iframe></footer>
+<footer><iframe src = "commun/footer.php"></iframe></footer>
 </body>
 </html>

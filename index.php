@@ -66,7 +66,7 @@ form.submit();
 </head>
 <body>
 <header>
-<iframe src = "communs/header.php"></iframe>
+<iframe src = "commun/header.php"></iframe>
 <div class = "search-bar">
 <form method = "GET">
 <input type = "text" name = "q" placeholder = "Rechercher...">
@@ -109,6 +109,6 @@ echo "<img src= '$image' onclick= 'openImage(\"$image\", \"$idConcert\")' alt='C
 <p>Grâce à nos technologies d'analyses sonores avancées, profitez des meilleures places au sein des concerts les plus inoubliables. Différentes options de placement sont disponibles selon votre budget ! Avec SonoTech finit les acouphènes en sortant des concerts, les places trop bruyantes ou avec une mauvaise qualité sonore ne seront jamais vendues sur ce site.</p>
 <p></p>
 </div>
-<footer><iframe src = "communs/footer.php"></iframe></footer>
+<footer><iframe src = "commun/footer.php"></iframe></footer>
 </body>
 </html>

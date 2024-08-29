@@ -12,7 +12,7 @@ include('./fonctions.php');
 <title>Inscription — SonoTech</title>
 </head>
 <body>
-<header><iframe src = "communs/header.php"></iframe></header>
+<header><iframe src = "commun/header.php"></iframe></header>
 <div id = "div-contenu">
 <h1>Inscription</h1>
 <form id = "inscription" action = "traitement.php" method = "post">
@@ -30,6 +30,6 @@ include('./fonctions.php');
 </form>
 <a href = "connexion.php">J'ai déja un compte.</a>
 </div>
-<footer><iframe src = "communs/footer.php"></iframe></footer>
+<footer><iframe src = "commun/footer.php"></iframe></footer>
 </body>
 </html>
