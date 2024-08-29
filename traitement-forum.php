@@ -1,5 +1,5 @@
 <?php
-include 'connexion_bdd.php';
+include 'connexion-bdd.php';
 session_start();
 echo "<p>Vous êtes connecté en tant que " . $_SESSION['utilisateur_id'] . "</p>";
 $question = $_POST['question'];

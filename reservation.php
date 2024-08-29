@@ -15,27 +15,26 @@ die("Connection failed : ".$conn->connect_error);
 }
 try {
 $conn = new PDO("mysql:host=$servername;dbname=$db", $username, $password);
-// set the PDO error mode to exception
 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 }
 catch(PDOException $e) {
 echo "Connection failed: " . $e->getMessage();
 }
 ?>
-<html lang="fr">
+<html lang = "fr">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="stylesheet.css">
-<link rel="shortcut icon" href="images/shortcut icon.png">
-<script src="script.js"></script>
+<meta charset = "utf-8">
+<meta name = "viewport" content = "width=device-width, initial-scale=1">
+<link rel = "stylesheet" href = "stylesheet.css">
+<link rel = "shortcut icon" href = "images/shortcut icon.png">
+<script src = "script.js"></script>
 <title>Réservation de Billets — SonoTech</title>
 </head>
 <body>
-<header><iframe src="communs/header.php"></iframe></header>
-<div id="div-contenu">
+<header><iframe src = "communs/header.php"></iframe></header>
+<div id = "div-contenu">
 <h1>Réservation de Billets</h1>
-<img src="" id="displayedImage" alt="Displayed Image">
+<img src = "" id = "displayedImage" alt = "Displayed Image">
 <?php
 if (isset($_POST["imageSrc"])) {
 $imageSrc = $_POST['imageSrc'];
@@ -46,38 +45,36 @@ echo "<script>document.getElementById('displayedImage').src= '$imageSrc'</script
 echo "<script>window.loaction.href = 'index.php'</script>";
 }
 ?>
-<form id="reservation-form" action="traitement_reservation.php" method="post">
+<form id = "reservation-form" action = "traitement-reservation.php" method = "post">
 </select>
 <label>Choisissez le type de place :</label>
 <div>
-<input type="radio" id="placeNormale" name="typePlace" value="normale" checked>
-<label for="placeNormale">Place Normale</label>
+<input type = "radio" id = "placeNormale" name = "typePlace" value = "normale" checked>
+<label for = "placeNormale">Place Normale</label>
 </div>
 <div>
-<input type="radio" id="placeVIP" name="typePlace" value="VIP">
-<label for="placeVIP">Place VIP (plus cher)</label>
+<input type = "radio" id = "placeVIP" name = "typePlace" value = "VIP">
+<label for = "placeVIP">Place VIP (plus cher)</label>
 </div>
-<label for="date">Choisissez une date :</label>
-<input type="date" id="date" name="date" required>
-<label for="heure">Choisissez une heure :</label>
-<input type="time" id="heure" name="heure" required>
-<label for="nombre_billets">Nombre de billets :</label>
-<input type="number" id="nombre_billets" name="nombre_billets" min="1" required> <br>
-<label for="prix-total">Prix total :</label>
-<span id="prix-total">0 €</span>
-<button type="submit">Réserver</button>
+<label for = "date">Choisissez une date :</label>
+<input type = "date" id = "date" name = "date" required>
+<label for = "heure">Choisissez une heure :</label>
+<input type = "time" id = "heure" name = "heure" required>
+<label for = "nombre_billets">Nombre de billets :</label>
+<input type = "number" id = "nombre_billets" name = "nombre_billets" min = "1" required> <br>
+<label for = "prix-total">Prix total :</label>
+<span id = "prix-total">0 €</span>
+<button type = "submit">Réserver</button>
 </form>
 </div>
-<footer><iframe src="communs/footer.php"></iframe></footer>
+<footer><iframe src = "communs/footer.php"></iframe></footer>
 <script>
-// JavaScript pour calculer le prix total en fonction du nombre de billets et du type de place
 document.getElementById('nombre-billets').addEventListener('input', function() {
 var nombreBillets = this.value;
-var prixUnitaire = 10; // Prix de billet pour une place normale
-var typePlace = document.querySelector('input[name="typePlace"]:checked').value;
-// Prix unitaire différent pour une place VIP
+var prixUnitaire = 10; // €
+var typePlace = document.querySelector('input[name = "typePlace"]:checked').value;
 if (typePlace === 'VIP') {
-prixUnitaire = 20; // A Changer selon le prix du billet VIP
+prixUnitaire = 20; // €
 }
 var prixTotal = nombreBillets * prixUnitaire;
 document.getElementById('prix-total').textContent = prixTotal + ' €';

@@ -9,24 +9,23 @@ echo "<script>window.location.href = '../index.php'</script> " ;
 }
 ?>
 <!doctype html>
-<html lang="fr">
+<html lang = "fr">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../stylesheet.css">
-<link rel="shortcut icon" href="../images/shortcut icon.png"> 
-<script src="../script.js"></script> 
+<meta charset = "utf-8">
+<meta name = "viewport" content = "width=device-width, initial-scale=1">
+<link rel = "stylesheet" href = "../stylesheet.css">
+<link rel = "shortcut icon" href = "../images/shortcut icon.png"> 
+<script src = "../script.js"></script> 
 <title>Modifier FAQ — SonoTech</title>
 </head>
 <body>
 <header>
-<iframe src="../communs/header.php"></iframe>
+<iframe src = "../communs/header.php"></iframe>
 </header>
-<div id="div-contenu">
+<div id = "div-contenu">
 <h1>Modifier FAQ</h1>
 <?php 
-require("../connexion_bdd.php");
-// Vérifiez si un identifiant est passé via la requête GET
+require("../connexion-bdd.php");
 if(isset($_GET['id'])) {
 $faqId = $_GET['id'];
 $sql = "SELECT * FROM faq WHERE idFaq = $faqId";
@@ -39,13 +38,13 @@ $reponses = $conn->query($sql);
 $reponse = $reponses->fetch_assoc();
 ?>
 <h1>Modifier une Question/Réponse</h1>
-<form action="traitementmodificationfaq.php" method="post">
-<input type="hidden" name="idfaq" value="<?php echo $row['idfaq']; ?>">
-<label for="question">Question :</label>
-<input type="text" name="texte" value="<?php echo $row['texte']; ?>" required>
-<label for="reponse">Réponse :</label>
-<textarea name="reponse" required><?php echo $reponse['texte']; ?></textarea>
-<button type="submit">Modifier</button>
+<form action = "traitementmodificationfaq.php" method = "post">
+<input type = "hidden" name = "idfaq" value = "<?php echo $row['idfaq']; ?>">
+<label for = "question">Question :</label>
+<input type = "text" name = "texte" value = "<?php echo $row['texte']; ?>" required>
+<label for = "reponse">Réponse :</label>
+<textarea name = "reponse" required><?php echo $reponse['texte']; ?></textarea>
+<button type = "submit">Modifier</button>
 </form>
 <?php
 } else {
@@ -58,7 +57,7 @@ echo "Identifiant de la question/réponse non spécifié.";
 ?>
 </div>
 <footer>
-<iframe src="../communs/footer.php"></iframe> 
+<iframe src = "../communs/footer.php"></iframe> 
 </footer>
 </body>
 </html>

@@ -9,22 +9,22 @@ echo "<script>window.location.href = '../index.php'</script> " ;
 }
 ?>
 <!doctype html>
-<html lang="fr">
+<html lang = "fr">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../stylesheet.css">
-<link rel="shortcut icon" href="../images/shortcut icon.png"> 
-<script src="../script.js"></script> 
+<meta charset = "utf-8">
+<meta name = "viewport" content = "width=device-width, initial-scale=1">
+<link rel = "stylesheet" href = "../stylesheet.css">
+<link rel = "shortcut icon" href = "../images/shortcut icon.png"> 
+<script src = "../script.js"></script> 
 <title>Gestion FAQ — SonoTech</title>
 </head>
 <body>
 <header>
-<iframe src="../communs/header.php"></iframe>
+<iframe src = "../communs/header.php"></iframe>
 </header>
-<div id="div-contenu">
+<div id = "div-contenu">
 <h1>Gestion Capteurs</h1>
-<table border="1">
+<table border = "1">
 <tr>
 <th>ID</th>
 <th>Position</th>
@@ -34,7 +34,7 @@ echo "<script>window.location.href = '../index.php'</script> " ;
 <th>Action</th>
 </tr>
 <?php
-require("../connexion_bdd.php");
+require("../connexion-bdd.php");
 $sql = "SELECT * FROM capteur_sonore";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
@@ -45,8 +45,8 @@ echo '<td>' . $row["position"] . '</td>';
 echo '<td>' . $row["date"] . '</td>';
 echo '<td>' . $row["niveau_sonore"] . '</td>';
  
-echo '<td><a href="modifiercapteur.php?id=' . $row["idCapteur_sonore"] . '">Modifier</a></td>';
-echo '<td><a href="supprimercapteur.php?id=' . $row["idCapteur_sonore"] . '">Supprimer</a></td>';
+echo '<td><a href = "modifiercapteur.php?id=' . $row["idCapteur_sonore"] . '">Modifier</a></td>';
+echo '<td><a href = "supprimercapteur.php?id=' . $row["idCapteur_sonore"] . '">Supprimer</a></td>';
 echo '</tr>';
 }
 } else {
@@ -54,10 +54,10 @@ echo "Aucun capteur enregistré.";
 }
 ?>
 </table>
-<a href="ajoutcapteur.php" class="button">Ajouter</a>
+<a href = "ajoutcapteur.php" class = "button">Ajouter</a>
 </div>
 <footer>
-<iframe src="../communs/footer.php"></iframe> 
+<iframe src = "../communs/footer.php"></iframe> 
 </footer>
 </body>
 </html>

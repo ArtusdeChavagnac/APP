@@ -10,7 +10,6 @@ die("Connection failed : ".$conn->connect_error);
 }
 try {
 $conn = new PDO("mysql:host=$servername;dbname=$db", $username, $password);
-// set the PDO error mode to exception
 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 }
 catch(PDOException $e) {
@@ -45,7 +44,6 @@ $bdd = null ;
 <title>Accueil — SonoTech</title>
 <script>
 function openImage(imageSrc,idConcert) {
-// Redirige vers la page avec l'image en utilisant JavaScript
 var imageSrc = imageSrc;
 var idConcert = idConcert;
 var form = document.createElement('form');
@@ -69,12 +67,12 @@ form.submit();
 <body>
 <header>
 <iframe src = "communs/header.php"></iframe>
-<div class="search-bar">
-<form method="GET">
-<input type="text" name="q" placeholder="Rechercher...">
-<input type="submit" value="Rechercher">
+<div class = "search-bar">
+<form method = "GET">
+<input type = "text" name = "q" placeholder = "Rechercher...">
+<input type = "submit" value = "Rechercher">
 </form> 
-<section class="afficher_artiste">
+<section class = "afficher_artiste">
 <?php
 if($allartists->rowCount() > 0){
 while($artist = $allartists->fetch()){

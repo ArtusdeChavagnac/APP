@@ -9,24 +9,23 @@ echo "<script>window.location.href = '../index.php'</script> " ;
 }
 ?>
 <!doctype html>
-<html lang="fr">
+<html lang = "fr">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../stylesheet.css">
-<link rel="shortcut icon" href="../images/shortcut icon.png"> 
-<script src="../script.js"></script> 
+<meta charset = "utf-8">
+<meta name = "viewport" content = "width=device-width, initial-scale=1">
+<link rel = "stylesheet" href = "../stylesheet.css">
+<link rel = "shortcut icon" href = "../images/shortcut icon.png"> 
+<script src = "../script.js"></script> 
 <title>Modifier Capteur — SonoTech</title>
 </head>
 <body>
 <header>
-<iframe src="../communs/header.php"></iframe>
+<iframe src = "../communs/header.php"></iframe>
 </header>
-<div id="div-contenu">
+<div id = "div-contenu">
 <h1>Modifier Capteur</h1>
 <?php 
-require("../connexion_bdd.php");
-// Vérifiez si un identifiant est passé via la requête GET
+require("../connexion-bdd.php");
 if(isset($_GET['id'])) {
 $CapteurId = $_GET['id'];
 $sql = "SELECT * FROM capteur_sonore WHERE idCapteur_sonore = $CapteurId";
@@ -35,15 +34,15 @@ if ($result->num_rows > 0) {
 $row = $result->fetch_assoc();
 ?>
 <h1>Modifier un capteur</h1>
-<form action="traitementmodificationcapteur.php" method="post">
-<input type="hidden" name="idCapteur_sonore" value="<?php echo $row['idCapteur_sonore']; ?>">
-<label for="position">Position :</label>
-<input type="text" name="position" value="<?php echo $row['position']; ?>" required>
-<label for="date">date</label>
-<textarea name="date" required><?php echo $row['date']; ?></textarea>
-<label for="niveau_sonore">Niveau Sonore</label>
-<textarea name="niveau_sonore" required><?php echo $row['niveau_sonore']; ?></textarea>
-<button type="submit">Modifier</button>
+<form action = "traitementmodificationcapteur.php" method = "post">
+<input type = "hidden" name = "idCapteur_sonore" value = "<?php echo $row['idCapteur_sonore']; ?>">
+<label for = "position">Position :</label>
+<input type = "text" name = "position" value = "<?php echo $row['position']; ?>" required>
+<label for = "date">date</label>
+<textarea name = "date" required><?php echo $row['date']; ?></textarea>
+<label for = "niveau_sonore">Niveau Sonore</label>
+<textarea name = "niveau_sonore" required><?php echo $row['niveau_sonore']; ?></textarea>
+<button type = "submit">Modifier</button>
 </form>
 <?php
 } else {
@@ -56,7 +55,7 @@ echo "Identifiant du capteur non spécifié.";
 ?>
 </div>
 <footer>
-<iframe src="../communs/footer.php"></iframe> 
+<iframe src = "../communs/footer.php"></iframe> 
 </footer>
 </body>
 </html>

@@ -1,8 +1,8 @@
-<html lang="fr">
+<html lang = "fr">
 <head>
-<meta charset="utf-8">
+<meta charset = "utf-8">
 <title>Confirmation d'envoi</title>
-<link rel="stylesheet" href="stylesheet.css">
+<link rel = "stylesheet" href = "stylesheet.css">
 </head>
 <body>
 <h1>Message Envoyé</h1>

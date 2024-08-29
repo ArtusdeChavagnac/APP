@@ -1,6 +1,6 @@
 function submitconfirm(motDePasse, email, form) {
 var mail = email;
-//var mail = document.forms["fcontact"]["email"].value;
+// var mail = document.forms["fcontact"]["email"].value;
 var mdp = motDePasse;
 if (mdp.length < 8) {
 alert("Votre mot de passe est trop court");

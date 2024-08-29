@@ -12,13 +12,13 @@ die("Connection failed: " . $e->getMessage());
 }
 ?>
 <!doctype html>
-<html lang="fr">
+<html lang = "fr">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="stylesheet.css">
-<link rel="shortcut icon" href="images/shortcut_icon.png">
-<script src="script.js" defer></script>
+<meta charset = "utf-8">
+<meta name = "viewport" content = "width=device-width, initial-scale=1">
+<link rel = "stylesheet" href = "stylesheet.css">
+<link rel = "shortcut icon" href = "images/shortcut_icon.png">
+<script src = "script.js" defer></script>
 <title>Lieux — SonoTech</title>
 <style>
 ul {
@@ -88,9 +88,9 @@ display: block;
 </head>
 <body>
 <header>
-<iframe src="communs/header.php" style="width: 100%; height: 100px; border: none;"></iframe>
+<iframe src = "communs/header.php" style = "width: 100%; height: 100px; border: none;"></iframe>
 </header>
-<div id="div-contenu">
+<div id = "div-contenu">
 <h1>Lieux</h1>
 <p>Voici les lieux que nous avons classés pour vous, où vous pouvez consulter le niveau sonore des différentes salles de concert.</p>
 <table>
@@ -112,21 +112,20 @@ echo '</tr>';
 $conn = null;
 ?>
 </table>
-<div class="image-container">
-<img src="images/carte_sonore2.png" alt="Carte sonore des lieux" onmouseover="showCaption('Nom du lieu')">
-<div class="caption" id="caption">Nom du lieu</div>
+<div class = "image-container">
+<img src = "images/carte_sonore2.png" alt = "Carte sonore des lieux" onmouseover = "showCaption('Nom du lieu')">
+<div class = "caption" id = "caption">Nom du lieu</div>
 </div>
 </div>
 <footer>
-<iframe src="communs/footer.php" style="width: 100%; height: 100px; border: none;"></iframe>
+<iframe src = "communs/footer.php" style = "width: 100%; height: 100px; border: none;"></iframe>
 </footer>
 <script>
 function showCaption(text) {
 document.getElementById('caption').innerText = text;
 }
-// Exemple d'affectation dynamique des noms de lieux si nécessaire
 document.querySelector('.image-container img').addEventListener('mouseover', function() {
-showCaption('Lieu 1'); // Remplacez 'Nom du lieu dynamique' par la logique nécessaire pour récupérer le nom du lieu
+showCaption('Lieu 1');
 });
 </script>
 </body>

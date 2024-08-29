@@ -1,5 +1,5 @@
 <?php
-include 'connexion_bdd.php';
+include 'connexion-bdd.php';
 session_start();
 $question_id = $_POST['question_id'];
 $reponse = $_POST['reponse'];

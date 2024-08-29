@@ -12,7 +12,7 @@ while($row_reponse = $result_reponses->fetch_assoc()) {
 echo "<p> - <strong>" . $row_reponse["user_prenom"]. "</strong>: " . $row_reponse["reponse"] . "</p>";
 }
 }
-echo "<form method='post' action='traitement_reponse.php'>
+echo "<form method='post' action='traitement-reponse.php'>
 <input type='hidden' name='question_id' value='" . $row["id"] . "'>
 <label for='reponse'>Votre réponse:</label>
 <textarea name='reponse' required></textarea>

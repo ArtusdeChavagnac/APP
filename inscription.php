@@ -15,7 +15,7 @@ include('./fonctions.php');
 <header><iframe src = "communs/header.php"></iframe></header>
 <div id = "div-contenu">
 <h1>Inscription</h1>
-<form id="inscription" action="traitement.php" method = "post">
+<form id = "inscription" action = "traitement.php" method = "post">
 <input type = "text" name = "nom" placeholder = "Nom" required><br>
 <input type = "text" name = "prenom" placeholder = "Prénom" required><br>
 <input type = "text" name = "telephone" placeholder = "Numéro de téléphone" required><br>
@@ -24,7 +24,7 @@ include('./fonctions.php');
 <input type = "date" name = "dateNaissance" required><br>
 <input type = "password" name = "motDePasse" placeholder = "Mot de passe" required><br>
 <input type = "radio" name = "CGU" required>
-<label>J'accepte les <a href="CGU.html">Conditions Générales d'Utilisation de SonoTech, proposé par Event IT.</label>
+<label>J'accepte les <a href = "cgu.html">Conditions Générales d'Utilisation de SonoTech, proposé par Event IT.</label>
 <br>
 <button>Inscription</button>
 </form>

@@ -9,22 +9,22 @@ echo "<script>window.location.href = '../index.php'</script> " ;
 }
 ?>
 <!doctype html>
-<html lang="fr">
+<html lang = "fr">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../stylesheet.css">
-<link rel="shortcut icon" href="../images/shortcut icon.png"> 
-<script src="../script.js"></script> 
+<meta charset = "utf-8">
+<meta name = "viewport" content = "width=device-width, initial-scale=1">
+<link rel = "stylesheet" href = "../stylesheet.css">
+<link rel = "shortcut icon" href = "../images/shortcut icon.png"> 
+<script src = "../script.js"></script> 
 <title>Gestion FAQ — SonoTech</title>
 </head>
 <body>
 <header>
-<iframe src="../communs/header.php"></iframe>
+<iframe src = "../communs/header.php"></iframe>
 </header>
-<div id="div-contenu">
+<div id = "div-contenu">
 <h1>Gestion Artistes</h1>
-<table border="1">
+<table border = "1">
 <tr>
 <th>ID</th>
 <th>Pseudo</th>
@@ -37,7 +37,7 @@ echo "<script>window.location.href = '../index.php'</script> " ;
 <th>Action</th>
 </tr>
 <?php
-require("../connexion_bdd.php");
+require("../connexion-bdd.php");
 $sql = "SELECT * FROM artiste";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
@@ -50,8 +50,8 @@ echo '<td>' . $row["prenom"] . '</td>';
 echo '<td>' . $row["adresse_email"] . '</td>';
 echo '<td>' . $row["numero_de_telephone"] . '</td>';
 echo '<td>' . $row["style_de_musique"] . '</td>';
-echo '<td><a href="modifierArtiste.php?id=' . $row["idArtiste"] . '">Modifier</a></td>';
-echo '<td><a href="supprimerartiste.php?id=' . $row["idArtiste"] . '">Supprimer</a></td>';
+echo '<td><a href = "modifierArtiste.php?id=' . $row["idArtiste"] . '">Modifier</a></td>';
+echo '<td><a href = "supprimerartiste.php?id=' . $row["idArtiste"] . '">Supprimer</a></td>';
 echo '</tr>';
 }
 } else {
@@ -59,9 +59,9 @@ echo "Aucun artiste enregistré.";
 }
 ?>
 </table>
-<a href="ajouterArtiste.php" class="button">Ajouter</a>
+<a href = "ajouterArtiste.php" class = "button">Ajouter</a>
 </div>
 <footer>
-<iframe src="../communs/footer.php"></iframe> 
+<iframe src = "../communs/footer.php"></iframe> 
 </footer>
 </body>

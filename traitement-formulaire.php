@@ -15,13 +15,11 @@ $idUtilisateur = $_SESSION['utilisateur_id'];
 echo "<script>window.location.href = 'connexion.php'</script>";
 }
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-// Récupérer les données du formulaire
 $nom = $_POST["nom"];
 $prenom = $_POST["prenom"];
 $email = $_POST["mail"];
 $telephone = $_POST["numero_de_telephone"];
 $date_naissance = $_POST["date_de_naissance"];
-// Mettre à jour les informations dans la base de données
 $query = $bdd->prepare("UPDATE utilisateur SET nom = ?, prenom = ?, adresse_email = ?, numero_de_telephone = ?, date_de_naissance = ? WHERE idUtilisateur = ?");
 $query->execute([$nom, $prenom, $email, $telephone, $date_naissance, $idUtilisateur]);
 $_SESSION['utilisateur_nom'] = $nom;
@@ -29,7 +27,6 @@ $_SESSION['utilisateur_prenom'] = $prenom;
 $_SESSION['utilisateur_adresse_email'] = $email;
 $_SESSION['utilisateur_numero_de_telephone'] = $telephone;
 $_SESSION['utilisateur_date_de_naissance'] = $date_naissance;
-// Rediriger l'utilisateur vers la page de profil ou une autre page appropriée
-header("Location: moncompte.php"); 
+header("Location: mon-compte.php"); 
 }
 ?>
