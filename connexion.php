@@ -1,40 +1,30 @@
 <?php
-
 session_start();
-
 if(isset($_SESSION['utilisateur_connecte'])) {
-	header("Location: index.php");
-	exit();
+header("Location: index.php");
+exit();
 }
-
 ?>
-<!DOCTYPE html>
+<!doctype html>
 <html lang = "fr">
-
 <head>
-	<meta charset = "utf-8">
-	<meta name = "viewport" content = "width = device-width, initial-scale = 1">
-	<link rel = "stylesheet" href = "stylesheet.css">
-	<link rel = "shortcut icon" href = "images/shortcut icon.png">
-	<script src = "script.js"></script>
-	<title>Connexion — SonoTech</title>
+<meta charset = "utf-8">
+<meta name = "viewport" content = "width = device-width, initial-scale = 1">
+<link rel = "stylesheet" href = "stylesheet.css">
+<link rel = "shortcut icon" href = "images/shortcut icon.png">
+<script src = "script.js"></script>
+<title>Connexion — SonoTech</title>
 </head>
 <body>
 <header><iframe src = "communs/header.php"></iframe></header>
 <div id = "div-contenu">
-
-
 <h1>Connexion</h1>
-
 <form action = "script_connection.php" method = "post" onsubmit="return submitconfirm()">
-	<input type = "email" name = "email" placeholder = "Adresse email"><br>
-	<input type = "password" name = "motDePasse" placeholder = "Mot de passe"><br>
-	<button type = "submit">Connexion</button>
+<input type = "email" name = "email" placeholder = "Adresse email"><br>
+<input type = "password" name = "motDePasse" placeholder = "Mot de passe"><br>
+<button type = "submit">Connexion</button>
 </form>
-
 <a href = "inscription.php">Je n'ai pas de compte.</a>
-
-
 </div>
 <footer><iframe src = "communs/footer.php"></iframe></footer>
 </body>

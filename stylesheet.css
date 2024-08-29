@@ -1,146 +1,124 @@
 a {
-	text-decoration: none;
-	color: #fff333;
-	transition: 0.3s ease;
-	font-style: italic;
+text-decoration: none;
+color: #fff333;
+transition: 0.3s ease;
+font-style: italic;
 }
 a:hover {color: #19a0e3;}
-
 body {
-	background: url("images/fond.png") center fixed repeat-y;
-	font-family: "Orbitron", "Bahnschrift", sans-serif;
-	color: #fff333;
-	text-align: center;
-	text-shadow: 1px 1px 1px #000000;
-	font-size: 100%;
+background: url("images/fond.png") center fixed repeat-y;
+font-family: "Orbitron", "Bahnschrift", sans-serif;
+color: #fff333;
+text-align: center;
+text-shadow: 1px 1px 1px #000000;
+font-size: 100%;
 }
 #body-transparent {background: transparent;}
-
 button {
-	font-family: "Orbitron";
-	padding: 1%;
-	background: transparent;
-	border: none;
-	border-radius: 10px;
-	cursor: pointer;
-	transition: 0.3s ease;
-	color: #fff333;
-	font-style: italic;
-	text-shadow: 1px 1px 1px #000000;
+font-family: "Orbitron";
+padding: 1%;
+background: transparent;
+border: none;
+border-radius: 10px;
+cursor: pointer;
+transition: 0.3s ease;
+color: #fff333;
+font-style: italic;
+text-shadow: 1px 1px 1px #000000;
 }
 button:hover {background-color: #19a0e3;}
-
-
 #div-contenu {
-	margin-right: 5%;
-	margin-left: 5%;
+margin-right: 5%;
+margin-left: 5%;
 }
-
 footer {
-	background-color: #5f5f5f;
-	margin-top: 1%;
+background-color: #5f5f5f;
+margin-top: 1%;
 }
-
 h1:before, h1:after,
 h2:before, h2:after
 {
-	content: "";
-	display: block;
-	border-top: 1.5px solid #fff333;
-	margin-top: 1%;
-	margin-bottom: 1%;
+content: "";
+display: block;
+border-top: 1.5px solid #fff333;
+margin-top: 1%;
+margin-bottom: 1%;
 }
 /* h2:before, h2:after {
-	padding-left: 10%;
-	padding-right: 10%;
+padding-left: 10%;
+padding-right: 10%;
 } */
-
 hr {
-	height: 1.5px;
-	background-color: #fff333;
-	border: 0;
+height: 1.5px;
+background-color: #fff333;
+border: 0;
 }
-
 input {
-	font-family: "Orbitron";
-	padding: 1%;
-	margin-bottom: 1%;
-	background-color: #5f5f5f;
-	border: 0;
-	color: #fff333;
-	text-shadow: 1px 1px 1px #000000;
-	filter: drop-shadow(1px 1px 1px #000000);
-	border-radius: 10px;
+font-family: "Orbitron";
+padding: 1%;
+margin-bottom: 1%;
+background-color: #5f5f5f;
+border: 0;
+color: #fff333;
+text-shadow: 1px 1px 1px #000000;
+filter: drop-shadow(1px 1px 1px #000000);
+border-radius: 10px;
 }
-
-
 iframe {
-	width: 100%;
-	border: 0;
+width: 100%;
+border: 0;
 }
-
 img {
-	border-radius: 10px;
-	filter: drop-shadow(1px 1px 1px #000000);
-	width: 200px;
-	height: 300px;
-	margin: 5px;
-	border: 3px transparent solid;
+border-radius: 10px;
+filter: drop-shadow(1px 1px 1px #000000);
+width: 200px;
+height: 300px;
+margin: 5px;
+border: 3px transparent solid;
 }
 img:hover {
-	border: 3px #fff333 solid;
+border: 3px #fff333 solid;
 }
 #img-logo {
-	width: 200px;
-	height: 50px;
+width: 200px;
+height: 50px;
 }
-
 p {
-	width: 75%;
-	margin: auto;
-	background-color: rgba(0, 0, 0, 0.5);
-	border-radius: 10px;
-	line-height: 1.5;
+width: 75%;
+margin: auto;
+background-color: rgba(0, 0, 0, 0.5);
+border-radius: 10px;
+line-height: 1.5;
 }
-
 table {margin: auto;}
-
 #body-transparent ul {list-style: none;}
-
-
 ::placeholder {
-	color: #fff333;
-	text-shadow: 1px 1px 1px #000000;
+color: #fff333;
+text-shadow: 1px 1px 1px #000000;
 }
-
 .contenu-video {
-    position: relative;
-    display: inline-block;
-    margin: 20px;
+position: relative;
+display: inline-block;
+margin: 20px;
 }
-
 .titre-video {
-    position: absolute;
-    bottom: 10px; 
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(0, 0, 0, 0.7);
-    color: #fff333;
-    padding: 5px 10px;
-    border-radius: 5px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
+position: absolute;
+bottom: 10px; 
+left: 50%;
+transform: translateX(-50%);
+background: rgba(0, 0, 0, 0.7);
+color: #fff333;
+padding: 5px 10px;
+border-radius: 5px;
+opacity: 0;
+transition: opacity 0.3s ease;
 }
-
 .contenu-video:hover .titre-video {
-    opacity: 1;
+opacity: 1;
 }
-
 .contenu-video video {
-    display: block;
-    width: 300px;
-    height: auto;
-	margin: 0 auto;
+display: block;
+width: 300px;
+height: auto;
+margin: 0 auto;
 }
-
-
