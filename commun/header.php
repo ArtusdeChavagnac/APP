@@ -6,8 +6,8 @@ session_start();
 <head>
 <meta charset = "utf-8">
 <meta name = "viewport" content = "width = device-width, initial-scale = 1">
-<link rel = "stylesheet" href = "../stylesheet.css">
-<script src = "../script.js"></script>
+<link rel = "stylesheet" href = "../css.css">
+<script src = "../js.js"></script>
 <title>header</title>
 </head>
 <body id = "body-transparent">
@@ -36,7 +36,7 @@ echo "<a href = '../administration/dashboard.php' target ='_top'>DashBoard</a>";
 <?php
 if(isset($_SESSION["utilisateur_connecte"])) {
 echo "<a href ='../mon-compte.php' target ='_top'><button>Mon compte</button></span>";
-echo "<a href ='../deconnection.php' target ='_top'><button>Déconnexion</button></span> ";
+echo "<a href ='../deconnection.php' target ='_top'><button>Déconnexion</button></span>";
 } else {
 echo "<a href ='../connexion.php' target ='_top'><button>Se connecter</button></span>";
 }

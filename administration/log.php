@@ -3,9 +3,9 @@
 <head>
 <meta charset = "utf-8">
 <meta name = "viewport" content = "width=device-width, initial-scale=1">
-<link rel = "stylesheet" href = "../stylesheet.css">
+<link rel = "stylesheet" href = "../css.css">
 <link rel = "shortcut icon" href = "../images/shortcut icon.png"> 
-<script src = "../script.js"></script> 
+<script src = "../js.js"></script> 
 <title>Gestion FAQ — SonoTech</title>
 </head>
 <body>
@@ -45,7 +45,7 @@ $sec = substr($trame, 31, 2);
 $timestamp = sprintf("%04d-%02d-%02d %02d:%02d:%02d", $year, $month, $day, $hour, $min, $sec);
 if (checkdate((int)$month, (int)$day, (int)$year) && $hour < 24 && $min < 60 && $sec < 60) {
 echo "<tr><td>$tra</td><td>$obj</td><td>$req</td><td>$typ</td><td>$num</td><td>$val</td><td>$tim</td><td>$chk</td><td>$timestamp</td></tr>";
-$stmt = $conn->prepare("SELECT idCapteur_sonore FROM capteur_sonore WHERE idCapteur_sonore = ?");
+$stmt = $conn->prepare("select idCapteur_sonore from capteur_sonore where idCapteur_sonore = ?");
 if ($stmt === false) {
 die('Erreur de préparation de la requête: ' . $conn->error);
 }
@@ -55,7 +55,7 @@ $stmt->store_result();
 if ($stmt->num_rows > 0) {
 $stmt->bind_result($idCapteur_sonore);
 $stmt->fetch();
-$stmt_update = $conn->prepare("UPDATE capteur_sonore SET niveau_sonore = ?, date = ?, position = ? WHERE idCapteur_sonore = ?");
+$stmt_update = $conn->prepare("update capteur_sonore set niveau_sonore = ?, date = ?, position = ? where idCapteur_sonore = ?");
 if ($stmt_update === false) {
 die('Erreur de préparation de la requête: ' . $conn->error);
 }

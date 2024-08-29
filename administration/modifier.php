@@ -2,10 +2,10 @@
 session_start();
 if (isset($_SESSION['utilisateur_abonnement_idAbonnement'])) {
 if ($_SESSION['utilisateur_abonnement_idAbonnement'] != 2) {
-echo "<script>window.location.href = '../index.php'</script> " ;
+echo "<script>window.location.href = '../index.php'</script>";
 } 
 } else {
-echo "<script>window.location.href = '../index.php'</script> " ;
+echo "<script>window.location.href = '../index.php'</script>";
 }
 require("../connexion-bdd.php");
 if (isset($_GET['id'])) {
@@ -17,19 +17,19 @@ $updatedDate_de_naissance = $_POST['updated_date_de_naissance'];
 $updatedAdresseEmail = $_POST['updated_adresse_email'];
 $updatedTelephone= $_POST['updated_numero_de_telephone'];
 $updatedAbonnement= $_POST['updated_abonnement_idAbonnement'];
-$sqlUpdate = "UPDATE utilisateur SET
+$sqlUpdate = "update utilisateur set
 nom='$updatedName',
 prenom='$updatedPrenom',
 date_de_naissance='$updatedDate_de_naissance',
 adresse_email='$updatedAdresseEmail',
 numero_de_telephone='$updatedTelephone',
 abonnement_idAbonnement='$updatedAbonnement'
-WHERE idUtilisateur=$userId";
+where idUtilisateur=$userId";
 $conn->query($sqlUpdate);
 header("Location: dashboard.php");
 exit();
 }
-$sqlSelect = "SELECT * FROM utilisateur WHERE idUtilisateur=$userId";
+$sqlSelect = "select * from utilisateur where idUtilisateur=$userId";
 $resultSelect = $conn->query($sqlSelect);
 if ($resultSelect->num_rows == 1) {
 $userData = $resultSelect->fetch_assoc();
@@ -45,9 +45,9 @@ echo "ID d'utilisateur non spécifié.";
 <head>
 <meta charset = "utf-8">
 <meta name = "viewport" content = "width=device-width, initial-scale=1">
-<link rel = "stylesheet" href = "../stylesheet.css">
+<link rel = "stylesheet" href = "../css.css">
 <link rel = "shortcut icon" href = "../images/shortcut icon.png"> 
-<script src = "../script.js"></script> 
+<script src = "../js.js"></script> 
 <title>Page d'Administration_Modifier — SonoTech</title>
 </head>
 <body>

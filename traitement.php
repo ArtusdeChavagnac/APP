@@ -50,7 +50,7 @@ $mail = $_POST["email"];
 $telephone = $_POST["telephone"];
 $mdp = crypterMdp($_POST["motDePasse"]);
 $abonnement_idAbonnement = 1;
-$stmt = $conn->prepare("SELECT COUNT(*) FROM $db.utilisateur WHERE adresse_email = :addresse_email");
+$stmt = $conn->prepare("select COUNT(*) from $db.utilisateur where adresse_email = :addresse_email");
 $stmt->bindParam(':addresse_email', $mail, PDO::PARAM_STR);
 $stmt->execute();
 $nombre_de_lignes = $stmt->fetchColumn();

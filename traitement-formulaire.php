@@ -20,7 +20,7 @@ $prenom = $_POST["prenom"];
 $email = $_POST["mail"];
 $telephone = $_POST["numero_de_telephone"];
 $date_naissance = $_POST["date_de_naissance"];
-$query = $bdd->prepare("UPDATE utilisateur SET nom = ?, prenom = ?, adresse_email = ?, numero_de_telephone = ?, date_de_naissance = ? WHERE idUtilisateur = ?");
+$query = $bdd->prepare("update utilisateur set nom = ?, prenom = ?, adresse_email = ?, numero_de_telephone = ?, date_de_naissance = ? where idUtilisateur = ?");
 $query->execute([$nom, $prenom, $email, $telephone, $date_naissance, $idUtilisateur]);
 $_SESSION['utilisateur_nom'] = $nom;
 $_SESSION['utilisateur_prenom'] = $prenom;

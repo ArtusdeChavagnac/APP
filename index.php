@@ -26,36 +26,36 @@ $bdd = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password, ar
 } catch (PDOException $e) {
 echo "La connexion à la base de données a échoué : ". $e->getMessage();
 }
-$allartists = $bdd ->query('SELECT * FROM artiste');
-if (isset($_GET['q']) AND !empty($_GET['q'])){
-$recherche = htmlspecialchars($_GET['q']);
-$allartists = $bdd -> query('SELECT * FROM artiste WHERE prenom LIKE"%'.$recherche.'%"');
+$allartists = $bdd ->query("select * from artiste");
+if (isset($_GET["q"]) AND !empty($_GET["q"])){
+$recherche = htmlspecialchars($_GET["q"]);
+$allartists = $bdd -> query("select * from artiste where prenom LIKE"%".$recherche."%"");
 }
-$bdd = null ;
+$bdd = null;
 ?>
 <!doctype html>
 <html lang = "fr">
 <head>
 <meta charset = "utf-8">
 <meta name = "viewport" content = "width = device-width, initial-scale = 1">
-<link rel = "stylesheet" href = "stylesheet.css">
+<link rel = "stylesheet" href = "css.css">
 <link rel = "shortcut icon" href = "images/shortcut icon.png">
-<script src = script.js></script>
+<script src = js.js></script>
 <title>Accueil — SonoTech</title>
 <script>
 function openImage(imageSrc,idConcert) {
 var imageSrc = imageSrc;
 var idConcert = idConcert;
-var form = document.createElement('form');
-form.method = 'POST';
-form.action = 'reservation.php';
-var inputIdConcert = document.createElement('input');
-inputIdConcert.type = 'hidden';
-inputIdConcert.name = 'idConcert';
+var form = document.createElement("form");
+form.method = "POST";
+form.action = "reservation.php";
+var inputIdConcert = document.createElement("input");
+inputIdConcert.type = "hidden";
+inputIdConcert.name = "idConcert";
 inputIdConcert.value = idConcert;
-var inputImageSrc = document.createElement('input');
-inputImageSrc.type = 'hidden';
-inputImageSrc.name = 'imageSrc';
+var inputImageSrc = document.createElement("input");
+inputImageSrc.type = "hidden";
+inputImageSrc.name = "imageSrc";
 inputImageSrc.value = imageSrc;
 form.appendChild(inputIdConcert);
 form.appendChild(inputImageSrc);
@@ -77,7 +77,7 @@ form.submit();
 if($allartists->rowCount() > 0){
 while($artist = $allartists->fetch()){
 ?>
-<p><?=$artist['prenom']; ?></p>
+<p><?=$artist["prenom"]; ?></p>
 <?php
 }
 }else{
@@ -94,15 +94,15 @@ while($artist = $allartists->fetch()){
 <p>Le son, c'est nous !</p>
 <h2>Nos prochains événements</h2>
 <?php
-$query = "SELECT idConcert, image FROM $db.concert";
+$query = "select idConcert, image from $db.concert";
 $stmt = $conn->prepare($query);
 $stmt->execute();
 $concertRawData = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $concertData = array();
 foreach($concertRawData as $row) {
-$image = $row['image'];
-$idConcert = $row['idConcert'];
-echo "<img src= '$image' onclick= 'openImage(\"$image\", \"$idConcert\")' alt='Concert 1'>";
+$image = $row["image"];
+$idConcert = $row["idConcert"];
+echo "<img src = '$image' onclick = 'openImage(\"$image\", \"$idConcert\")' alt = 'Concert 1'>";
 }
 ?>
 <h2>Notre projet</h2>

@@ -25,9 +25,9 @@ echo "<script>window.location.href = 'connexion.php'</script>";
 <head>
 <meta charset = "utf-8">
 <meta name = "viewport" content = "width=device-width, initial-scale=1">
-<link rel = "stylesheet" href = "stylesheet.css">
+<link rel = "stylesheet" href = "css.css">
 <link rel = "shortcut icon" href = "images/shortcut icon.png">
-<script src = "../script.js"></script>
+<script src = "../js.js"></script>
 <title>Mon compte SonoTech</title>
 <style>
 #photoProfil {
@@ -56,12 +56,12 @@ display: none;
 <label for = "prenom" style = "display: inline-block; width: 150px; text-align: left; ">Prénom:</label>
 <input type = "text" name = "prenom" value = "<?php echo $prenom; ?>"><br>
 <label for = "adresse_email" style = "display: inline-block; width: 150px; text-align: left;">Email:</label>
-<input type = "email" name = "mail" value = "<?php echo $email ; ?>"><br>
+<input type = "email" name = "mail" value = "<?php echo $email; ?>"><br>
  
 <label for = "numero_de_telephone" style = "display: inline-block; width: 150px; text-align: left;">Numéro de téléphone:</label>
-<input type = "text" name = "numero_de_telephone" placeholder = "Numéro de téléphone" value = "<?php echo $telephone ; ?>" ><br>
+<input type = "text" name = "numero_de_telephone" placeholder = "Numéro de téléphone" value = "<?php echo $telephone; ?>" ><br>
 <label for = "date_de_naissance" style = "display: inline-block; width: 150px; text-align: left;">Date de naissance:</label>
-<input type = "date" name = "date_de_naissance" value = "<?php echo $date_naissance ; ?>"><br>
+<input type = "date" name = "date_de_naissance" value = "<?php echo $date_naissance; ?>"><br>
 <input type = "submit" name = "form5" value = "Modifier"><br>
 </form>
 </div>

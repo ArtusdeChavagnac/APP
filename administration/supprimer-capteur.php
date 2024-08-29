@@ -2,15 +2,15 @@
 session_start();
 if (isset($_SESSION['utilisateur_abonnement_idAbonnement'])) {
 if ($_SESSION['utilisateur_abonnement_idAbonnement'] != 2) {
-echo "<script>window.location.href = '../index.php'</script> " ;
+echo "<script>window.location.href = '../index.php'</script>";
 } 
 } else {
-echo "<script>window.location.href = '../index.php'</script> " ;
+echo "<script>window.location.href = '../index.php'</script>";
 }
 require("../connexion-bdd.php");
 if(isset($_GET['idCapteur_sonore'])) {
 $capteurId = $_GET['idCapteur_sonore'];
-$stmt = $conn->prepare("DELETE FROM capteur_sonore WHERE idCapteur_sonore = ?");
+$stmt = $conn->prepare("delete from capteur_sonore where idCapteur_sonore = ?");
 $stmt->bind_param("i", $capteurId);
 if ($stmt->execute()) {
 echo "Le capteur a été supprimée avec succès.";

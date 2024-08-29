@@ -7,9 +7,9 @@ create table `abonnement` (
 `cout` int(11) not null
 ) engine=innodb default charset=utf8 colate=utf8_general_ci;
 insert into `abonnement` (`idabonnement`, `fonctionalite`, `cout`) values
-(0, 'premium', 50),
-(1, 'gratuit', 0),
-(2, 'admin', 0);
+(0, "premium", 50),
+(1, "gratuit", 0),
+(2, "admin", 0);
 create table `administrateur` (
 `idadministrateur` int(11) not null,
 `nom` varchar(45) not null,
@@ -17,7 +17,7 @@ create table `administrateur` (
 `experience` varchar(45) default null
 ) engine=innodb default charset=utf8 colate=utf8_general_ci;
 insert into `administrateur` (`idadministrateur`, `nom`, `prenom`, `experience`) values
-(1, 'de corta', 'etienne', null);
+(1, "de corta", "etienne", null);
 create table `administrateur_has_capteur_sonore` (
 `idamdinistrateur_has_capteur` int(11) not null,
 `administrateur_idadministrateur` int(11) not null,
@@ -26,7 +26,7 @@ create table `administrateur_has_capteur_sonore` (
 `informations` varchar(45) default null
 ) engine=innodb default charset=utf8 colate=utf8_general_ci;
 insert into `administrateur_has_capteur_sonore` (`idamdinistrateur_has_capteur`, `administrateur_idadministrateur`, `capteur_sonore_idcapteur_sonore`, `carte_sonore`, `informations`) values
-(1, 1, 1, 'image.carte_sonore_1.png', null);
+(1, 1, 1, "image.carte_sonore_1.png", null);
 create table `artiste` (
 `idartiste` int(11) not null,
 `pseudo` varchar(45) default null,
@@ -37,11 +37,11 @@ create table `artiste` (
 `style_de_musique` varchar(45) not null
 ) engine=innodb default charset=utf8 colate=utf8_general_ci;
 insert into `artiste` (`idartiste`, `pseudo`, `nom`, `prenom`, `adresse_email`, `numero_de_telephone`, `style_de_musique`) values
-(1, 'travis scott', 'scott', 'travis', 'example@gmail.com', '0111111111', 'rap'),
-(4, 'dj snake', 'grigahcine', 'william', 'example1@gmail.com', '0111111112', 'rap'),
-(5, 'booba', 'yaffa', 'elie', 'example2@gmail.com', '0111111113', 'rap'),
-(6, 'rainbow sisters', 'chapin', 'erin', 'example3@gmail.com', '0111111114', 'accoustic'),
-(7, 'sloane', 'richard', 'chantal', 'example4@gmail.com', '0111111115', '80\'s');
+(1, "travis scott", "scott", "travis", "example@gmail.com", "0111111111", "rap"),
+(4, "dj snake", "grigahcine", "william", "example1@gmail.com", "0111111112", "rap"),
+(5, "booba", "yaffa", "elie", "example2@gmail.com", "0111111113", "rap"),
+(6, "rainbow sisters", "chapin", "erin", "example3@gmail.com", "0111111114", "accoustic"),
+(7, "sloane", "richard", "chantal", "example4@gmail.com", "0111111115", "80\"s");
 create table `avis` (
 `idavis` int(11) not null,
 `critique` varchar(45) default null,
@@ -49,7 +49,7 @@ create table `avis` (
 `date` date default null
 ) engine=innodb default charset=utf8 colate=utf8_general_ci;
 insert into `avis` (`idavis`, `critique`, `note`, `date`) values
-(1, null, '9', '2024-01-20');
+(1, null, "9", "2024-01-20");
 create table `capteur_sonore` (
 `idcapteur_sonore` int(11) not null,
 `position` varchar(45) not null,
@@ -57,11 +57,11 @@ create table `capteur_sonore` (
 `niveau_sonore` varchar(45) not null
 ) engine=innodb default charset=utf8 colate=utf8_general_ci;
 insert into `capteur_sonore` (`idcapteur_sonore`, `position`, `date`, `niveau_sonore`) values
-(1, 'opera garnier', '2024-01-01', '30'),
-(2, 'olympia', '2024-01-21', '75'),
-(3, 'stade de france', '2024-01-22', '71'),
-(4, 'seine musicale', '2024-01-20', '60'),
-(5, 'bercy', '2024-01-25', '92');
+(1, "opera garnier", "2024-01-01", "30"),
+(2, "olympia", "2024-01-21", "75"),
+(3, "stade de france", "2024-01-22", "71"),
+(4, "seine musicale", "2024-01-20", "60"),
+(5, "bercy", "2024-01-25", "92");
 create table `concert` (
 `idconcert` int(11) not null,
 `image` varchar(256) not null,
@@ -71,12 +71,12 @@ create table `concert` (
 `salle_idsalle` int(11) not null
 ) engine=innodb default charset=utf8 colate=utf8_general_ci;
 insert into `concert` (`idconcert`, `image`, `date`, `duree`, `heure_debut`, `salle_idsalle`) values
-(1, 'images/imgconcert/img1.jpg', '2024-01-19', 243, 1800, 1),
-(2, 'images/imgconcert/img2.jpg', '2024-01-23', 315, 1900, 5),
-(3, 'images/imgconcert/img3.jpg', '2024-01-27', 430, 1730, 4),
-(4, 'images/imgconcert/img4.jpg', '2024-01-20', 265, 1800, 2),
-(5, 'images/imgconcert/img5.jpg', '2024-01-29', 289, 1745, 1),
-(7, 'images/imgconcert/img6.jpg', '2024-01-23', 265, 1745, 3);
+(1, "images/imgconcert/img1.jpg", "2024-01-19", 243, 1800, 1),
+(2, "images/imgconcert/img2.jpg", "2024-01-23", 315, 1900, 5),
+(3, "images/imgconcert/img3.jpg", "2024-01-27", 430, 1730, 4),
+(4, "images/imgconcert/img4.jpg", "2024-01-20", 265, 1800, 2),
+(5, "images/imgconcert/img5.jpg", "2024-01-29", 289, 1745, 1),
+(7, "images/imgconcert/img6.jpg", "2024-01-23", 265, 1745, 3);
 create table `concert_has_artiste` (
 `idconcert_has_artiste` int(11) not null,
 `concert_idconcert` int(11) not null,
@@ -105,17 +105,17 @@ create table `faq` (
 `date` date not null
 ) engine=innodb default charset=utf8 colate=utf8_general_ci;
 insert into `faq` (`idfaq`, `texte`, `date`) values
-(1, 'quels sont vos modes de paiement acceptés ?', '2024-01-01'),
-(2, 'comment puis-je annuler ma réservation ?', '2024-01-01'),
-(3, 'proposez-vous des réductions pour les étudiants ?', '2024-01-01');
+(1, "quels sont vos modes de paiement acceptés ?", "2024-01-01"),
+(2, "comment puis-je annuler ma réservation ?", "2024-01-01"),
+(3, "proposez-vous des réductions pour les étudiants ?", "2024-01-01");
 create table `forum` (
 `id` int(11) not null,
 `question` varchar(1028) not null,
 `user_id` int(11) not null
 ) engine=innodb default charset=utf8 colate=utf8_general_ci;
 insert into `forum` (`id`, `question`, `user_id`) values
-(1, 'combien coute l\'abonnement premium', 1),
-(2, 'test', 1);
+(1, "combien coute l\"abonnement premium", 1),
+(2, "test", 1);
 create table `partenaires` (
 `idpartenaires` int(11) not null,
 `nom` varchar(64) not null,
@@ -123,18 +123,18 @@ create table `partenaires` (
 `siret` varchar(20) not null
 ) engine=innodb default charset=utf8 colate=utf8_general_ci;
 insert into `partenaires` (`idpartenaires`, `nom`, `mail`, `siret`) values
-(1, 'société générale', 'societegenerale@gmail.com', '552 120 222 00013'),
-(2, 'orange', 'orange@gmail.com', '380 129 866'),
-(3, 'google', 'gmail@gmail.com', '443 061 841'),
-(4, 'tesla', 'tesla@gmail.com', '524 335 262 00431'),
-(5, 'openai', 'chatgpt@gmail.com', '443 061 841 00047');
+(1, "société générale", "societegenerale@gmail.com", "552 120 222 00013"),
+(2, "orange", "orange@gmail.com", "380 129 866"),
+(3, "google", "gmail@gmail.com", "443 061 841"),
+(4, "tesla", "tesla@gmail.com", "524 335 262 00431"),
+(5, "openai", "chatgpt@gmail.com", "443 061 841 00047");
 create table `preference_utilisateur` (
 `idpreference_utilisateur` int(11) not null,
 `style_de_musique` varchar(45) default null,
 `artiste_idartiste` int(11) not null
 ) engine=innodb default charset=utf8 colate=utf8_general_ci;
 insert into `preference_utilisateur` (`idpreference_utilisateur`, `style_de_musique`, `artiste_idartiste`) values
-(1, 'rap', 1);
+(1, "rap", 1);
 create table `reponses` (
 `id` int(11) not null,
 `question_id` int(11) not null,
@@ -142,8 +142,8 @@ create table `reponses` (
 `user_id` int(11) not null
 ) engine=innodb default charset=utf8 colate=utf8_general_ci;
 insert into `reponses` (`id`, `question_id`, `reponse`, `user_id`) values
-(1, 1, 'beaucoup', 1),
-(2, 1, 'oui', 1);
+(1, 1, "beaucoup", 1),
+(2, 1, "oui", 1);
 create table `reponse_faq` (
 `idreponse` int(11) not null,
 `texte` text not null,
@@ -151,27 +151,27 @@ create table `reponse_faq` (
 `faq_idfaq` int(11) not null
 ) engine=innodb default charset=utf8 colate=utf8_general_ci;
 insert into `reponse_faq` (`idreponse`, `texte`, `date`, `faq_idfaq`) values
-(1, 'nous acceptons les paiements par carte bancaire, virement et espèces.', '2024-01-02', 1),
-(2, 'pour annuler votre réservation, veuillez nous contacter par téléphone ou par email au moins 48 heures à l\'avance.', '2024-01-02', 2),
-(3, 'oui, nous offrons des réductions spéciales pour les étudiants sur présentation d\'une carte étudiante valide.', '2024-01-02', 3);
+(1, "nous acceptons les paiements par carte bancaire, virement et espèces.", "2024-01-02", 1),
+(2, "pour annuler votre réservation, veuillez nous contacter par téléphone ou par email au moins 48 heures à l\"avance.", "2024-01-02", 2),
+(3, "oui, nous offrons des réductions spéciales pour les étudiants sur présentation d\"une carte étudiante valide.", "2024-01-02", 3);
 create table `salle` (
 `idsalle` int(11) not null,
 `adresse` varchar(80) not null,
 `capteur_sonore_idcapteur_sonore` int(11) not null
 ) engine=innodb default charset=utf8 colate=utf8_general_ci;
 insert into `salle` (`idsalle`, `adresse`, `capteur_sonore_idcapteur_sonore`) values
-(1, '8 rue scribe, 75009 paris', 1),
-(2, '28 bd des capucines, 75009 paris', 2),
-(3, 'stade de france 93200 saint-denis', 3),
-(4, 'la seine musicale, île seguin, 92100 boulogne-billancourt', 4),
-(5, '8 bd de bercy, 75012 paris', 5);
+(1, "8 rue scribe, 75009 paris", 1),
+(2, "28 bd des capucines, 75009 paris", 2),
+(3, "stade de france 93200 saint-denis", 3),
+(4, "la seine musicale, île seguin, 92100 boulogne-billancourt", 4),
+(5, "8 bd de bercy, 75012 paris", 5);
 create table `ticket` (
 `idticket` int(11) not null,
 `place` varchar(45) default null
 ) engine=innodb default charset=utf8 colate=utf8_general_ci;
 insert into `ticket` (`idticket`, `place`) values
-(1, 'normale'),
-(2, 'vip');
+(1, "normale"),
+(2, "vip");
 create table `utilisateur` (
 `idutilisateur` int(11) not null,
 `nom` varchar(45) not null,
@@ -183,10 +183,10 @@ create table `utilisateur` (
 `abonnement_idabonnement` int(11) not null
 ) engine=innodb default charset=utf8 colate=utf8_general_ci;
 insert into `utilisateur` (`idutilisateur`, `nom`, `prenom`, `date_de_naissance`, `adresse_email`, `numero_de_telephone`, `mot_de_passe`, `abonnement_idabonnement`) values
-(1, 'de corta', 'etienne', '2002-10-25', 'etienne.corta@gmail.com', '0652986299', '$2y$10$jbtq.a1qcuowwemnrgqxvex./m61ms9e25pqd89i8rblb8h5ncrzq', 2),
-(2, 'dupont', 'jean', '2002-10-25', 'jeandupont@gmail.com', '0611223344', '$2y$10$zqhuzrklkxygxf.u27jnu.9fvg0z2bt.i6nbelgjao/2hs0pwwfwy', 1),
-(3, 'de corta', 'étienne', '2002-10-25', 'titousteam@gmail.com', '0652986299', '$2y$10$zqhuzrklkxygxf.u27jnu.9fvg0z2bt.i6nbelgjao/2hs0pwwfwy', 1),
-(5, 'admin', 'sonotech', '2023-10-21', 'sonotech@gmail.com', '0606060606', '$2y$10$nmfccx0nmjnnf84taaxzge1iioq7l6zbcjmes/vsuvby0r7q7jmgq', 2);
+(1, "de corta", "etienne", "2002-10-25", "etienne.corta@gmail.com", "0652986299", "$2y$10$jbtq.a1qcuowwemnrgqxvex./m61ms9e25pqd89i8rblb8h5ncrzq", 2),
+(2, "dupont", "jean", "2002-10-25", "jeandupont@gmail.com", "0611223344", "$2y$10$zqhuzrklkxygxf.u27jnu.9fvg0z2bt.i6nbelgjao/2hs0pwwfwy", 1),
+(3, "de corta", "étienne", "2002-10-25", "titousteam@gmail.com", "0652986299", "$2y$10$zqhuzrklkxygxf.u27jnu.9fvg0z2bt.i6nbelgjao/2hs0pwwfwy", 1),
+(5, "admin", "sonotech", "2023-10-21", "sonotech@gmail.com", "0606060606", "$2y$10$nmfccx0nmjnnf84taaxzge1iioq7l6zbcjmes/vsuvby0r7q7jmgq", 2);
 create table `utilisateur_has_concert` (
 `idutilisateur_has_concert` int(11) not null,
 `utilisateur_idutilisateur` int(11) not null,

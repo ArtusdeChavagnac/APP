@@ -23,7 +23,7 @@ if (isset($_POST["email"]) and isset($_POST["motDePasse"])) {
 $mail = $_POST["email"];
 $mdp = htmlspecialchars(($_POST["motDePasse"]));
 $idUtilisateur = -1;
-$stmt = $conn->prepare("SELECT idUtilisateur, mot_de_passe FROM $db.utilisateur WHERE adresse_email = :addresse_email");
+$stmt = $conn->prepare("select idUtilisateur, mot_de_passe from $db.utilisateur where adresse_email = :addresse_email");
 $stmt->bindParam(':addresse_email', $mail, PDO::PARAM_STR);
 $stmt->execute();
 $donnees = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -31,7 +31,7 @@ if ($donnees) {
 $mdp_donnees = $donnees["mot_de_passe"];
 if (password_verify($mdp, $mdp_donnees)) {
 $idUtilisateur = $donnees["idUtilisateur"];
-$query = "SELECT idUtilisateur, nom, prenom, adresse_email, numero_de_telephone, date_de_naissance, abonnement_idAbonnement FROM $db.utilisateur WHERE idUtilisateur = $idUtilisateur";
+$query = "select idUtilisateur, nom, prenom, adresse_email, numero_de_telephone, date_de_naissance, abonnement_idAbonnement from $db.utilisateur where idUtilisateur = $idUtilisateur";
 $stmt = $conn->prepare($query);
 $stmt->execute();
 $utilisateurData = $stmt->fetch(PDO::FETCH_ASSOC);

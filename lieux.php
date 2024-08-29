@@ -16,9 +16,9 @@ die("Connection failed: " . $e->getMessage());
 <head>
 <meta charset = "utf-8">
 <meta name = "viewport" content = "width=device-width, initial-scale=1">
-<link rel = "stylesheet" href = "stylesheet.css">
+<link rel = "stylesheet" href = "css.css">
 <link rel = "shortcut icon" href = "images/shortcut_icon.png">
-<script src = "script.js" defer></script>
+<script src = "js.js" defer></script>
 <title>Lieux — SonoTech</title>
 <style>
 ul {
@@ -99,15 +99,15 @@ display: block;
 <th>Niveau sonore</th>
 </tr>
 <?php
-$query = "SELECT * FROM capteur_sonore";
+$query = "select * from capteur_sonore";
 $stmt = $conn->prepare($query);
 $stmt->execute();
 $lieuRawData = $stmt->fetchAll(PDO::FETCH_ASSOC);
 foreach($lieuRawData as $row){
-echo '<tr>';
+echo "<tr>";
 echo "<td>{$row['position']}</td>";
 echo "<td>{$row['niveau_sonore']}</td>";
-echo '</tr>';
+echo "</tr>";
 }
 $conn = null;
 ?>
@@ -122,10 +122,10 @@ $conn = null;
 </footer>
 <script>
 function showCaption(text) {
-document.getElementById('caption').innerText = text;
+document.getElementById("caption").innerText = text;
 }
-document.querySelector('.image-container img').addEventListener('mouseover', function() {
-showCaption('Lieu 1');
+document.querySelector(".image-container img").addEventListener("mouseover", function() {
+showCaption("Lieu 1");
 });
 </script>
 </body>

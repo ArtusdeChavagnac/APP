@@ -14,7 +14,7 @@ $idUtilisateur = $_SESSION['utilisateur_id'];
 } else {
 echo "<script>window.location.href = 'connexion.php'</script>";
 }
-$query = $bdd->prepare("SELECT mot_de_passe FROM utilisateur WHERE idUtilisateur = ?");
+$query = $bdd->prepare("select mot_de_passe from utilisateur where idUtilisateur = ?");
 $query->execute([$idUtilisateur]);
 $userData = $query->fetch(PDO::FETCH_ASSOC);
 $mot_de_passe = $userData['mot_de_passe'];
@@ -24,9 +24,9 @@ $mot_de_passe = $userData['mot_de_passe'];
 <head>
 <meta charset = "utf-8">
 <meta name = "viewport" content = "width=device-width, initial-scale=1">
-<link rel = "stylesheet" href = "stylesheet.css">
+<link rel = "stylesheet" href = "css.css">
 <link rel = "shortcut icon" href = "images/shortcut icon.png">
-<script src = "../script.js"></script>
+<script src = "../js.js"></script>
 <title>Mon compte SonoTech</title>
 <style>
 #photoProfil {

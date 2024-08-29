@@ -1,6 +1,6 @@
 <?php
 function updateUsers($db, $nom, $prenom, $id) {
-$reponse = $db->prepare("UPDATE users SET nom = ?, prenom = ? WHERE id = ?");
+$reponse = $db->prepare("update users set nom = ?, prenom = ? where id = ?");
 $reponse->execute(array($nom, $prenom, $id));
 return $reponse;
 }
@@ -10,12 +10,12 @@ $reponse->execute(array($nom, $prenom));
 return $reponse;
 }
 function selectUser($db, $id) {
-$reponse = $db->prepare("SELECT * FROM users WHERE id = ?");
+$reponse = $db->prepare("select * from users where id = ?");
 $reponse->execute(array($id));
 return $reponse;
 }
 function selectAll($db) {
-$reponse = $db->prepare("SELECT * FROM users");
+$reponse = $db->prepare("select * from users");
 $reponse->execute();
 return $reponse;
 }

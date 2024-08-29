@@ -21,9 +21,9 @@ echo "Connection failed: " . $e->getMessage();
 <head>
 <meta charset = "utf-8">
 <meta name = "viewport" content = "width = device-width, initial-scale = 1">
-<link rel = "stylesheet" href = "stylesheet.css">
+<link rel = "stylesheet" href = "css.css">
 <link rel = "shortcut icon" href = "images/shortcut icon.png">
-<script src = script.js></script>
+<script src = js.js></script>
 <title>Nos partenaires — SonoTech</title>
 </head>
 <body>
@@ -33,7 +33,7 @@ echo "Connection failed: " . $e->getMessage();
 <p>Voilà une liste des entreprises qui ont choisi de nous accompagner dans ce projet. C'est grâce à leur soutien que nous pouvons vous offrir une meilleure expérience auditive.</p>
 <ul>
 <?php
-$query = "SELECT nom FROM $db.partenaires";
+$query = "select nom from $db.partenaires";
 $stmt = $conn->prepare($query);
 $stmt->execute();
 $partenaires = $stmt->fetchAll(PDO::FETCH_ASSOC);

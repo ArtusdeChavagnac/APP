@@ -8,7 +8,7 @@ $prenom = $_POST['prenom'];
 $adresseEmail = $_POST['adresse_email'];
 $numeroTelephone = $_POST['numero_de_telephone'];
 $styleDeMusique = $_POST['style_de_musique'];
-$stmt = $conn->prepare("UPDATE artiste SET pseudo = ?, nom = ?, prenom = ?, adresse_email = ?, numero_de_telephone = ?, style_de_musique = ? WHERE idArtiste = ?");
+$stmt = $conn->prepare("update artiste set pseudo = ?, nom = ?, prenom = ?, adresse_email = ?, numero_de_telephone = ?, style_de_musique = ? where idArtiste = ?");
 $stmt->bind_param("ssssssi", $pseudo, $nom, $prenom, $adresseEmail, $numeroTelephone, $styleDeMusique, $artisteId);
 if ($stmt->execute()) {
 header("Location: gestion-artiste.php");

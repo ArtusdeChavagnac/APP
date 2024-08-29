@@ -2,10 +2,10 @@
 session_start();
 if (isset($_SESSION['utilisateur_abonnement_idAbonnement'])) {
 if ($_SESSION['utilisateur_abonnement_idAbonnement'] != 2) {
-echo "<script>window.location.href = '../index.php'</script> " ;
+echo "<script>window.location.href = '../index.php'</script>";
 } 
 } else {
-echo "<script>window.location.href = '../index.php'</script> " ;
+echo "<script>window.location.href = '../index.php'</script>";
 }
 ?>
 <!doctype html>
@@ -13,9 +13,9 @@ echo "<script>window.location.href = '../index.php'</script> " ;
 <head>
 <meta charset = "utf-8">
 <meta name = "viewport" content = "width=device-width, initial-scale=1">
-<link rel = "stylesheet" href = "../stylesheet.css">
+<link rel = "stylesheet" href = "../css.css">
 <link rel = "shortcut icon" href = "../images/shortcut icon.png"> 
-<script src = "../script.js"></script> 
+<script src = "../js.js"></script> 
 <title>Ajouter Capteurs — SonoTech</title>
 </head>
 <body>

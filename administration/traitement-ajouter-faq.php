@@ -2,10 +2,10 @@
 session_start();
 if (isset($_SESSION['utilisateur_abonnement_idAbonnement'])) {
 if ($_SESSION['utilisateur_abonnement_idAbonnement'] != 2) {
-echo "<script>window.location.href = '../index.php'</script> " ;
+echo "<script>window.location.href = '../index.php'</script>";
 } 
 } else {
-echo "<script>window.location.href = '../index.php'</script> " ;
+echo "<script>window.location.href = '../index.php'</script>";
 }
 require("../connexion-bdd.php");
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

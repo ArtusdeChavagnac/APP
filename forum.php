@@ -3,16 +3,16 @@
 <head>
 <meta charset = "utf-8">
 <meta name = "viewport" content = "width = device-width, initial-scale = 1">
-<link rel = "stylesheet" href = "stylesheet.css">
+<link rel = "stylesheet" href = "css.css">
 <link rel = "shortcut icon" href = "images/shortcut icon.png">
-<script src = script.js></script>
-<link rel = "stylesheet" href = "stylesheet.css">
+<script src = js.js></script>
+<link rel = "stylesheet" href = "css.css">
 </head>
 <body>
 <?php
 session_start();
-$idUtilisateur = $_SESSION['utilisateur_id'];
-$utilisteur_prenom = $_SESSION['utilisateur_prenom'];
+$idUtilisateur = $_SESSION["utilisateur_id"];
+$utilisteur_prenom = $_SESSION["utilisateur_prenom"];
 echo "<p>Vous êtes connecté en tant que $utilisteur_prenom</p>";
 ?>
 <header><iframe src = "commun/header.php"></iframe></header>
@@ -24,7 +24,7 @@ echo "<p>Vous êtes connecté en tant que $utilisteur_prenom</p>";
 </form>
 <h2>Questions existantes</h2>
 <?php
-include 'afficher-question.php';
+include "afficher-question.php";
 ?>
 <footer><iframe src = "commun/footer.php"></iframe></footer>
 </body>

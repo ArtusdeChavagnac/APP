@@ -3,9 +3,9 @@
 <head>
 <meta charset = "utf-8">
 <meta name = "viewport" content = "width=device-width, initial-scale=1">
-<link rel = "stylesheet" href = "stylesheet.css">
+<link rel = "stylesheet" href = "css.css">
 <link rel = "shortcut icon" href = "images/shortcut icon.png">
-<script src = "script.js"></script>
+<script src = "js.js"></script>
 <title>FAQ — SonoTech</title>
 <style>
 h1 {
@@ -41,25 +41,25 @@ text-align: right;
 <h1>FAQ</h1>
 <?php
 require("connexion-bdd.php");
-$sql = "SELECT * FROM faq";
+$sql = "select * from faq";
 $result = $conn->query($sql);
-echo '<ul>';
+echo "<ul>";
 while ($row = $result->fetch_assoc()) {
-echo '<li>';
-echo '<div class = "question">';
-echo "<strong>Question:</strong> {$row['texte']}<br>";
-if (!empty($row['reponse'])) {
-echo "<strong>Réponse:</strong> {$row['reponse']}<br>";
+echo "<li>";
+echo "<div class = "question">";
+echo "<strong>Question:</strong> {$row["texte"]}<br>";
+if (!empty($row["reponse"])) {
+echo "<strong>Réponse:</strong> {$row["reponse"]}<br>";
 } else {
 echo "<strong>Réponse:</strong> Pas de réponse disponible.<br>";
 }
-echo '</div>';
-echo '<div class = "date">';
-echo "<strong>Date de la réponse:</strong> {$row['date']}<br><br>";
-echo '</div>';
-echo '</li>';
+echo "</div>";
+echo "<div class = "date">";
+echo "<strong>Date de la réponse:</strong> {$row["date"]}<br><br>";
+echo "</div>";
+echo "</li>";
 }
-echo '</ul>';
+echo "</ul>";
 $conn->close();
 ?>
 </div>

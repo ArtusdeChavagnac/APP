@@ -2,7 +2,7 @@
 require("../connexion-bdd.php");
 if (isset($_GET['id'])) {
 $artisteId = $_GET['id'];
-$stmt = $conn->prepare("DELETE FROM artiste WHERE idArtiste = ?");
+$stmt = $conn->prepare("delete from artiste where idArtiste = ?");
 $stmt->bind_param("i", $artisteId);
 if ($stmt->execute()) {
 header("Location: gestion-artiste.php");

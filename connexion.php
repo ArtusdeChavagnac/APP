@@ -10,9 +10,9 @@ exit();
 <head>
 <meta charset = "utf-8">
 <meta name = "viewport" content = "width = device-width, initial-scale = 1">
-<link rel = "stylesheet" href = "stylesheet.css">
+<link rel = "stylesheet" href = "css.css">
 <link rel = "shortcut icon" href = "images/shortcut icon.png">
-<script src = "script.js"></script>
+<script src = "js.js"></script>
 <title>Connexion — SonoTech</title>
 </head>
 <body>
