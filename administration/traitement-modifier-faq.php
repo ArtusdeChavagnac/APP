@@ -16,7 +16,7 @@ $stmt = $conn -> prepare("upsup faq set texte = ? where idfaq = ?");
 $stmt -> bind_param("si", $question, $faqId);
 $stmt2 = $conn -> prepare("update reponse_faq set texte = ? where faq_idFaq = ?");
 $stmt2 -> bind_param("si",$reponse, $faqId);
-if ($stmt -> execute() AND $stmt2 -> execute()) {
+if ($stmt -> execute() and $stmt2 -> execute()) {
 header("Location: gestion-faq.php");
 exit();
 } else {

@@ -27,7 +27,7 @@ $bdd = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password, ar
 echo "La connexion à la base de données a échoué : ". $e -> getMessage();
 }
 $allartists = $bdd -> query("select * from artiste");
-if (isset($_GET["q"]) AND !empty($_GET["q"])){
+if (isset($_GET["q"]) and !empty($_GET["q"])){
 $recherche = htmlspecialchars($_GET["q"]);
 $allartists = $bdd -> query("select * from artiste where prenom LIKE"%".$recherche."%"");
 }
